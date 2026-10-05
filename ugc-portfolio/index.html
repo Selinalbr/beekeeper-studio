@@ -91,7 +91,8 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.herobg { position: relative; margin-inline: -20px; margin-top: -76px; height: clamp(240px, 27vw, 340px); background: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))) center 39% / cover; border-radius: 0 0 32px 32px; }
+.herobg { position: relative; margin-inline: -20px; margin-top: -76px; height: clamp(240px, 27vw, 340px); background: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))) center 34% / cover; border-radius: 0 0 32px 32px; }
+@media (max-width: 860px) { .herobg { background-position: center 25%; } }
 .bg-note { position: absolute; top: 88px; right: 20px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .herobg.has-img .bg-note { display: none; }
@@ -725,7 +726,7 @@ $("#copyMail").addEventListener("click", e => copyText(CONTACT_EMAIL, e.currentT
 
 $("#mailText").textContent = CONTACT_EMAIL;
 if (YOUTUBE_URL) { const y = $("#ytBtn"); y.href = YOUTUBE_URL; y.hidden = false; }
-if (PHOTO_WHY) { const p = $(".why .photo"); p.style.backgroundImage = `url("${PHOTO_WHY}")`; p.style.backgroundSize = "cover"; p.style.backgroundPosition = "center 25%"; p.querySelector("span").hidden = true; }
+if (PHOTO_WHY) { const p = $(".why .photo"); p.style.backgroundImage = `url("${PHOTO_WHY}")`; p.style.backgroundSize = "cover"; p.style.backgroundPosition = "center 35%"; p.querySelector("span").hidden = true; }
 if (HERO_IMAGE) { const hb = $("#heroBg"); hb.style.setProperty("--hero-img", `url("${HERO_IMAGE}")`); hb.classList.add("has-img"); }
 $("#yr").textContent = new Date().getFullYear();
 
