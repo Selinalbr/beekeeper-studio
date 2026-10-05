@@ -8,7 +8,7 @@
 <title>UGCbySelina</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap">
 <style>
 /* Layout: floating pill nav, big headline with a soft marker on the key words, hero video card (clearly marked placeholder),
    video grid, packages + custom-offer banner, brief form on a deep cocoa block.
@@ -35,7 +35,7 @@
   --hl: #DFE6DA;
   --ph-a: #E7DACB;
   --ph-b: #D4C2AE;
-  --font-display: "Italiana", Georgia, serif;
+  --font-display: "Fraunces", Georgia, serif;
   --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 /* Dark mode only on request (toggle in the nav) */
@@ -52,15 +52,15 @@ a { color: inherit; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 .wrap { max-width: 1160px; margin-inline: auto; }
 section { padding-block: 80px; }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0; line-height: 1.02; margin: 0; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -.015em; line-height: 1.02; margin: 0; text-wrap: balance; }
 h2 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
-h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0; }
+h3 { font-size: 1.45rem; font-weight: 700; letter-spacing: -.01em; }
 .eyebrow { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin: 0 0 14px; }
 .lead { color: var(--muted); max-width: 58ch; margin: 16px 0 0; }
 
 /* nav */
 .nav { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); z-index: 20; max-width: 1160px; margin: 12px auto 0; background: color-mix(in srgb, var(--surface) 86%, transparent); backdrop-filter: blur(12px); border: 1px solid var(--line); border-radius: 999px; padding: 8px 10px 8px 22px; display: flex; align-items: center; gap: 18px; }
-.logo { font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; text-decoration: none; margin-right: auto; letter-spacing: 0; }
+.logo { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; text-decoration: none; margin-right: auto; letter-spacing: -.015em; }
 .nav a.link { text-decoration: none; font-size: .93rem; color: var(--muted); font-weight: 500; }
 .nav a.link:hover { color: var(--ink); }
 .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
@@ -84,7 +84,7 @@ h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0; }
 .hero { padding-block: 64px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: clamp(32px, 6vw, 72px); align-items: center; }
 .hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
 .hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.hero h1 { font-size: clamp(2.8rem, 7.4vw, 5.6rem); }
+.hero h1 { font-size: clamp(2.6rem, 6.2vw, 4.8rem); font-weight: 800; }
 .hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--hl) 62%); padding-inline: .06em; }
 .hero .pitch { font-size: 1.15rem; color: var(--muted); max-width: 48ch; margin: 22px 0 0; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
@@ -113,7 +113,7 @@ h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 24px; }
 .card { display: flex; flex-direction: column; gap: 12px; min-width: 0; position: relative; }
 .card .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-.card .meta strong { font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; letter-spacing: 0; }
+.card .meta strong { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; letter-spacing: -.015em; }
 .tag { font-size: .7rem; letter-spacing: .1em; font-weight: 700; color: var(--accent); background: var(--soft); padding: 3px 10px; border-radius: 999px; }
 .note { margin-top: 28px; font-size: .9rem; color: var(--muted); }
 
@@ -123,7 +123,7 @@ h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0; }
 .pkg { background: var(--bg); border: 1px solid var(--line); border-radius: 26px; padding: 30px; display: flex; flex-direction: column; gap: 16px; min-width: 0; position: relative; }
 .pkg.featured { border: 2px solid var(--accent); }
 .pkg .badge { position: absolute; top: -13px; left: 26px; background: var(--accent); color: var(--on-cta); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 14px; border-radius: 999px; }
-.price { font-family: var(--font-display); font-weight: 400; font-size: 2.4rem; letter-spacing: 0; line-height: 1; }
+.price { font-family: var(--font-display); font-weight: 700; font-size: 2.4rem; letter-spacing: -.015em; line-height: 1; }
 .price small { font-family: var(--font-body); font-weight: 500; font-size: .85rem; color: var(--muted); letter-spacing: 0; }
 .pkg ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; flex: 1; }
 .pkg li { padding-left: 26px; position: relative; }
@@ -137,7 +137,7 @@ h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0; }
 .why p.txt { margin: 18px 0 0; max-width: 56ch; color: var(--muted); }
 .points { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 16px; }
 .points li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; }
-.points i { width: 44px; height: 44px; border-radius: 14px; background: var(--soft); color: var(--accent); display: grid; place-items: center; font-style: normal; font-weight: 400; font-family: var(--font-display); }
+.points i { width: 44px; height: 44px; border-radius: 14px; background: var(--soft); color: var(--accent); display: grid; place-items: center; font-style: normal; font-weight: 700; font-family: var(--font-display); }
 .points b { display: block; }
 .points span { color: var(--muted); font-size: .95rem; }
 .photo { aspect-ratio: 4 / 5; border-radius: 26px; background: linear-gradient(160deg, var(--ph-a), var(--ph-b)); display: grid; place-items: end start; padding: 16px; font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); max-width: 100%; }
@@ -146,14 +146,14 @@ h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0; }
 /* steps */
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 20px; margin-top: 36px; counter-reset: s; }
 .step { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 26px; counter-increment: s; }
-.step::before { content: counter(s); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--on-cta); font-family: var(--font-display); font-weight: 400; margin-bottom: 16px; }
+.step::before { content: counter(s); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--on-cta); font-family: var(--font-display); font-weight: 700; margin-bottom: 16px; }
 .step p { margin: 8px 0 0; color: var(--muted); }
 
 /* brands */
 .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px; margin-top: 32px; }
 .logo-ph { height: 72px; border: 1.5px dashed var(--accent-2); border-radius: 16px; display: grid; place-items: center; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .quote { margin: 36px 0 0; padding: 32px; background: var(--soft); border-radius: 26px; }
-.quote p { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.3rem, 3vw, 1.9rem); line-height: 1.25; letter-spacing: 0; margin: 0 0 12px; }
+.quote p { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 3vw, 1.9rem); line-height: 1.25; letter-spacing: -.015em; margin: 0 0 12px; }
 .quote cite { font-style: normal; font-size: .9rem; color: var(--muted); }
 
 /* style */
