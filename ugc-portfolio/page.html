@@ -1,7 +1,7 @@
 <title>UGCbySelina</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap">
 <style>
 /* Layout: floating pill nav, big bold headline + highlighter mark on the key words, hero video card (clearly marked placeholder),
    video grid, packages + custom-offer banner, brief form on a full cobalt block.
@@ -32,19 +32,38 @@
   --font-display: "Bricolage Grotesque", "DM Sans", system-ui, sans-serif;
   --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0D1124; --surface: #151A36; --ink: #EEF1FF; --muted: #A5ACD0; --line: #272E55;
-    --accent: #8DA0FF; --accent-2: #4B5BB5; --soft: #1D2448; --navy: #070A18; --contact-bg: #151C48; --on-navy: #EEF1FF;
-    --cta: #8DA0FF; --cta-hover: #A8B7FF; --on-cta: #0B0F25; --hl: rgba(255, 228, 92, .3);
-    --ph-a: #232B55; --ph-b: #1B2145; color-scheme: dark;
-  }
+/* Palette previews (switch with the pill at the bottom left; delete this block and the pill when you have chosen) */
+:root[data-palette="sage"] {
+  --bg: #F5F8F2; --surface: #FFFFFF; --ink: #15231A; --muted: #58695D; --line: #D8E1D3;
+  --accent: #3C5A43; --accent-2: #8FAE8B; --soft: #E2EBDD; --navy: #1E3325; --contact-bg: #1E3325; --on-navy: #F2F7EE;
+  --cta: #C9472F; --cta-hover: #AD3A24; --on-cta: #FFFFFF; --alt: #C9472F; --alt-hover: #AD3A24; --on-alt: #FFFFFF;
+  --hl: #CFE0C8; --ph-a: #DCE7D7; --ph-b: #B9CDB3;
 }
+:root[data-palette="brown"] {
+  --bg: #F1EBE4; --surface: #FAF6F1; --ink: #3F3328; --muted: #75675A; --line: #DDD2C5;
+  --accent: #4F6350; --accent-2: #BFAE9A; --soft: #E7DACB; --navy: #3F3328; --contact-bg: #3F3328; --on-navy: #F1EBE4;
+  --cta: #B84A2F; --cta-hover: #9C3D25; --on-cta: #FFFFFF; --alt: #B84A2F; --alt-hover: #9C3D25; --on-alt: #FFFFFF;
+  --hl: #E7D3B8; --ph-a: #E7DACB; --ph-b: #D4C2AE; --font-display: "Italiana", Georgia, serif;
+}
+:root[data-palette="brown"] h1, :root[data-palette="brown"] h2, :root[data-palette="brown"] h3 { font-weight: 400; letter-spacing: 0; }
+/* Dark mode only on request (toggle in the nav), so the light colours are always what you see first */
 :root[data-theme="dark"] {
   --bg: #0D1124; --surface: #151A36; --ink: #EEF1FF; --muted: #A5ACD0; --line: #272E55;
   --accent: #8DA0FF; --accent-2: #4B5BB5; --soft: #1D2448; --navy: #070A18; --contact-bg: #151C48; --on-navy: #EEF1FF;
-  --cta: #8DA0FF; --cta-hover: #A8B7FF; --on-cta: #0B0F25; --hl: rgba(255, 228, 92, .3);
-  --ph-a: #232B55; --ph-b: #1B2145; color-scheme: dark;
+  --cta: #8DA0FF; --cta-hover: #A8B7FF; --on-cta: #0B0F25; --alt: #FFE45C; --alt-hover: #FFD92E; --on-alt: #0F1530;
+  --hl: rgba(255, 228, 92, .3); --ph-a: #232B55; --ph-b: #1B2145; color-scheme: dark;
+}
+:root[data-theme="dark"][data-palette="sage"] {
+  --bg: #111A14; --surface: #1A261E; --ink: #EAF2E6; --muted: #A2B5A6; --line: #2B3C30;
+  --accent: #A5C3A0; --accent-2: #8FAE8B; --soft: #223229; --navy: #0B120D; --contact-bg: #0B120D; --on-navy: #EAF2E6;
+  --cta: #E36A4F; --cta-hover: #F0846B; --on-cta: #16100E; --alt: #E36A4F; --alt-hover: #F0846B; --on-alt: #16100E;
+  --hl: rgba(165, 195, 160, .3); --ph-a: #26362C; --ph-b: #1D2A22;
+}
+:root[data-theme="dark"][data-palette="brown"] {
+  --bg: #211A15; --surface: #2A211B; --ink: #F1E8DD; --muted: #BBAA98; --line: #43372E;
+  --accent: #A9BFA5; --accent-2: #8A7A68; --soft: #3A2E25; --navy: #17110D; --contact-bg: #17110D; --on-navy: #F1E8DD;
+  --cta: #D9694A; --cta-hover: #E58264; --on-cta: #1E1611; --alt: #D9694A; --alt-hover: #E58264; --on-alt: #1E1611;
+  --hl: rgba(217, 105, 74, .3); --ph-a: #3A2E25; --ph-b: #2E241D;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -69,6 +88,12 @@ h3 { font-size: 1.4rem; font-weight: 700; letter-spacing: -.01em; }
 .lang button[aria-pressed="true"] { background: var(--accent); color: var(--on-cta); }
 @media (max-width: 760px) { .nav a.link { display: none; } .nav { padding-left: 16px; gap: 10px; } }
 
+.theme { border: 1px solid var(--line); background: none; color: var(--ink); width: 36px; height: 36px; border-radius: 50%; font: inherit; cursor: pointer; display: grid; place-items: center; }
+.theme:hover { background: var(--soft); }
+.pal { position: fixed; z-index: 30; left: 16px; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); display: flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 8px 6px 14px; box-shadow: 0 10px 30px -14px rgba(0,0,0,.4); font-size: .78rem; font-weight: 700; color: var(--muted); }
+.pal button { display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; color: var(--ink); font: inherit; font-size: .8rem; font-weight: 600; padding: 6px 10px; border-radius: 999px; cursor: pointer; }
+.pal button[aria-pressed="true"] { background: var(--soft); }
+.pal i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 1px solid rgba(0,0,0,.15); }
 /* buttons: coral reserved for actions */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border-radius: 999px; border: 1.5px solid transparent; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; transition: background .2s, transform .2s, color .2s; }
 .btn-cta { background: var(--cta); color: var(--on-cta); }
@@ -213,6 +238,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <button type="button" data-lang="de" aria-pressed="true">DE</button>
     <button type="button" data-lang="en" aria-pressed="false">EN</button>
   </div>
+  <button class="theme" type="button" id="themeBtn" aria-label="Hell / Dunkel">◐</button>
   <a class="btn btn-cta btn-sm" href="#contact" data-i18n="nav_cta">Anfragen</a>
 </header>
 
@@ -439,6 +465,13 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
       <a href="#" data-i18n="terms">AGB</a>
     </nav>
   </footer>
+</div>
+
+<div class="pal" role="group" aria-label="Farbvarianten ansehen">
+  <span>Farben</span>
+  <button type="button" data-pal="cobalt" aria-pressed="true"><i style="background:#2F4BFF"></i>Kobalt</button>
+  <button type="button" data-pal="sage" aria-pressed="false"><i style="background:#3C5A43"></i>Salbei</button>
+  <button type="button" data-pal="brown" aria-pressed="false"><i style="background:#6B5744"></i>Braun</button>
 </div>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Video">
@@ -678,6 +711,24 @@ $("#copyMail").addEventListener("click", e => copyText(CONTACT_EMAIL, e.currentT
 $("#mailText").textContent = CONTACT_EMAIL;
 if (YOUTUBE_URL) { const y = $("#ytBtn"); y.href = YOUTUBE_URL; y.hidden = false; }
 $("#yr").textContent = new Date().getFullYear();
+
+/* colour preview + light/dark toggle (remembered per browser, light by default) */
+const root = document.documentElement;
+function setPalette(p) {
+  if (p === "cobalt") root.removeAttribute("data-palette"); else root.setAttribute("data-palette", p);
+  document.querySelectorAll(".pal button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.pal === p)));
+  try { localStorage.setItem("palette", p); } catch (e) {}
+}
+document.querySelectorAll(".pal button").forEach(b => b.addEventListener("click", () => setPalette(b.dataset.pal)));
+$("#themeBtn").addEventListener("click", () => {
+  const dark = root.getAttribute("data-theme") !== "dark";
+  root.setAttribute("data-theme", dark ? "dark" : "light");
+  try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {}
+});
+try {
+  const p = localStorage.getItem("palette"); if (p) setPalette(p);
+  const th = localStorage.getItem("theme"); if (th) root.setAttribute("data-theme", th);
+} catch (e) {}
 
 renderIntro();
 applyLang();
