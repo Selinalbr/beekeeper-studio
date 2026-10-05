@@ -75,6 +75,8 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .lang button { border: 0; background: none; color: var(--muted); font: inherit; font-size: .78rem; font-weight: 700; padding: 4px 11px; border-radius: 999px; cursor: pointer; }
 .lang button[aria-pressed="true"] { background: var(--accent); color: var(--on-cta); }
 @media (max-width: 760px) { .nav a.link { display: none; } .nav { padding-left: 16px; gap: 10px; } }
+.nav .btn-sm { white-space: nowrap; padding: 8px 14px; }
+@media (max-width: 480px) { .nav .theme { display: none; } .logo { font-size: 1rem; } }
 
 .theme { border: 1px solid var(--line); background: none; color: var(--ink); width: 36px; height: 36px; border-radius: 50%; font: inherit; cursor: pointer; display: grid; place-items: center; }
 .theme:hover { background: var(--soft); }
@@ -89,11 +91,11 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.herobg { position: relative; margin-inline: -20px; padding-inline: 20px; margin-top: -76px; padding-top: 76px; --veil-l: 90%; --veil-r: 55%; background: linear-gradient(90deg, color-mix(in srgb, var(--bg) var(--veil-l), transparent), color-mix(in srgb, var(--bg) var(--veil-r), transparent)), var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))) center / cover; }
+.herobg { position: relative; margin-inline: -20px; padding-inline: 20px; margin-top: -76px; padding-top: 76px; --v1: 88%; --v2: 82%; --v3: 22%; background: linear-gradient(90deg, color-mix(in srgb, var(--bg) var(--v1), transparent) 0%, color-mix(in srgb, var(--bg) var(--v2), transparent) 46%, color-mix(in srgb, var(--bg) var(--v3), transparent) 62%, color-mix(in srgb, var(--bg) var(--v3), transparent) 100%), var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))) 98% 32% / 112% auto no-repeat; background-color: var(--ph-a); }
 .bg-note { position: absolute; top: 88px; right: 20px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .herobg.has-img .bg-note { display: none; }
-.hero { position: relative; padding-block: 64px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.hero { position: relative; padding-block: 64px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 430px); gap: clamp(32px, 6vw, 72px); align-items: center; }
 .hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
 .hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .hero h1 { font-size: clamp(2.7rem, 6.4vw, 5rem); font-weight: var(--hw); }
@@ -101,7 +103,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .hero .pitch { font-size: 1.15rem; color: var(--muted); max-width: 48ch; margin: 22px 0 0; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .phone { position: relative; }
-@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); } .phone { max-width: 100%; } 
+@media (max-width: 860px) { .herobg { --v1: 86%; --v2: 86%; --v3: 86%; background-size: cover; background-position: center 30%; } .hero { grid-template-columns: minmax(0, 1fr); } .phone { max-width: 100%; } }
 .followers { margin: 26px 0 0; font-weight: 600; color: var(--muted); }
 .niches { display: flex; flex-wrap: wrap; gap: 10px; padding-block: 8px 0; }
 .niches span { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 16px; font-size: .9rem; font-weight: 500; }
@@ -485,7 +487,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    ratio  = Format, optional ("16 / 9" quer, "9 / 16" hoch). Mit Videodatei wird das Format automatisch erkannt.
    Leer gelassenes src zeigt einen Platzhalter. */
 const CONTACT_EMAIL = "hello@example.com"; // echte E-Mail eintragen
-const HERO_IMAGE = "";                     // Hintergrundbild oben, z. B. "videos/hero.jpg" (am besten quer, helle Stimmung, Gesicht eher rechts)
+const HERO_IMAGE = "videos/hero.jpg";                     // Hintergrundbild oben, z. B. "videos/hero.jpg" (am besten quer, helle Stimmung, Gesicht eher rechts)
+const PHOTO_WHY = "videos/portrait.jpg";  // Portrait bei "Warum ich"
 const YOUTUBE_URL = "";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
 const VIDEOS = [
   { intro: true, ratio: "16 / 9", src: "videos/intro.mp4", poster: "videos/intro.jpg" },   // Intro ist quer (16:9). Hochformat? ratio: "9 / 16"
@@ -722,6 +725,7 @@ $("#copyMail").addEventListener("click", e => copyText(CONTACT_EMAIL, e.currentT
 
 $("#mailText").textContent = CONTACT_EMAIL;
 if (YOUTUBE_URL) { const y = $("#ytBtn"); y.href = YOUTUBE_URL; y.hidden = false; }
+if (PHOTO_WHY) { const p = $(".why .photo"); p.style.backgroundImage = `url("${PHOTO_WHY}")`; p.style.backgroundSize = "cover"; p.style.backgroundPosition = "center 25%"; p.querySelector("span").hidden = true; }
 if (HERO_IMAGE) { const hb = $("#heroBg"); hb.style.setProperty("--hero-img", `url("${HERO_IMAGE}")`); hb.classList.add("has-img"); }
 $("#yr").textContent = new Date().getFullYear();
 
