@@ -82,7 +82,11 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.hero { padding-block: 64px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.herobg { position: relative; margin-inline: -20px; padding-inline: 20px; margin-top: -76px; padding-top: 76px; --veil-l: 90%; --veil-r: 55%; background: linear-gradient(90deg, color-mix(in srgb, var(--bg) var(--veil-l), transparent), color-mix(in srgb, var(--bg) var(--veil-r), transparent)), var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))) center / cover; }
+.bg-note { position: absolute; top: 88px; right: 20px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
+.bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
+.herobg.has-img .bg-note { display: none; }
+.hero { position: relative; padding-block: 64px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: clamp(32px, 6vw, 72px); align-items: center; }
 .hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
 .hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .hero h1 { font-size: clamp(2.7rem, 6.4vw, 5rem); font-weight: var(--hw); }
@@ -222,6 +226,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 </header>
 
 <main id="top">
+<div class="herobg" id="heroBg">
+<span class="bg-note" id="bgNote"><b data-i18n="ph_tag">Platzhalter</b> <span data-i18n="bg_note">Hintergrundbild (HERO_IMAGE im Code)</span></span>
 <div class="wrap">
 
   <!-- HERO -->
@@ -243,6 +249,9 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
       </button>
     </div>
   </div>
+  </div>
+</div>
+<div class="wrap">
   <div class="niches" aria-label="Nischen">
     <span>Hair Care</span><span>Skin Care</span><span>Wellness</span><span>App Demo</span><span>Jewellery</span><span>Unboxing / ASMR</span>
   </div>
@@ -469,6 +478,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    ratio  = Format, optional ("16 / 9" quer, "9 / 16" hoch). Mit Videodatei wird das Format automatisch erkannt.
    Leer gelassenes src zeigt einen Platzhalter. */
 const CONTACT_EMAIL = "hello@example.com"; // echte E-Mail eintragen
+const HERO_IMAGE = "";                     // Hintergrundbild oben, z. B. "videos/hero.jpg" (am besten quer, helle Stimmung, Gesicht eher rechts)
 const YOUTUBE_URL = "";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
 const VIDEOS = [
   { intro: true, ratio: "16 / 9", src: "", poster: "" },   // Intro ist quer (16:9). Hochformat? ratio: "9 / 16"
@@ -484,7 +494,7 @@ const T = {
   de: {
     nav_work: "Arbeiten", nav_pkg: "Pakete", nav_contact: "Kontakt", nav_cta: "Anfragen",
     hero_h1: "UGC, bei dem Menschen <em>stehen bleiben.</em>",
-    hero_pitch: "Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.", followers: "40k+ auf TikTok · 17k auf YouTube", ph_tag: "Platzhalter",
+    hero_pitch: "Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.", followers: "40k+ auf TikTok · 17k auf YouTube", ph_tag: "Platzhalter", bg_note: "Hintergrundbild (HERO_IMAGE im Code)",
     hero_cta: "Zusammenarbeit anfragen", hero_cta2: "Arbeiten ansehen",
     ph_intro: "Hier kommt dein Intro-Video hin", ph_photo: "Platzhalter: Portrait",
     work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die verkaufen", f_all: "Alle",
@@ -527,7 +537,7 @@ const T = {
   en: {
     nav_work: "Work", nav_pkg: "Packages", nav_contact: "Contact", nav_cta: "Get in touch",
     hero_h1: "UGC that makes people <em>stop scrolling.</em>",
-    hero_pitch: "Natural paid-ad videos for beauty, wellness and lifestyle, in German and English.", followers: "40k+ on TikTok · 17k on YouTube", ph_tag: "Placeholder",
+    hero_pitch: "Natural paid-ad videos for beauty, wellness and lifestyle, in German and English.", followers: "40k+ on TikTok · 17k on YouTube", ph_tag: "Placeholder", bg_note: "background image (HERO_IMAGE in the code)",
     hero_cta: "Request a collaboration", hero_cta2: "See my work",
     ph_intro: "Your intro video goes here", ph_photo: "Placeholder: portrait",
     work_eyebrow: "Paid ad examples", work_title: "Videos that sell", f_all: "All",
@@ -704,6 +714,7 @@ $("#copyMail").addEventListener("click", e => copyText(CONTACT_EMAIL, e.currentT
 
 $("#mailText").textContent = CONTACT_EMAIL;
 if (YOUTUBE_URL) { const y = $("#ytBtn"); y.href = YOUTUBE_URL; y.hidden = false; }
+if (HERO_IMAGE) { const hb = $("#heroBg"); hb.style.setProperty("--hero-img", `url("${HERO_IMAGE}")`); hb.classList.add("has-img"); }
 $("#yr").textContent = new Date().getFullYear();
 
 /* light/dark toggle (remembered per browser, light by default) */
