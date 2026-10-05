@@ -81,7 +81,7 @@ h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.hero { padding-block: 64px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: clamp(32px, 7vw, 96px); align-items: center; }
+.hero { padding-block: 64px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: clamp(32px, 6vw, 72px); align-items: center; }
 .hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
 .hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .hero h1 { font-size: clamp(2.8rem, 7.4vw, 5.6rem); }
@@ -89,7 +89,7 @@ h3 { font-size: 1.5rem; font-weight: 400; letter-spacing: 0; }
 .hero .pitch { font-size: 1.15rem; color: var(--muted); max-width: 48ch; margin: 22px 0 0; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .phone { position: relative; }
-@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); } .phone { max-width: 320px; } 
+@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); } .phone { max-width: 100%; } 
 .followers { margin: 26px 0 0; font-weight: 600; color: var(--muted); }
 .niches { display: flex; flex-wrap: wrap; gap: 10px; padding-block: 8px 0; }
 .niches span { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 16px; font-size: .9rem; font-weight: 500; }
@@ -199,8 +199,10 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 /* lightbox */
 .lb { position: fixed; inset: 0; z-index: 50; background: rgba(8, 14, 10, .88); display: grid; place-items: center; padding: 20px; }
 .lb[hidden] { display: none; }
-.lb-box { position: relative; width: min(420px, 100%); max-height: 100%; }
-.lb-box .vid { cursor: default; max-height: calc(100vh - 90px); width: auto; margin-inline: auto; }
+.lb-box { position: relative; width: min(var(--lb-w, 420px), 100%); max-height: 100%; }
+.lb-box .vid { cursor: default; max-height: calc(100vh - 90px); width: auto; max-width: 100%; margin-inline: auto; }
+.lb-box .vid.land { width: 100%; }
+.lb-box .vid video { object-fit: contain; background: #000; }
 .lb-close { position: absolute; top: -44px; right: 0; background: none; border: 0; color: #fff; font: inherit; font-weight: 600; cursor: pointer; padding: 8px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
@@ -234,7 +236,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
       <p class="followers" data-i18n="followers">40k+ auf TikTok · 17k auf YouTube</p>
     </div>
     <div class="phone">
-      <button class="vid" type="button" id="introBtn" aria-label="Intro">
+      <button class="vid" type="button" id="introBtn" aria-label="Intro" style="aspect-ratio: 16 / 9">
         <span class="play"></span>
         <span class="ph-note"><b data-i18n="ph_tag">Platzhalter</b><span data-i18n="ph_intro">Hier kommt dein Intro-Video hin</span></span>
       </button>
@@ -455,11 +457,12 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    Neue Videos: Eintrag zur Liste VIDEOS hinzufügen.
    src    = Pfad oder Link zur MP4-Datei (z. B. "videos/hair.mp4")
    poster = Vorschaubild (z. B. "videos/hair.jpg"), optional
+   ratio  = Format, optional ("16 / 9" quer, "9 / 16" hoch). Mit Videodatei wird das Format automatisch erkannt.
    Leer gelassenes src zeigt einen Platzhalter. */
 const CONTACT_EMAIL = "hello@example.com"; // echte E-Mail eintragen
 const YOUTUBE_URL = "";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
 const VIDEOS = [
-  { intro: true, src: "", poster: "" },
+  { intro: true, ratio: "16 / 9", src: "", poster: "" },   // Intro ist quer (16:9). Hochformat? ratio: "9 / 16"
   { title: "Hair Care",   lang: "de", src: "", poster: "" },
   { title: "Skin Care",   lang: "de", src: "", poster: "" },
   { title: "Wellness",    lang: "de", src: "", poster: "" },
@@ -572,6 +575,10 @@ function applyLang() {
   updateQuote();
 }
 
+function isLand(r) { const [w, h] = String(r || "9 / 16").split("/").map(Number); return w > h; }
+function fitRatio(el, box) {
+  el.addEventListener("loadedmetadata", () => { if (el.videoWidth) { box.style.aspectRatio = el.videoWidth + " / " + el.videoHeight; box.classList.toggle("land", el.videoWidth > el.videoHeight); } });
+}
 function videoInner(v) {
   const media = v.src ? `<video muted loop playsinline preload="metadata" ${v.poster ? `poster="${v.poster}"` : ""} src="${v.src}"></video>` : (v.poster ? `<img src="${v.poster}" alt="">` : "");
   return media + `<span class="play"></span><span class="ph-note"><b>${t("ph_tag")}</b>${t("soon")}</span>`;
@@ -588,6 +595,9 @@ function renderGrid() {
     btn.className = "vid" + (v.src ? " has-src" : "");
     btn.setAttribute("aria-label", v.title);
     btn.innerHTML = videoInner(v);
+    if (v.ratio) btn.style.aspectRatio = v.ratio;
+    const gv = btn.querySelector("video");
+    if (gv) fitRatio(gv, btn);
     btn.addEventListener("click", () => openVideo(v));
     const vid = btn.querySelector("video");
     if (vid) {
@@ -606,9 +616,11 @@ function renderGrid() {
 function renderIntro() {
   const v = VIDEOS.find(x => x.intro) || {};
   const btn = $("#introBtn");
+  if (v.ratio) btn.style.aspectRatio = v.ratio;
   if (v.src) {
     btn.classList.add("has-src");
     btn.insertAdjacentHTML("afterbegin", `<video muted loop playsinline autoplay preload="metadata" ${v.poster ? `poster="${v.poster}"` : ""} src="${v.src}"></video>`);
+    fitRatio(btn.querySelector("video"), btn);
   }
   btn.addEventListener("click", () => openVideo(v));
 }
@@ -617,11 +629,15 @@ const lb = $("#lb"), stage = $("#lbStage");
 function openVideo(v) {
   stage.innerHTML = "";
   const box = document.createElement("div");
-  box.className = "vid" + (v.src ? " has-src" : "");
+  const land = isLand(v.ratio);
+  box.className = "vid" + (v.src ? " has-src" : "") + (land ? " land" : "");
+  box.style.aspectRatio = v.ratio || "9 / 16";
+  lb.style.setProperty("--lb-w", land ? "960px" : "420px");
   if (v.src) {
     const el = document.createElement("video");
     el.src = v.src; el.controls = true; el.autoplay = true; el.playsInline = true;
     if (v.poster) el.poster = v.poster;
+    el.addEventListener("loadedmetadata", () => { if (el.videoWidth) { const l = el.videoWidth > el.videoHeight; box.style.aspectRatio = el.videoWidth + " / " + el.videoHeight; box.classList.toggle("land", l); lb.style.setProperty("--lb-w", l ? "960px" : "420px"); } });
     box.append(el);
   } else {
     box.innerHTML = `<span class="ph-note"><b>${t("ph_tag")}</b>${t("soon")}</span>`;
