@@ -84,11 +84,11 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.herobg { position: relative; margin-inline: -20px; padding-inline: 20px; margin-top: -76px; padding-top: 76px; --v1: 88%; --v2: 82%; --v3: 22%; background: linear-gradient(90deg, color-mix(in srgb, var(--bg) var(--v1), transparent) 0%, color-mix(in srgb, var(--bg) var(--v2), transparent) 46%, color-mix(in srgb, var(--bg) var(--v3), transparent) 62%, color-mix(in srgb, var(--bg) var(--v3), transparent) 100%), var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))) 98% 32% / 112% auto no-repeat; background-color: var(--ph-a); }
+.herobg { position: relative; margin-inline: -20px; margin-top: -76px; height: clamp(240px, 27vw, 340px); background: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))) center 39% / cover; border-radius: 0 0 32px 32px; }
 .bg-note { position: absolute; top: 88px; right: 20px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .herobg.has-img .bg-note { display: none; }
-.hero { position: relative; padding-block: 64px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 430px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.hero { position: relative; padding-block: 48px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: clamp(32px, 6vw, 72px); align-items: center; }
 .hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
 .hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .hero h1 { font-size: clamp(2.7rem, 6.4vw, 5rem); font-weight: var(--hw); }
@@ -96,7 +96,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .hero .pitch { font-size: 1.15rem; color: var(--muted); max-width: 48ch; margin: 22px 0 0; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .phone { position: relative; }
-@media (max-width: 860px) { .herobg { --v1: 86%; --v2: 86%; --v3: 86%; background-size: cover; background-position: center 30%; } .hero { grid-template-columns: minmax(0, 1fr); } .phone { max-width: 100%; } }
+@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); } .phone { max-width: 100%; } }
 .followers { margin: 26px 0 0; font-weight: 600; color: var(--muted); }
 .niches { display: flex; flex-wrap: wrap; gap: 10px; padding-block: 8px 0; }
 .niches span { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 16px; font-size: .9rem; font-weight: 500; }
@@ -230,6 +230,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 <main id="top">
 <div class="herobg" id="heroBg">
 <span class="bg-note" id="bgNote"><b data-i18n="ph_tag">Platzhalter</b> <span data-i18n="bg_note">Hintergrundbild (HERO_IMAGE im Code)</span></span>
+</div>
 <div class="wrap">
 
   <!-- HERO -->
@@ -250,7 +251,6 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
         <span class="ph-note"><b data-i18n="ph_tag">Platzhalter</b><span data-i18n="ph_intro">Hier kommt dein Intro-Video hin</span></span>
       </button>
     </div>
-  </div>
   </div>
 </div>
 <div class="wrap">
