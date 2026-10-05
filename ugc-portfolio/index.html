@@ -91,8 +91,8 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.herobg { position: relative; margin-inline: -20px; margin-top: -76px; height: clamp(240px, 27vw, 340px); background: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))) center 34% / cover; border-radius: 0 0 32px 32px; }
-@media (max-width: 860px) { .herobg { background-position: center 25%; } }
+.herobg { position: relative; margin-inline: -20px; margin-top: -76px; height: clamp(260px, 28vw, 360px); background-color: var(--bg); background-repeat: no-repeat; background-image: linear-gradient(180deg, color-mix(in srgb, var(--bg) 18%, transparent) 0%, color-mix(in srgb, var(--bg) 45%, transparent) 65%, var(--bg) 100%), linear-gradient(90deg, var(--bg) 0%, var(--bg) 15%, transparent 36%, transparent 64%, var(--bg) 85%, var(--bg) 100%), var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: auto, auto, 70% auto; background-position: center, center, center 0%; }
+@media (max-width: 860px) { .herobg { background-size: auto, auto, cover; background-position: center, center, center 6%; background-image: linear-gradient(180deg, color-mix(in srgb, var(--bg) 18%, transparent) 0%, color-mix(in srgb, var(--bg) 45%, transparent) 65%, var(--bg) 100%), none, var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); } }
 .bg-note { position: absolute; top: 88px; right: 20px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .herobg.has-img .bg-note { display: none; }
