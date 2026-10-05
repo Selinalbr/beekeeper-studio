@@ -719,7 +719,7 @@ $("#copyMail").addEventListener("click", e => copyText(CONTACT_EMAIL, e.currentT
 
 $("#mailText").textContent = CONTACT_EMAIL;
 if (YOUTUBE_URL) { const y = $("#ytBtn"); y.href = YOUTUBE_URL; y.hidden = false; }
-if (PHOTO_WHY) { const p = $(".why .photo"); p.style.backgroundImage = `url("${PHOTO_WHY}")`; p.style.backgroundSize = "cover"; p.style.backgroundPosition = "center 35%"; p.querySelector("span").hidden = true; }
+if (PHOTO_WHY) { const p = $(".why .photo"); p.style.backgroundImage = `url("${PHOTO_WHY}")`; p.style.backgroundSize = "cover"; p.style.backgroundPosition = "center 30%"; p.querySelector("span").hidden = true; }
 if (HERO_IMAGE) { const hb = $("#heroBg"); hb.style.setProperty("--hero-img", `url("${HERO_IMAGE}")`); hb.classList.add("has-img"); }
 $("#yr").textContent = new Date().getFullYear();
 
