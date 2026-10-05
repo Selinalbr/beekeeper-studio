@@ -3,53 +3,60 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: floating pill nav, big bold headline left + phone video with proof chips right, reach tiles, video grid,
-   packages + custom-offer banner, brief form on deep green.
-   Colour psychology: cool fresh off-white + sage green = calm, natural, trustworthy (beauty/wellness buyers).
-   Deep forest green anchors headlines and the contact block. One coral accent is used only for action buttons,
-   so the eye lands on "Anfragen" and nothing else competes with it. */
+/* Layout: floating pill nav, big bold headline + highlighter mark on the key words, hero video card (clearly marked placeholder),
+   video grid, packages + custom-offer banner, brief form on a full cobalt block.
+   Colour psychology: clean white keeps it light and fresh; cobalt blue = trust and competence (what brands want in a creator);
+   a highlighter yellow draws the eye to the 2-3 words that matter. Cobalt is also the action colour, so buttons stand out
+   on white; on dark blocks the buttons turn yellow for the same reason. */
 :root {
-  --bg: #F5F8F2;
-  --surface: #FFFFFF;
-  --ink: #15231A;
-  --muted: #58695D;
-  --line: #D8E1D3;
-  --sage: #8FAE8B;
-  --sage-deep: #3C5A43;
-  --sage-soft: #E2EBDD;
-  --forest: #1E3325;
-  --on-forest: #F2F7EE;
-  --cta: #C9472F;
-  --cta-hover: #AD3A24;
+  --bg: #FFFFFF;
+  --surface: #F4F6FF;
+  --ink: #0F1530;
+  --muted: #525A7A;
+  --line: #DCE1F5;
+  --accent: #2F4BFF;
+  --accent-2: #A9B6FF;
+  --soft: #E8ECFF;
+  --navy: #0F1530;
+  --contact-bg: #2F4BFF;
+  --on-navy: #FFFFFF;
+  --cta: #2F4BFF;
+  --cta-hover: #2239D1;
   --on-cta: #FFFFFF;
-  --ph-a: #DCE7D7;
-  --ph-b: #B9CDB3;
+  --alt: #FFE45C;
+  --alt-hover: #FFD92E;
+  --on-alt: #0F1530;
+  --hl: #FFE45C;
+  --ph-a: #E8ECFF;
+  --ph-b: #CBD4FF;
   --font-display: "Bricolage Grotesque", "DM Sans", system-ui, sans-serif;
   --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #111A14; --surface: #1A261E; --ink: #EAF2E6; --muted: #A2B5A6; --line: #2B3C30;
-    --sage: #8FAE8B; --sage-deep: #A5C3A0; --sage-soft: #223229; --forest: #0B120D; --on-forest: #EAF2E6;
-    --cta: #E36A4F; --cta-hover: #F0846B; --on-cta: #16100E; --ph-a: #26362C; --ph-b: #1D2A22; color-scheme: dark;
+    --bg: #0D1124; --surface: #151A36; --ink: #EEF1FF; --muted: #A5ACD0; --line: #272E55;
+    --accent: #8DA0FF; --accent-2: #4B5BB5; --soft: #1D2448; --navy: #070A18; --contact-bg: #151C48; --on-navy: #EEF1FF;
+    --cta: #8DA0FF; --cta-hover: #A8B7FF; --on-cta: #0B0F25; --hl: rgba(255, 228, 92, .3);
+    --ph-a: #232B55; --ph-b: #1B2145; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #111A14; --surface: #1A261E; --ink: #EAF2E6; --muted: #A2B5A6; --line: #2B3C30;
-  --sage: #8FAE8B; --sage-deep: #A5C3A0; --sage-soft: #223229; --forest: #0B120D; --on-forest: #EAF2E6;
-  --cta: #E36A4F; --cta-hover: #F0846B; --on-cta: #16100E; --ph-a: #26362C; --ph-b: #1D2A22; color-scheme: dark;
+  --bg: #0D1124; --surface: #151A36; --ink: #EEF1FF; --muted: #A5ACD0; --line: #272E55;
+  --accent: #8DA0FF; --accent-2: #4B5BB5; --soft: #1D2448; --navy: #070A18; --contact-bg: #151C48; --on-navy: #EEF1FF;
+  --cta: #8DA0FF; --cta-hover: #A8B7FF; --on-cta: #0B0F25; --hl: rgba(255, 228, 92, .3);
+  --ph-a: #232B55; --ph-b: #1B2145; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; padding-inline: 20px; margin: 0; }
 a { color: inherit; }
-:focus-visible { outline: 3px solid var(--sage-deep); outline-offset: 3px; border-radius: 8px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 .wrap { max-width: 1160px; margin-inline: auto; }
 section { padding-block: 80px; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing: -.02em; line-height: 1.02; margin: 0; text-wrap: balance; }
 h2 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
 h3 { font-size: 1.4rem; font-weight: 700; letter-spacing: -.01em; }
-.eyebrow { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--sage-deep); margin: 0 0 14px; }
+.eyebrow { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin: 0 0 14px; }
 .lead { color: var(--muted); max-width: 58ch; margin: 16px 0 0; }
 
 /* nav */
@@ -59,109 +66,92 @@ h3 { font-size: 1.4rem; font-weight: 700; letter-spacing: -.01em; }
 .nav a.link:hover { color: var(--ink); }
 .lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
 .lang button { border: 0; background: none; color: var(--muted); font: inherit; font-size: .78rem; font-weight: 700; padding: 4px 11px; border-radius: 999px; cursor: pointer; }
-.lang button[aria-pressed="true"] { background: var(--forest); color: var(--on-forest); }
+.lang button[aria-pressed="true"] { background: var(--accent); color: var(--on-cta); }
 @media (max-width: 760px) { .nav a.link { display: none; } .nav { padding-left: 16px; gap: 10px; } }
 
 /* buttons: coral reserved for actions */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border-radius: 999px; border: 1.5px solid transparent; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; transition: background .2s, transform .2s, color .2s; }
 .btn-cta { background: var(--cta); color: var(--on-cta); }
 .btn-cta:hover { background: var(--cta-hover); transform: translateY(-1px); }
+.custom .btn-cta { background: var(--alt); color: var(--on-alt); }
+.custom .btn-cta:hover { background: var(--alt-hover); }
 .btn-ghost { border-color: var(--ink); color: var(--ink); background: none; }
 .btn-ghost:hover { background: var(--ink); color: var(--bg); }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
 .hero { padding-block: 64px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: clamp(32px, 7vw, 96px); align-items: center; }
-.hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--sage-soft); color: var(--sage-deep); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
-.hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--sage-deep); }
+.hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
+.hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .hero h1 { font-size: clamp(2.8rem, 7.4vw, 5.6rem); }
-.hero h1 em { font-style: normal; color: var(--sage-deep); }
+.hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--hl) 62%); padding-inline: .06em; }
 .hero .pitch { font-size: 1.15rem; color: var(--muted); max-width: 48ch; margin: 22px 0 0; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .phone { position: relative; }
-.phone .vid { box-shadow: 0 30px 60px -28px color-mix(in srgb, var(--forest) 55%, transparent); }
-.chip-float { position: absolute; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px 16px; box-shadow: 0 14px 30px -18px color-mix(in srgb, var(--forest) 60%, transparent); display: flex; flex-direction: column; line-height: 1.15; }
-.chip-float b { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; }
-.chip-float span { font-size: .78rem; color: var(--muted); }
-.chip-float.a { left: -26px; top: 12%; }
-.chip-float.b { right: -14px; bottom: 10%; }
-@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); } .phone { max-width: 300px; margin-inline: 20px auto; } .chip-float.a { left: -14px; } .chip-float.b { right: -14px; } }
-
+@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); } .phone { max-width: 320px; } 
+.followers { margin: 26px 0 0; font-weight: 600; color: var(--muted); }
 .niches { display: flex; flex-wrap: wrap; gap: 10px; padding-block: 8px 0; }
 .niches span { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 16px; font-size: .9rem; font-weight: 500; }
 
 /* video cards */
 .vid { position: relative; aspect-ratio: 9 / 16; width: 100%; border-radius: 26px; overflow: hidden; background: linear-gradient(160deg, var(--ph-a), var(--ph-b)); border: 0; padding: 0; cursor: pointer; color: var(--ink); text-align: left; font: inherit; }
 .vid video, .vid img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.vid .play { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: color-mix(in srgb, var(--forest) 82%, transparent); display: grid; place-items: center; transition: transform .2s; }
+.vid .play { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: color-mix(in srgb, var(--navy) 82%, transparent); display: grid; place-items: center; transition: transform .2s; }
 .vid:hover .play { transform: scale(1.08); }
-.vid .play::after { content: ""; border-left: 18px solid var(--on-forest); border-block: 11px solid transparent; margin-left: 5px; }
-.vid .ph-note { position: absolute; inset: auto 14px 14px 14px; font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--sage-deep); }
+.vid .play::after { content: ""; border-left: 18px solid var(--on-navy); border-block: 11px solid transparent; margin-left: 5px; }
+.vid .ph-note { position: absolute; inset: auto 12px 12px 12px; background: var(--bg); color: var(--ink); border-radius: 14px; padding: 10px 14px; font-size: .8rem; font-weight: 600; line-height: 1.35; text-align: center; }
+.vid .ph-note b { display: block; color: var(--accent); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
 .vid.has-src .ph-note { display: none; }
-.views { position: absolute; top: 12px; left: 12px; z-index: 2; background: var(--cta); color: var(--on-cta); font-weight: 700; font-size: .78rem; padding: 5px 12px; border-radius: 999px; }
-
-/* reach */
-.reach { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
-.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; gap: 22px; min-width: 0; }
-.tile b { font-family: var(--font-display); font-weight: 800; letter-spacing: -.03em; line-height: .95; font-size: clamp(2.6rem, 6vw, 4.4rem); }
-.tile span { color: var(--muted); font-size: .95rem; }
-.tile.big { grid-column: span 6; background: var(--forest); color: var(--on-forest); border-color: var(--forest); }
-.tile.big b { font-size: clamp(3.6rem, 9vw, 6.8rem); }
-.tile.big span { color: color-mix(in srgb, var(--on-forest) 78%, transparent); }
-.tile.sm { grid-column: span 3; }
-.tile.wide { grid-column: span 6; background: var(--sage-soft); border-color: var(--sage-soft); }
-.tile.wide b { font-size: clamp(2rem, 4vw, 3rem); }
-@media (max-width: 900px) { .tile.big, .tile.wide { grid-column: span 12; } .tile.sm { grid-column: span 6; } }
-@media (max-width: 420px) { .tile.sm { grid-column: span 12; } }
+.vid:not(.has-src) { border: 2px dashed var(--accent-2); }
 
 /* showcase */
 .head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 36px; }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: .9rem; font-weight: 500; padding: 8px 18px; border-radius: 999px; cursor: pointer; }
-.chip[aria-pressed="true"] { background: var(--sage-deep); border-color: var(--sage-deep); color: var(--bg); }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-cta); }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 24px; }
 .card { display: flex; flex-direction: column; gap: 12px; min-width: 0; position: relative; }
 .card .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .card .meta strong { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; letter-spacing: -.01em; }
-.tag { font-size: .7rem; letter-spacing: .1em; font-weight: 700; color: var(--sage-deep); background: var(--sage-soft); padding: 3px 10px; border-radius: 999px; }
+.tag { font-size: .7rem; letter-spacing: .1em; font-weight: 700; color: var(--accent); background: var(--soft); padding: 3px 10px; border-radius: 999px; }
 .note { margin-top: 28px; font-size: .9rem; color: var(--muted); }
 
 /* packages */
 .alt { background: var(--surface); margin-inline: -20px; padding-inline: 20px; border-block: 1px solid var(--line); }
 .pkgs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 20px; margin-top: 40px; align-items: stretch; }
 .pkg { background: var(--bg); border: 1px solid var(--line); border-radius: 26px; padding: 30px; display: flex; flex-direction: column; gap: 16px; min-width: 0; position: relative; }
-.pkg.featured { border: 2px solid var(--sage-deep); }
-.pkg .badge { position: absolute; top: -13px; left: 26px; background: var(--sage-deep); color: var(--bg); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 14px; border-radius: 999px; }
+.pkg.featured { border: 2px solid var(--accent); }
+.pkg .badge { position: absolute; top: -13px; left: 26px; background: var(--accent); color: var(--on-cta); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 14px; border-radius: 999px; }
 .price { font-family: var(--font-display); font-weight: 800; font-size: 2.4rem; letter-spacing: -.03em; line-height: 1; }
 .price small { font-family: var(--font-body); font-weight: 500; font-size: .85rem; color: var(--muted); letter-spacing: 0; }
 .pkg ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; flex: 1; }
 .pkg li { padding-left: 26px; position: relative; }
-.pkg li::before { content: ""; position: absolute; left: 3px; top: .4em; width: 6px; height: 11px; border: solid var(--sage-deep); border-width: 0 2px 2px 0; transform: rotate(40deg); }
-.custom { margin-top: 20px; border-radius: 26px; background: var(--forest); color: var(--on-forest); padding: 32px clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-between; }
+.pkg li::before { content: ""; position: absolute; left: 3px; top: .4em; width: 6px; height: 11px; border: solid var(--accent); border-width: 0 2px 2px 0; transform: rotate(40deg); }
+.custom { margin-top: 20px; border-radius: 26px; background: var(--navy); color: var(--on-navy); padding: 32px clamp(24px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-between; }
 .custom h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
-.custom p { margin: 8px 0 0; color: color-mix(in srgb, var(--on-forest) 80%, transparent); max-width: 52ch; }
+.custom p { margin: 8px 0 0; color: color-mix(in srgb, var(--on-navy) 80%, transparent); max-width: 52ch; }
 
 /* why */
 .why { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: clamp(32px, 6vw, 80px); align-items: center; }
 .why p.txt { margin: 18px 0 0; max-width: 56ch; color: var(--muted); }
 .points { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 16px; }
 .points li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; }
-.points i { width: 44px; height: 44px; border-radius: 14px; background: var(--sage-soft); color: var(--sage-deep); display: grid; place-items: center; font-style: normal; font-weight: 800; font-family: var(--font-display); }
+.points i { width: 44px; height: 44px; border-radius: 14px; background: var(--soft); color: var(--accent); display: grid; place-items: center; font-style: normal; font-weight: 800; font-family: var(--font-display); }
 .points b { display: block; }
 .points span { color: var(--muted); font-size: .95rem; }
-.photo { aspect-ratio: 4 / 5; border-radius: 26px; background: linear-gradient(160deg, var(--ph-a), var(--ph-b)); display: grid; place-items: end start; padding: 16px; font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--sage-deep); max-width: 100%; }
+.photo { aspect-ratio: 4 / 5; border-radius: 26px; background: linear-gradient(160deg, var(--ph-a), var(--ph-b)); display: grid; place-items: end start; padding: 16px; font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); max-width: 100%; }
 @media (max-width: 860px) { .why { grid-template-columns: minmax(0, 1fr); } .why .photo { max-width: 340px; } }
 
 /* steps */
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 20px; margin-top: 36px; counter-reset: s; }
 .step { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 26px; counter-increment: s; }
-.step::before { content: counter(s); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--sage-deep); color: var(--bg); font-family: var(--font-display); font-weight: 800; margin-bottom: 16px; }
+.step::before { content: counter(s); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: var(--on-cta); font-family: var(--font-display); font-weight: 800; margin-bottom: 16px; }
 .step p { margin: 8px 0 0; color: var(--muted); }
 
 /* brands */
 .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px; margin-top: 32px; }
-.logo-ph { height: 72px; border: 1.5px dashed var(--sage); border-radius: 16px; display: grid; place-items: center; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-.quote { margin: 36px 0 0; padding: 32px; background: var(--sage-soft); border-radius: 26px; }
+.logo-ph { height: 72px; border: 1.5px dashed var(--accent-2); border-radius: 16px; display: grid; place-items: center; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.quote { margin: 36px 0 0; padding: 32px; background: var(--soft); border-radius: 26px; }
 .quote p { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.3rem, 3vw, 1.9rem); line-height: 1.25; letter-spacing: -.015em; margin: 0 0 12px; }
 .quote cite { font-style: normal; font-size: .9rem; color: var(--muted); }
 
@@ -169,26 +159,27 @@ h3 { font-size: 1.4rem; font-weight: 700; letter-spacing: -.01em; }
 .words { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .words span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font-weight: 500; }
 .mood { columns: 4 180px; column-gap: 16px; margin-top: 32px; }
-.mood div { break-inside: avoid; margin-bottom: 16px; border-radius: 20px; background: linear-gradient(160deg, var(--ph-a), var(--ph-b)); display: grid; place-items: end start; padding: 12px; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--sage-deep); }
+.mood div { break-inside: avoid; margin-bottom: 16px; border-radius: 20px; background: linear-gradient(160deg, var(--ph-a), var(--ph-b)); display: grid; place-items: end start; padding: 12px; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
 
 /* faq */
 details { border-bottom: 1px solid var(--line); padding-block: 18px; }
 summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
 summary::-webkit-details-marker { display: none; }
-summary::after { content: "+"; font-size: 1.4rem; line-height: 1; color: var(--sage-deep); }
+summary::after { content: "+"; font-size: 1.4rem; line-height: 1; color: var(--accent); }
 details[open] summary::after { content: "–"; }
 details p { margin: 12px 0 0; color: var(--muted); max-width: 64ch; }
 
 /* contact + brief form */
-.contact { background: var(--forest); color: var(--on-forest); margin-inline: -20px; padding-inline: 20px; }
-.contact .eyebrow { color: var(--sage); }
+.contact { background: var(--contact-bg); color: var(--on-navy); margin-inline: -20px; padding-inline: 20px; }
+.contact .eyebrow { color: var(--alt); }
+.hl { background: linear-gradient(transparent 62%, var(--hl) 62%); padding-inline: .06em; }
 .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
 .contact h2 { font-size: clamp(2.4rem, 6vw, 4.2rem); }
-.contact p { color: color-mix(in srgb, var(--on-forest) 82%, transparent); max-width: 46ch; }
+.contact p { color: color-mix(in srgb, var(--on-navy) 82%, transparent); max-width: 46ch; }
 .mail-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 24px; }
 .mail { font-size: 1.05rem; word-break: break-all; user-select: all; }
-.contact .btn-ghost { border-color: var(--on-forest); color: var(--on-forest); }
-.contact .btn-ghost:hover { background: var(--on-forest); color: var(--forest); }
+.contact .btn-ghost { border-color: var(--on-navy); color: var(--on-navy); }
+.contact .btn-ghost:hover { background: var(--on-navy); color: var(--contact-bg); }
 .socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .reply { font-size: .9rem; margin-top: 18px; }
 form.brief { background: var(--surface); color: var(--ink); border-radius: 26px; padding: clamp(22px, 3vw, 34px); display: grid; gap: 16px; }
@@ -198,7 +189,7 @@ form.brief small { color: var(--muted); }
 label { display: grid; gap: 6px; font-size: .85rem; font-weight: 700; min-width: 0; }
 input, select, textarea { font: inherit; font-weight: 400; color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: 12px; padding: 11px 14px; width: 100%; min-width: 0; }
 textarea { min-height: 96px; resize: vertical; }
-input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--sage); border-color: var(--sage-deep); }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--accent-2); border-color: var(--accent); }
 .brief .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 @media (max-width: 900px) { .contact-grid { grid-template-columns: minmax(0, 1fr); } }
 footer { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: .88rem; color: var(--muted); }
@@ -233,37 +224,23 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <div>
       <span class="who">Selina Liebner · UGC Creator</span>
       <h1 data-i18n-html="hero_h1">UGC, bei dem Menschen <em>stehen bleiben.</em></h1>
-      <p class="pitch" data-i18n="hero_pitch">Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch. Mein bestes Video hat über 4,2 Mio. Aufrufe.</p>
+      <p class="pitch" data-i18n="hero_pitch">Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.</p>
       <div class="cta-row">
         <a class="btn btn-cta" href="#contact" data-i18n="hero_cta">Zusammenarbeit anfragen</a>
         <a class="btn btn-ghost" href="#work" data-i18n="hero_cta2">Arbeiten ansehen</a>
       </div>
+      <p class="followers" data-i18n="followers">40k+ auf TikTok · 17k auf YouTube</p>
     </div>
     <div class="phone">
       <button class="vid" type="button" id="introBtn" aria-label="Intro">
         <span class="play"></span>
-        <span class="ph-note" data-i18n="ph_intro">Platzhalter: dein Intro-Video</span>
+        <span class="ph-note"><b data-i18n="ph_tag">Platzhalter</b><span data-i18n="ph_intro">Hier kommt dein Intro-Video hin</span></span>
       </button>
-      <div class="chip-float a"><b>4,2 Mio.</b><span data-i18n="chip_a">Aufrufe, bestes Video</span></div>
-      <div class="chip-float b"><b>40k+</b><span data-i18n="chip_b">auf TikTok</span></div>
     </div>
   </div>
   <div class="niches" aria-label="Nischen">
     <span>Hair Care</span><span>Skin Care</span><span>Wellness</span><span>App Demo</span><span>Jewellery</span><span>Unboxing / ASMR</span>
   </div>
-
-  <!-- REACH -->
-  <section id="reach">
-    <p class="eyebrow" data-i18n="reach_eyebrow">Reichweite</p>
-    <h2 data-i18n="reach_title">Content, den Menschen wirklich sehen</h2>
-    <p class="lead" data-i18n="reach_lead">Hohe Aufrufzahlen zeigen, dass meine Hooks funktionieren. Genau das brauchst du für Ads, die nicht weggescrollt werden.</p>
-    <div class="reach" style="margin-top:36px">
-      <div class="tile big"><b>4,2 Mio.</b><span data-i18n="r1">Aufrufe auf meinem besten Video</span></div>
-      <div class="tile sm"><b>40k+</b><span>TikTok</span></div>
-      <div class="tile sm"><b>17k</b><span>YouTube</span></div>
-      <div class="tile wide"><b>DE · EN</b><span data-i18n="r2">Videos in zwei Sprachen, für DACH und internationale Märkte. Über zwei Jahre Erfahrung.</span></div>
-    </div>
-  </section>
 
   <!-- WORK -->
   <section id="work">
@@ -347,7 +324,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
       <ul class="points">
         <li><i>1</i><div><b data-i18n="w1t">Natürlich vor der Kamera</b><span data-i18n="w1d">Über zwei Jahre Erfahrung, Videos wirken mühelos statt gestellt.</span></div></li>
         <li><i>2</i><div><b data-i18n="w2t">Zuverlässig</b><span data-i18n="w2d">Klare Absprachen, pünktliche Lieferung, saubere Dateien.</span></div></li>
-        <li><i>3</i><div><b data-i18n="w3t">Hooks, die funktionieren</b><span data-i18n="w3d">Mein bestes Video kommt auf über 4,2 Mio. Aufrufe.</span></div></li>
+        <li><i>3</i><div><b data-i18n="w3t">Hooks, die zum Stoppen bringen</b><span data-i18n="w3d">Die ersten Sekunden entscheiden, deshalb baue ich sie bewusst.</span></div></li>
       </ul>
     </div>
     <div class="photo" role="img" aria-label="Platzhalter Portrait"><span data-i18n="ph_photo">Platzhalter: Portrait</span></div>
@@ -476,13 +453,11 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    Neue Videos: Eintrag zur Liste VIDEOS hinzufügen.
    src    = Pfad oder Link zur MP4-Datei (z. B. "videos/hair.mp4")
    poster = Vorschaubild (z. B. "videos/hair.jpg"), optional
-   views  = Badge auf dem Video (z. B. "4,2 Mio."), optional
    Leer gelassenes src zeigt einen Platzhalter. */
 const CONTACT_EMAIL = "hello@example.com"; // echte E-Mail eintragen
 const YOUTUBE_URL = "";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
 const VIDEOS = [
   { intro: true, src: "", poster: "" },
-  { title: "Bestes Video", lang: "de", views: "4,2 Mio.", src: "", poster: "" },
   { title: "Hair Care",   lang: "de", src: "", poster: "" },
   { title: "Skin Care",   lang: "de", src: "", poster: "" },
   { title: "Wellness",    lang: "de", src: "", poster: "" },
@@ -495,13 +470,9 @@ const T = {
   de: {
     nav_work: "Arbeiten", nav_pkg: "Pakete", nav_contact: "Kontakt", nav_cta: "Anfragen",
     hero_h1: "UGC, bei dem Menschen <em>stehen bleiben.</em>",
-    hero_pitch: "Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch. Mein bestes Video hat über 4,2 Mio. Aufrufe.",
+    hero_pitch: "Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.", followers: "40k+ auf TikTok · 17k auf YouTube", ph_tag: "Platzhalter",
     hero_cta: "Zusammenarbeit anfragen", hero_cta2: "Arbeiten ansehen",
-    chip_a: "Aufrufe, bestes Video", chip_b: "auf TikTok",
-    ph_intro: "Platzhalter: dein Intro-Video", ph_photo: "Platzhalter: Portrait",
-    reach_eyebrow: "Reichweite", reach_title: "Content, den Menschen wirklich sehen",
-    reach_lead: "Hohe Aufrufzahlen zeigen, dass meine Hooks funktionieren. Genau das brauchst du für Ads, die nicht weggescrollt werden.",
-    r1: "Aufrufe auf meinem besten Video", r2: "Videos in zwei Sprachen, für DACH und internationale Märkte. Über zwei Jahre Erfahrung.",
+    ph_intro: "Hier kommt dein Intro-Video hin", ph_photo: "Platzhalter: Portrait",
     work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die verkaufen", f_all: "Alle",
     work_note: "Beim Drüberfahren startet eine kurze Vorschau, ein Klick öffnet das Video mit Ton.",
     pkg_eyebrow: "Zusammenarbeit", pkg_title: "Pakete für deine Kampagne",
@@ -515,7 +486,7 @@ const T = {
     why_p: "UGC funktioniert, weil Menschen Menschen vertrauen und keiner polierten Werbung. Ich erstelle authentischen, ästhetischen Content, der deine Marke emotional mit deiner Zielgruppe verbindet.",
     w1t: "Natürlich vor der Kamera", w1d: "Über zwei Jahre Erfahrung, Videos wirken mühelos statt gestellt.",
     w2t: "Zuverlässig", w2d: "Klare Absprachen, pünktliche Lieferung, saubere Dateien.",
-    w3t: "Hooks, die funktionieren", w3d: "Mein bestes Video kommt auf über 4,2 Mio. Aufrufe.",
+    w3t: "Hooks, die zum Stoppen bringen", w3d: "Die ersten Sekunden entscheiden, deshalb baue ich sie bewusst.",
     proc_eyebrow: "Ablauf", proc_title: "So läuft es ab",
     st1t: "Briefing", st1d: "Du schickst Produkt, Ziel und Zielgruppe. Ich melde mich schnell mit Rückfragen.",
     st2t: "Skript & Dreh", st2d: "Ich schreibe Hooks und Skript, du gibst frei, danach drehe ich.",
@@ -542,13 +513,9 @@ const T = {
   en: {
     nav_work: "Work", nav_pkg: "Packages", nav_contact: "Contact", nav_cta: "Get in touch",
     hero_h1: "UGC that makes people <em>stop scrolling.</em>",
-    hero_pitch: "Natural paid-ad videos for beauty, wellness and lifestyle, in German and English. My best video has over 4.2M views.",
+    hero_pitch: "Natural paid-ad videos for beauty, wellness and lifestyle, in German and English.", followers: "40k+ on TikTok · 17k on YouTube", ph_tag: "Placeholder",
     hero_cta: "Request a collaboration", hero_cta2: "See my work",
-    chip_a: "views, best video", chip_b: "on TikTok",
-    ph_intro: "Placeholder: your intro video", ph_photo: "Placeholder: portrait",
-    reach_eyebrow: "Reach", reach_title: "Content people actually watch",
-    reach_lead: "High view counts show that my hooks work. That is what you need for ads that do not get scrolled past.",
-    r1: "views on my best video", r2: "Videos in two languages, for the DACH region and international markets. Over two years of experience.",
+    ph_intro: "Your intro video goes here", ph_photo: "Placeholder: portrait",
     work_eyebrow: "Paid ad examples", work_title: "Videos that sell", f_all: "All",
     work_note: "Hover for a short preview, click to open the video with sound.",
     pkg_eyebrow: "Working together", pkg_title: "Packages for your campaign",
@@ -562,7 +529,7 @@ const T = {
     why_p: "UGC works because people trust people, not polished ads. I create authentic and aesthetic content that helps brands connect emotionally with their audience.",
     w1t: "Natural on camera", w1d: "Over two years of experience, videos feel effortless, not staged.",
     w2t: "Reliable", w2d: "Clear agreements, on-time delivery, clean files.",
-    w3t: "Hooks that work", w3d: "My best video has over 4.2M views.",
+    w3t: "Hooks that stop the scroll", w3d: "The first seconds decide everything, so I build them on purpose.",
     proc_eyebrow: "Process", proc_title: "How it works",
     st1t: "Briefing", st1d: "You send product, goal and audience. I come back quickly with questions.",
     st2t: "Script & shoot", st2d: "I write hooks and script, you approve, then I film.",
@@ -605,7 +572,7 @@ function applyLang() {
 
 function videoInner(v) {
   const media = v.src ? `<video muted loop playsinline preload="metadata" ${v.poster ? `poster="${v.poster}"` : ""} src="${v.src}"></video>` : (v.poster ? `<img src="${v.poster}" alt="">` : "");
-  return media + `<span class="play"></span><span class="ph-note">${t("soon")}</span>`;
+  return media + `<span class="play"></span><span class="ph-note"><b>${t("ph_tag")}</b>${t("soon")}</span>`;
 }
 
 function renderGrid() {
@@ -619,12 +586,6 @@ function renderGrid() {
     btn.className = "vid" + (v.src ? " has-src" : "");
     btn.setAttribute("aria-label", v.title);
     btn.innerHTML = videoInner(v);
-    if (v.views) {
-      const badge = document.createElement("span");
-      badge.className = "views";
-      badge.textContent = v.views + " " + (lang === "de" ? "Aufrufe" : "views");
-      btn.append(badge);
-    }
     btn.addEventListener("click", () => openVideo(v));
     const vid = btn.querySelector("video");
     if (vid) {
@@ -661,7 +622,7 @@ function openVideo(v) {
     if (v.poster) el.poster = v.poster;
     box.append(el);
   } else {
-    box.innerHTML = `<span class="ph-note" style="display:block">${t("soon")}</span>`;
+    box.innerHTML = `<span class="ph-note"><b>${t("ph_tag")}</b>${t("soon")}</span>`;
   }
   stage.append(box);
   lb.hidden = false;
