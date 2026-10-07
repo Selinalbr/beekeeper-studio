@@ -1,7 +1,7 @@
 <title>UGCbySelina</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Playfair+Display:wght@700;800&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Outfit:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap">
 <style>
 /* Layout: floating pill nav, big headline with a soft marker on the key words, hero video card (clearly marked placeholder),
    video grid, packages + custom-offer banner, brief form on a deep cocoa block.
@@ -28,8 +28,8 @@
   --hl: #DFE6DA;
   --ph-a: #E7DACB;
   --ph-b: #D4C2AE;
-  --font-display: "DM Serif Display", Georgia, serif;
-  --hw: 400;
+  --font-display: "Outfit", "DM Sans", system-ui, sans-serif;
+  --hw: 700;
   --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 /* Dark mode only on request (toggle in the nav) */
@@ -39,13 +39,6 @@
   --cta: #D9694A; --cta-hover: #E58264; --on-cta: #1E1611; --alt: #D9694A; --alt-hover: #E58264; --on-alt: #1E1611;
   --hl: rgba(169, 191, 165, .3); --ph-a: #3A2E25; --ph-b: #2E241D; color-scheme: dark;
 }
-/* Font previews (pill bottom left; delete this block, the pill and its script once you picked one) */
-:root[data-font="playfair"] { --font-display: "Playfair Display", Georgia, serif; --hw: 800; }
-:root[data-font="bricolage"] { --font-display: "Bricolage Grotesque", "DM Sans", sans-serif; --hw: 800; }
-:root[data-font="outfit"] { --font-display: "Outfit", "DM Sans", sans-serif; --hw: 700; }
-.pal { position: fixed; z-index: 30; left: 16px; bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); max-width: calc(100% - 32px); display: flex; flex-wrap: wrap; align-items: center; gap: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 6px 8px 6px 14px; box-shadow: 0 10px 30px -14px rgba(0,0,0,.4); font-size: .78rem; font-weight: 700; color: var(--muted); }
-.pal button { border: 0; background: none; color: var(--ink); font: inherit; font-size: .85rem; font-weight: 600; padding: 6px 10px; border-radius: 999px; cursor: pointer; }
-.pal button[aria-pressed="true"] { background: var(--soft); }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; padding-inline: 20px; margin: 0; }
@@ -158,6 +151,9 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .step p { margin: 8px 0 0; color: var(--muted); }
 
 /* brands */
+.brand-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.brand-chips span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 14px 28px; font-family: var(--font-display); font-weight: var(--hw); font-size: 1.2rem; }
+.brand-more { color: var(--muted); margin: 16px 0 0; }
 .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px; margin-top: 32px; }
 .logo-ph { height: 72px; border: 1.5px dashed var(--accent-2); border-radius: 16px; display: grid; place-items: center; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .quote { margin: 36px 0 0; padding: 32px; background: var(--soft); border-radius: 26px; }
@@ -168,7 +164,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .words { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .words span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font-weight: 500; }
 .mood { columns: 4 180px; column-gap: 16px; margin-top: 32px; }
-.mood div { break-inside: avoid; margin-bottom: 16px; border-radius: 20px; background: linear-gradient(160deg, var(--ph-a), var(--ph-b)); display: grid; place-items: end start; padding: 12px; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.mood img { display: block; width: 100%; height: auto; break-inside: avoid; margin-bottom: 16px; border-radius: 20px; }
 
 /* faq */
 details { border-bottom: 1px solid var(--line); padding-block: 18px; }
@@ -283,11 +279,11 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <section id="packages">
       <p class="eyebrow" data-i18n="pkg_eyebrow">Zusammenarbeit</p>
       <h2 data-i18n="pkg_title">Pakete für deine Kampagne</h2>
-      <p class="lead" data-i18n="pkg_lead">Alle Preise sind Platzhalter. Trag deine echten Preise ein oder schreib "auf Anfrage".</p>
+      <p class="lead" data-i18n="pkg_lead">Einstiegspreise. Für größere Projekte erstelle ich dir gern ein individuelles Angebot.</p>
       <div class="pkgs">
         <article class="pkg">
           <h3>Single</h3>
-          <div class="price"><span data-i18n="from">ab</span> XX €</div>
+          <div class="price"><span data-i18n="from">ab</span> <span data-price="single">150 €</span></div>
           <ul>
             <li data-i18n="s1">1 Video (15–30 Sek.)</li>
             <li data-i18n="s2">1 Hook-Variante</li>
@@ -299,18 +295,19 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
         <article class="pkg featured">
           <span class="badge" data-i18n="popular">Beliebt</span>
           <h3>Ad Pack</h3>
-          <div class="price"><span data-i18n="from">ab</span> XX €</div>
+          <div class="price"><span data-i18n="from">ab</span> <span data-price="pack">650 €</span></div>
           <ul>
             <li data-i18n="p1">3 Videos mit je 2 Hooks</li>
             <li data-i18n="p2">Skript und Konzept inklusive</li>
             <li data-i18n="p3">Paid-Ads-Nutzungsrechte (X Monate)</li>
             <li data-i18n="p4">1 Korrekturrunde</li>
+            <li data-i18n="p5">Lieferung in 10 Tagen</li>
           </ul>
           <a class="btn btn-cta" href="#brief" data-i18n="pkg_btn">Anfragen</a>
         </article>
         <article class="pkg">
           <h3>Monthly</h3>
-          <div class="price"><span data-i18n="from">ab</span> XX €<small> / <span data-i18n="month">Monat</span></small></div>
+          <div class="price"><span data-i18n="from">ab</span> <span data-price="monthly">280 €</span><small> / <span data-i18n="month">Monat</span></small></div>
           <ul>
             <li data-i18n="m1">Feste Anzahl Videos pro Monat</li>
             <li data-i18n="m2">Zeit zum Testen und Optimieren</li>
@@ -320,6 +317,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
           <a class="btn btn-ghost" href="#brief" data-i18n="pkg_btn">Anfragen</a>
         </article>
       </div>
+      <p class="note" data-i18n="pkg_note">Kürzere Videos (bis 15 Sek.) ab 100 €, längere Videos (bis 60 Sek.) ab 200 €.</p>
       <div class="custom">
         <div>
           <h3 data-i18n="cu_t">Du brauchst etwas anderes?</h3>
@@ -362,13 +360,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <section id="brands">
     <p class="eyebrow" data-i18n="br_eyebrow">Vertrauen</p>
     <h2 data-i18n="br_title">Marken, mit denen ich gearbeitet habe</h2>
-    <div class="logos">
-      <div class="logo-ph">Logo 1</div><div class="logo-ph">Logo 2</div><div class="logo-ph">Logo 3</div><div class="logo-ph">Logo 4</div><div class="logo-ph">Logo 5</div>
-    </div>
-    <figure class="quote">
-      <p data-i18n="quote">"Hier steht später ein Zitat einer Marke über die Zusammenarbeit."</p>
-      <cite data-i18n="quote_by">Name, Marke (Platzhalter)</cite>
-    </figure>
+    <div class="brand-chips"><span>Bekami</span><span>Safety Talk</span></div>
+    <p class="brand-more" data-i18n="br_more">und weitere Micro-Brands</p>
   </section>
 
   <!-- STYLE -->
@@ -377,8 +370,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <h2 data-i18n="sty_title">Mein Stil</h2>
     <div class="words"><span>Calm</span><span>Soft light</span><span>Natural movement</span><span>Emotional connection</span><span>Clean visuals</span></div>
     <div class="mood" aria-label="Moodboard">
-      <div style="aspect-ratio:3/4">Foto</div><div style="aspect-ratio:1/1">Foto</div><div style="aspect-ratio:4/5">Foto</div><div style="aspect-ratio:3/4">Foto</div>
-      <div style="aspect-ratio:4/5">Foto</div><div style="aspect-ratio:3/4">Foto</div><div style="aspect-ratio:1/1">Foto</div><div style="aspect-ratio:4/5">Foto</div>
+      <img src="videos/mood-shadow.jpg" alt="" loading="lazy"><img src="videos/jewellery.jpg" alt="" loading="lazy"><img src="videos/wellness.jpg" alt="" loading="lazy">
+      <img src="videos/mood-studio.jpg" alt="" loading="lazy"><img src="videos/food.jpg" alt="" loading="lazy"><img src="videos/haircare.jpg" alt="" loading="lazy">
     </div>
   </section>
 
@@ -427,7 +420,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
         <label for="fProduct"><span data-i18n="fm_prod">Produkt oder Link</span><input id="fProduct" type="text"></label>
         <div class="row2">
           <label for="fCount"><span data-i18n="fm_count">Anzahl Videos</span>
-            <select id="fCount"><option value="1">1</option><option value="2–3">2–3</option><option value="4–6">4–6</option><option value="7+">7+</option></select></label>
+            <select id="fCount"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7+</option></select></label>
           <label for="fLang"><span data-i18n="fm_lang">Sprache</span>
             <select id="fLang"><option data-i18n="o_de" value="de">Deutsch</option><option data-i18n="o_en" value="en">Englisch</option><option data-i18n="o_both" value="both">Beides</option></select></label>
         </div>
@@ -436,6 +429,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
             <select id="fUse"><option data-i18n="o_org" value="org">Organisch</option><option data-i18n="o_ads" value="ads">Paid Ads</option><option data-i18n="o_both2" value="both">Beides</option></select></label>
           <label for="fDate"><span data-i18n="fm_date">Wunschtermin</span><input id="fDate" type="text" placeholder="z. B. KW 45"></label>
         </div>
+        <label for="fMonths" id="lblMonths" hidden><span data-i18n="fm_months">Laufzeit der Paid-Ads-Rechte</span>
+          <select id="fMonths"><option data-i18n="o_m3" value="3">3 Monate</option><option data-i18n="o_m6" value="6">6 Monate</option><option data-i18n="o_m12" value="12">12 Monate</option></select></label>
         <label for="fMsg"><span data-i18n="fm_msg">Worum geht es?</span><textarea id="fMsg"></textarea></label>
         <div class="actions">
           <a class="btn btn-cta" id="sendQuote" href="mailto:hello@example.com" data-i18n="fm_send">Angebot anfragen</a>
@@ -451,19 +446,11 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <footer>
     <span>© <span id="yr"></span> Selina Liebner</span>
     <nav>
-      <a href="#" data-i18n="imprint">Impressum (Platzhalter)</a>
+      <a href="#" data-i18n="imprint">Impressum</a>
       <a href="#" data-i18n="privacy">Datenschutz</a>
       <a href="#" data-i18n="terms">AGB</a>
     </nav>
   </footer>
-</div>
-
-<div class="pal" role="group" aria-label="Schriftarten ansehen">
-  <span>Schrift</span>
-  <button type="button" data-font="dm" aria-pressed="true" style="font-family:'DM Serif Display',serif">DM Serif</button>
-  <button type="button" data-font="playfair" aria-pressed="false" style="font-family:'Playfair Display',serif;font-weight:800">Playfair</button>
-  <button type="button" data-font="bricolage" aria-pressed="false" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800">Bricolage</button>
-  <button type="button" data-font="outfit" aria-pressed="false" style="font-family:'Outfit',sans-serif;font-weight:700">Outfit</button>
 </div>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Video">
@@ -480,7 +467,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    poster = Vorschaubild (z. B. "videos/hair.jpg"), optional
    ratio  = Format, optional ("16 / 9" quer, "9 / 16" hoch). Mit Videodatei wird das Format automatisch erkannt.
    Leer gelassenes src zeigt einen Platzhalter. */
-const CONTACT_EMAIL = "hello@example.com"; // echte E-Mail eintragen
+const CONTACT_EMAIL = "selinaxy9@gmail.com"; // echte E-Mail eintragen
+const PRICES = { single: "150 €", pack: "650 €", monthly: "280 €" };  // Preise hier ändern
 const HERO_IMAGE = "videos/hero.jpg";                     // Hintergrundbild oben, z. B. "videos/hero.jpg" (am besten quer, helle Stimmung, Gesicht eher rechts)
 const PHOTO_WHY = "videos/portrait.jpg";  // Portrait bei "Warum ich"
 const YOUTUBE_URL = "";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
@@ -505,11 +493,11 @@ const T = {
     work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die verkaufen", f_all: "Alle",
     work_note: "Beim Drüberfahren startet eine kurze Vorschau, ein Klick öffnet das Video mit Ton.",
     pkg_eyebrow: "Zusammenarbeit", pkg_title: "Pakete für deine Kampagne",
-    pkg_lead: "Alle Preise sind Platzhalter. Trag deine echten Preise ein oder schreib \"auf Anfrage\".",
+    pkg_lead: "Einstiegspreise. Für größere Projekte erstelle ich dir gern ein individuelles Angebot.", pkg_note: "Kürzere Videos (bis 15 Sek.) ab 100 €, längere Videos (bis 60 Sek.) ab 200 €.",
     from: "ab", month: "Monat", popular: "Beliebt", pkg_btn: "Anfragen",
-    s1: "1 Video (15–30 Sek.)", s2: "1 Hook-Variante", s3: "Lieferung in X Werktagen", s4: "Organische Nutzungsrechte",
-    p1: "3 Videos mit je 2 Hooks", p2: "Skript und Konzept inklusive", p3: "Paid-Ads-Nutzungsrechte (X Monate)", p4: "1 Korrekturrunde",
-    m1: "Feste Anzahl Videos pro Monat", m2: "Zeit zum Testen und Optimieren", m3: "Bevorzugter Terminslot", m4: "Rabatt auf Einzelpreise",
+    s1: "1 Video (15–30 Sek.)", s2: "1 Hook inklusive, weitere Hooks als Extra", s3: "Lieferung in 7 Tagen", s4: "Organische Nutzungsrechte",
+    p1: "3 Videos mit je 2 Hooks (6 Hooks)", p2: "Skript und Konzept inklusive", p3: "Paid-Ads-Nutzungsrechte für 3 Monate", p4: "1 Korrekturrunde", p5: "Lieferung in 10 Tagen",
+    m1: "Ab 2 Videos pro Monat", m2: "Zeit zum Testen und Optimieren", m3: "Bevorzugter Terminslot", m4: "Rabatt auf Einzelpreise",
     cu_t: "Du brauchst etwas anderes?", cu_p: "Anderes Format, mehr Videos oder besondere Rechte? Beschreib kurz dein Projekt und ich erstelle dir ein individuelles Angebot.", cu_btn: "Individuelles Angebot anfragen",
     why_eyebrow: "Warum ich", why_title: "Menschen vertrauen Menschen",
     why_p: "UGC funktioniert, weil Menschen Menschen vertrauen und keiner polierten Werbung. Ich erstelle authentischen, ästhetischen Content, der deine Marke emotional mit deiner Zielgruppe verbindet.",
@@ -521,12 +509,12 @@ const T = {
     st2t: "Skript & Dreh", st2d: "Ich schreibe Hooks und Skript, du gibst frei, danach drehe ich.",
     st3t: "Lieferung", st3d: "Fertige Videos im richtigen Format, bereit für TikTok, Reels und Ads.",
     br_eyebrow: "Vertrauen", br_title: "Marken, mit denen ich gearbeitet habe",
-    quote: "\"Hier steht später ein Zitat einer Marke über die Zusammenarbeit.\"", quote_by: "Name, Marke (Platzhalter)",
+    br_more: "und weitere Micro-Brands",
     sty_eyebrow: "Look", sty_title: "Mein Stil",
     faq_title: "Häufige Fragen",
-    q1: "Wie lange dauert die Lieferung?", a1: "Meist X Werktage nach Produkteingang und Freigabe des Skripts. Platzhalter, bitte anpassen.",
-    q2: "Welche Nutzungsrechte sind enthalten?", a2: "Je nach Paket organisch oder für Paid Ads, mit klarer Laufzeit. Platzhalter, bitte anpassen.",
-    q3: "Kann ich Rohmaterial bekommen?", a3: "Ja, gegen Aufpreis. Platzhalter, bitte anpassen.",
+    q1: "Wie lange dauert die Lieferung?", a1: "Beim Single-Video meist 7 Tage nach Produkteingang und Freigabe des Skripts.",
+    q2: "Welche Nutzungsrechte sind enthalten?", a2: "Single: organische Nutzung. Ad Pack: Paid Ads für 3 Monate, eine Verlängerung auf 6 oder 12 Monate ist möglich.",
+    q3: "Kann ich Rohmaterial bekommen?", a3: "Ja, auf Anfrage gegen Aufpreis.",
     q4: "Arbeitest du auch auf Englisch?", a4: "Ja, ich drehe Videos auf Deutsch und auf Englisch.",
     ct_eyebrow: "Kontakt", ct_title: "Lass uns zusammenarbeiten",
     ct_p: "Du möchtest deine Marke mit authentischem Content zum Leben bringen? Schreib mir direkt oder fülle das Kurzbriefing aus.",
@@ -534,10 +522,10 @@ const T = {
     fm_t: "Individuelles Angebot anfragen", fm_s: "Dauert eine Minute. Das Briefing öffnet deine E-Mail-App, alternativ kannst du den Text kopieren.",
     fm_brand: "Marke", fm_name: "Dein Name", fm_prod: "Produkt oder Link", fm_count: "Anzahl Videos", fm_lang: "Sprache",
     fm_use: "Verwendung", fm_date: "Wunschtermin", fm_msg: "Worum geht es?", fm_send: "Angebot anfragen", fm_copy: "Text kopieren",
-    o_de: "Deutsch", o_en: "Englisch", o_both: "Beides", o_org: "Organisch", o_ads: "Paid Ads", o_both2: "Beides",
+    o_de: "Deutsch", o_en: "Englisch", o_both: "Beides", o_org: "Organisch", o_ads: "Paid Ads", o_both2: "Beides", fm_months: "Laufzeit der Paid-Ads-Rechte", o_m3: "3 Monate", o_m6: "6 Monate", o_m12: "12 Monate", l_months: "Laufzeit Paid Ads",
     mail_subj: "Angebotsanfrage", mail_hi: "Hallo Selina,", mail_intro: "ich interessiere mich für ein individuelles Angebot.",
     l_brand: "Marke", l_prod: "Produkt", l_count: "Anzahl Videos", l_lang: "Sprache", l_use: "Verwendung", l_date: "Wunschtermin", l_msg: "Details", mail_bye: "Viele Grüße", soon: "Video folgt",
-    imprint: "Impressum (Platzhalter)", privacy: "Datenschutz", terms: "AGB", close: "Schließen"
+    imprint: "Impressum", privacy: "Datenschutz", terms: "AGB", close: "Schließen"
   },
   en: {
     nav_work: "Work", nav_pkg: "Packages", nav_contact: "Contact", nav_cta: "Get in touch",
@@ -548,11 +536,11 @@ const T = {
     work_eyebrow: "Paid ad examples", work_title: "Videos that sell", f_all: "All",
     work_note: "Hover for a short preview, click to open the video with sound.",
     pkg_eyebrow: "Working together", pkg_title: "Packages for your campaign",
-    pkg_lead: "All prices are placeholders. Add your real prices or write \"on request\".",
+    pkg_lead: "Starting prices. For bigger projects I am happy to put together a custom offer.", pkg_note: "Shorter videos (up to 15 sec.) from €100, longer videos (up to 60 sec.) from €200.",
     from: "from", month: "month", popular: "Popular", pkg_btn: "Get in touch",
-    s1: "1 video (15–30 sec.)", s2: "1 hook variation", s3: "Delivery in X working days", s4: "Organic usage rights",
-    p1: "3 videos with 2 hooks each", p2: "Script and concept included", p3: "Paid ads usage rights (X months)", p4: "1 round of revisions",
-    m1: "Fixed number of videos per month", m2: "Time to test and optimise", m3: "Priority booking slot", m4: "Discount on single prices",
+    s1: "1 video (15–30 sec.)", s2: "1 hook included, extra hooks available", s3: "Delivery in 7 days", s4: "Organic usage rights",
+    p1: "3 videos with 2 hooks each (6 hooks)", p2: "Script and concept included", p3: "Paid ads usage rights for 3 months", p4: "1 round of revisions", p5: "Delivery in 10 days",
+    m1: "From 2 videos per month", m2: "Time to test and optimise", m3: "Priority booking slot", m4: "Discount on single prices",
     cu_t: "Need something different?", cu_p: "Another format, more videos or special rights? Briefly describe your project and I will put together a custom offer.", cu_btn: "Request a custom offer",
     why_eyebrow: "Why me", why_title: "People trust people",
     why_p: "UGC works because people trust people, not polished ads. I create authentic and aesthetic content that helps brands connect emotionally with their audience.",
@@ -563,13 +551,12 @@ const T = {
     st1t: "Briefing", st1d: "You send product, goal and audience. I come back quickly with questions.",
     st2t: "Script & shoot", st2d: "I write hooks and script, you approve, then I film.",
     st3t: "Delivery", st3d: "Finished videos in the right format, ready for TikTok, Reels and ads.",
-    br_eyebrow: "Trust", br_title: "Brands I have worked with",
-    quote: "\"A quote from a brand about working together will go here.\"", quote_by: "Name, brand (placeholder)",
+    br_eyebrow: "Trust", br_title: "Brands I have worked with", br_more: "and more micro brands",
     sty_eyebrow: "Look", sty_title: "My style",
     faq_title: "Frequently asked questions",
-    q1: "How long does delivery take?", a1: "Usually X working days after the product arrives and the script is approved. Placeholder, please edit.",
-    q2: "Which usage rights are included?", a2: "Organic or paid ads depending on the package, with a clear term. Placeholder, please edit.",
-    q3: "Can I get the raw footage?", a3: "Yes, for an additional fee. Placeholder, please edit.",
+    q1: "How long does delivery take?", a1: "For a single video usually 7 days after the product arrives and the script is approved.",
+    q2: "Which usage rights are included?", a2: "Single: organic use. Ad Pack: paid ads for 3 months, extension to 6 or 12 months is possible.",
+    q3: "Can I get the raw footage?", a3: "Yes, on request for an additional fee.",
     q4: "Do you also work in English?", a4: "Yes, I film videos in German and in English.",
     ct_eyebrow: "Contact", ct_title: "Let's work together",
     ct_p: "Ready to bring your brand to life through authentic content? Write to me directly or fill in the short brief.",
@@ -577,10 +564,10 @@ const T = {
     fm_t: "Request a custom offer", fm_s: "Takes a minute. The brief opens your email app, or you can copy the text.",
     fm_brand: "Brand", fm_name: "Your name", fm_prod: "Product or link", fm_count: "Number of videos", fm_lang: "Language",
     fm_use: "Usage", fm_date: "Desired date", fm_msg: "What is it about?", fm_send: "Request offer", fm_copy: "Copy text",
-    o_de: "German", o_en: "English", o_both: "Both", o_org: "Organic", o_ads: "Paid ads", o_both2: "Both",
+    o_de: "German", o_en: "English", o_both: "Both", o_org: "Organic", o_ads: "Paid ads", o_both2: "Both", fm_months: "Duration of paid ads rights", o_m3: "3 months", o_m6: "6 months", o_m12: "12 months", l_months: "Paid ads duration",
     mail_subj: "Offer request", mail_hi: "Hi Selina,", mail_intro: "I am interested in a custom offer.",
     l_brand: "Brand", l_prod: "Product", l_count: "Number of videos", l_lang: "Language", l_use: "Usage", l_date: "Desired date", l_msg: "Details", mail_bye: "Best regards", soon: "Video coming soon",
-    imprint: "Legal notice (placeholder)", privacy: "Privacy", terms: "Terms", close: "Close"
+    imprint: "Legal notice", privacy: "Privacy", terms: "Terms", close: "Close"
   }
 };
 
@@ -696,12 +683,14 @@ function quoteText() {
   add(t("l_count"), opt("fCount"));
   add(t("l_lang"), opt("fLang"));
   add(t("l_use"), opt("fUse"));
+  if (!$("#lblMonths").hidden) add(t("l_months"), opt("fMonths"));
   add(t("l_date"), val("fDate"));
   if (val("fMsg")) lines.push("", t("l_msg") + ":", val("fMsg"));
   lines.push("", t("mail_bye"), val("fName"));
   return lines.join("\n");
 }
 function updateQuote() {
+  $("#lblMonths").hidden = $("#fUse").value === "org";
   const brand = $("#fBrand").value.trim();
   const subj = t("mail_subj") + (brand ? " – " + brand : "");
   $("#sendQuote").href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subj) + "&body=" + encodeURIComponent(quoteText());
@@ -719,6 +708,7 @@ $("#copyMail").addEventListener("click", e => copyText(CONTACT_EMAIL, e.currentT
 
 $("#mailText").textContent = CONTACT_EMAIL;
 if (YOUTUBE_URL) { const y = $("#ytBtn"); y.href = YOUTUBE_URL; y.hidden = false; }
+document.querySelectorAll("[data-price]").forEach(el => { el.textContent = PRICES[el.dataset.price]; });
 if (PHOTO_WHY) { const p = $(".why .photo"); p.style.backgroundImage = `url("${PHOTO_WHY}")`; p.style.backgroundSize = "cover"; p.style.backgroundPosition = "center 30%"; p.querySelector("span").hidden = true; }
 if (HERO_IMAGE) { const hb = $("#heroBg"); hb.style.setProperty("--hero-img", `url("${HERO_IMAGE}")`); hb.classList.add("has-img"); }
 $("#yr").textContent = new Date().getFullYear();
@@ -733,14 +723,6 @@ $("#themeBtn").addEventListener("click", () => {
 try {
   const th = localStorage.getItem("theme"); if (th) root.setAttribute("data-theme", th);
 } catch (e) {}
-
-function setFont(f) {
-  if (f === "dm") root.removeAttribute("data-font"); else root.setAttribute("data-font", f);
-  document.querySelectorAll(".pal button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.font === f)));
-  try { localStorage.setItem("font", f); } catch (e) {}
-}
-document.querySelectorAll(".pal button").forEach(b => b.addEventListener("click", () => setFont(b.dataset.font)));
-try { const f = localStorage.getItem("font"); if (f) setFont(f); } catch (e) {}
 
 renderIntro();
 applyLang();
