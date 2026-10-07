@@ -247,7 +247,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
         <a class="btn btn-cta" href="#contact" data-i18n="hero_cta">Zusammenarbeit anfragen</a>
         <a class="btn btn-ghost" href="#work" data-i18n="hero_cta2">Arbeiten ansehen</a>
       </div>
-      <p class="followers" data-i18n="followers">40k+ auf TikTok · 17k auf YouTube</p>
+      <p class="followers" data-i18n="followers">40k+ auf TikTok · 17k+ auf YouTube</p>
     </div>
     <div class="phone">
       <button class="vid" type="button" id="introBtn" aria-label="Intro" style="aspect-ratio: 16 / 9">
@@ -367,8 +367,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <section id="brands">
     <p class="eyebrow" data-i18n="br_eyebrow">Vertrauen</p>
     <h2 data-i18n="br_title">Marken, mit denen ich gearbeitet habe</h2>
-    <div class="brand-chips"><span>Bekami</span><span>Safety Talk</span></div>
-    <p class="brand-more" data-i18n="br_more">und weitere Micro-Brands</p>
+    <div class="brand-chips"><span>BetterMe</span><span>Wavytalk</span><span>Microgram</span><span>Paul Valentine</span></div>
   </section>
 
   <!-- STYLE -->
@@ -410,7 +409,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
         <div class="socials">
           <a class="btn btn-ghost btn-sm" href="https://www.tiktok.com/@byselinaa" target="_blank" rel="noopener">TikTok @byselinaa</a>
           <a class="btn btn-ghost btn-sm" href="https://www.instagram.com/byyselina" target="_blank" rel="noopener">Instagram @byyselina</a>
-          <a class="btn btn-ghost btn-sm" id="ytBtn" href="#" target="_blank" rel="noopener" hidden>YouTube</a>
+          <a class="btn btn-ghost btn-sm" id="ytBtn" href="#" target="_blank" rel="noopener" hidden>YouTube @byselina</a>
         </div>
         <p class="reply" data-i18n="reply">Antwort in der Regel innerhalb von 24 Stunden.</p>
       </div>
@@ -474,11 +473,11 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    poster = Vorschaubild (z. B. "videos/hair.jpg"), optional
    ratio  = Format, optional ("16 / 9" quer, "9 / 16" hoch). Mit Videodatei wird das Format automatisch erkannt.
    Leer gelassenes src zeigt einen Platzhalter. */
-const CONTACT_EMAIL = "selinaxy9@gmail.com"; // echte E-Mail eintragen
+const CONTACT_EMAIL = "selinaxoxo91@gmail.com"; // echte E-Mail eintragen
 const PRICES = { single: "175 €", pack: "750 €", monthly: "300 €" };  // Preise hier ändern
 const HERO_IMAGE = "videos/hero.jpg";                     // Hintergrundbild oben, z. B. "videos/hero.jpg" (am besten quer, helle Stimmung, Gesicht eher rechts)
 const PHOTO_WHY = "videos/portrait.jpg";  // Portrait bei "Warum ich"
-const YOUTUBE_URL = "";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
+const YOUTUBE_URL = "https://www.youtube.com/@byselina";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
 const VIDEOS = [
   { intro: true, ratio: "16 / 9", src: "videos/intro.mp4", poster: "videos/intro.jpg" },   // Intro ist quer (16:9). Hochformat? ratio: "9 / 16"
   { title: "Hair Care", lang: "de", src: "videos/haircare.mp4", poster: "videos/haircare.jpg" },
@@ -494,7 +493,7 @@ const T = {
   de: {
     nav_work: "Arbeiten", nav_pkg: "Pakete", nav_contact: "Kontakt", nav_cta: "Anfragen",
     hero_h1: "UGC, bei dem Menschen <em>stehen bleiben.</em>",
-    hero_pitch: "Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.", followers: "40k+ auf TikTok · 17k auf YouTube", ph_tag: "Platzhalter", bg_note: "Hintergrundbild (HERO_IMAGE im Code)",
+    hero_pitch: "Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.", followers: "40k+ auf TikTok · 17k+ auf YouTube", ph_tag: "Platzhalter", bg_note: "Hintergrundbild (HERO_IMAGE im Code)",
     hero_cta: "Zusammenarbeit anfragen", hero_cta2: "Arbeiten ansehen",
     ph_intro: "Hier kommt dein Intro-Video hin", ph_photo: "Platzhalter: Portrait",
     work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die verkaufen", f_all: "Alle",
@@ -516,7 +515,6 @@ const T = {
     st2t: "Skript & Dreh", st2d: "Ich schreibe Hooks und Skript, du gibst frei, danach drehe ich.",
     st3t: "Lieferung", st3d: "Fertige Videos im richtigen Format, bereit für TikTok, Reels und Ads.",
     br_eyebrow: "Vertrauen", br_title: "Marken, mit denen ich gearbeitet habe",
-    br_more: "und weitere Micro-Brands",
     sty_eyebrow: "Look", sty_title: "Mein Stil",
     faq_title: "Häufige Fragen",
     q1: "Wie lange dauert die Lieferung?", a1: "Beim Single-Video meist 7 Tage nach Produkteingang und Freigabe des Skripts.",
@@ -537,7 +535,7 @@ const T = {
   en: {
     nav_work: "Work", nav_pkg: "Packages", nav_contact: "Contact", nav_cta: "Get in touch",
     hero_h1: "UGC that makes people <em>stop scrolling.</em>",
-    hero_pitch: "Natural paid-ad videos for beauty, wellness and lifestyle, in German and English.", followers: "40k+ on TikTok · 17k on YouTube", ph_tag: "Placeholder", bg_note: "background image (HERO_IMAGE in the code)",
+    hero_pitch: "Natural paid-ad videos for beauty, wellness and lifestyle, in German and English.", followers: "40k+ on TikTok · 17k+ on YouTube", ph_tag: "Placeholder", bg_note: "background image (HERO_IMAGE in the code)",
     hero_cta: "Request a collaboration", hero_cta2: "See my work",
     ph_intro: "Your intro video goes here", ph_photo: "Placeholder: portrait",
     work_eyebrow: "Paid ad examples", work_title: "Videos that sell", f_all: "All",
@@ -558,7 +556,7 @@ const T = {
     st1t: "Briefing", st1d: "You send product, goal and audience. I come back quickly with questions.",
     st2t: "Script & shoot", st2d: "I write hooks and script, you approve, then I film.",
     st3t: "Delivery", st3d: "Finished videos in the right format, ready for TikTok, Reels and ads.",
-    br_eyebrow: "Trust", br_title: "Brands I have worked with", br_more: "and more micro brands",
+    br_eyebrow: "Trust", br_title: "Brands I have worked with",
     sty_eyebrow: "Look", sty_title: "My style",
     faq_title: "Frequently asked questions",
     q1: "How long does delivery take?", a1: "For a single video usually 7 days after the product arrives and the script is approved.",
