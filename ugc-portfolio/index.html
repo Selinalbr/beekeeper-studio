@@ -290,7 +290,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
       <div class="pkgs">
         <article class="pkg">
           <h3>Single</h3>
-          <div class="price"><span data-i18n="from">ab</span> <span data-price="single">150 €</span></div>
+          <div class="price"><span data-i18n="from">ab</span> <span data-price="single">175 €</span></div>
           <ul>
             <li data-i18n="s1">1 Video (15–30 Sek.)</li>
             <li data-i18n="s2">1 Hook-Variante</li>
@@ -302,7 +302,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
         <article class="pkg featured">
           <span class="badge" data-i18n="popular">Beliebt</span>
           <h3>Ad Pack</h3>
-          <div class="price"><span data-i18n="from">ab</span> <span data-price="pack">650 €</span></div>
+          <div class="price"><span data-i18n="from">ab</span> <span data-price="pack">750 €</span></div>
           <ul>
             <li data-i18n="p1">3 Videos mit je 2 Hooks</li>
             <li data-i18n="p2">Skript und Konzept inklusive</li>
@@ -314,7 +314,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
         </article>
         <article class="pkg">
           <h3>Monthly</h3>
-          <div class="price"><span data-i18n="from">ab</span> <span data-price="monthly">280 €</span><small> / <span data-i18n="month">Monat</span></small></div>
+          <div class="price"><span data-i18n="from">ab</span> <span data-price="monthly">300 €</span><small> / <span data-i18n="month">Monat</span></small></div>
           <ul>
             <li data-i18n="m1">Feste Anzahl Videos pro Monat</li>
             <li data-i18n="m2">Zeit zum Testen und Optimieren</li>
@@ -324,7 +324,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
           <a class="btn btn-ghost" href="#brief" data-i18n="pkg_btn">Anfragen</a>
         </article>
       </div>
-      <p class="note" data-i18n="pkg_note">Kürzere Videos (bis 15 Sek.) ab 100 €, längere Videos (bis 60 Sek.) ab 200 €.</p>
+      <p class="note" data-i18n="pkg_note">Kürzere Videos (bis 15 Sek.) ab 150 €, längere Videos (bis 60 Sek.) ab 200 €.</p>
       <div class="custom">
         <div>
           <h3 data-i18n="cu_t">Du brauchst etwas anderes?</h3>
@@ -475,7 +475,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    ratio  = Format, optional ("16 / 9" quer, "9 / 16" hoch). Mit Videodatei wird das Format automatisch erkannt.
    Leer gelassenes src zeigt einen Platzhalter. */
 const CONTACT_EMAIL = "selinaxy9@gmail.com"; // echte E-Mail eintragen
-const PRICES = { single: "150 €", pack: "650 €", monthly: "280 €" };  // Preise hier ändern
+const PRICES = { single: "175 €", pack: "750 €", monthly: "300 €" };  // Preise hier ändern
 const HERO_IMAGE = "videos/hero.jpg";                     // Hintergrundbild oben, z. B. "videos/hero.jpg" (am besten quer, helle Stimmung, Gesicht eher rechts)
 const PHOTO_WHY = "videos/portrait.jpg";  // Portrait bei "Warum ich"
 const YOUTUBE_URL = "";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
@@ -500,9 +500,9 @@ const T = {
     work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die verkaufen", f_all: "Alle",
     work_note: "Beim Drüberfahren startet eine kurze Vorschau, ein Klick öffnet das Video mit Ton.",
     pkg_eyebrow: "Zusammenarbeit", pkg_title: "Pakete für deine Kampagne",
-    pkg_lead: "Einstiegspreise. Für größere Projekte erstelle ich dir gern ein individuelles Angebot.", pkg_note: "Kürzere Videos (bis 15 Sek.) ab 100 €, längere Videos (bis 60 Sek.) ab 200 €.",
+    pkg_lead: "Einstiegspreise. Für größere Projekte erstelle ich dir gern ein individuelles Angebot.", pkg_note: "Kürzere Videos (bis 15 Sek.) ab 150 €, längere Videos (bis 60 Sek.) ab 200 €.",
     from: "ab", month: "Monat", popular: "Beliebt", pkg_btn: "Anfragen",
-    s1: "1 Video (15–30 Sek.)", s2: "1 Hook inklusive, weitere Hooks als Extra", s3: "Lieferung in 7 Tagen", s4: "Organische Nutzungsrechte",
+    s1: "1 Video (15–30 Sek.)", s2: "1 Hook inklusive, weitere Hooks als Extra", s3: "Lieferung in 7 Tagen (Expresslieferung möglich)", s4: "Organische Nutzungsrechte",
     p1: "3 Videos mit je 2 Hooks (6 Hooks)", p2: "Skript und Konzept inklusive", p3: "Paid-Ads-Nutzungsrechte für 3 Monate", p4: "1 Korrekturrunde", p5: "Lieferung in 10 Tagen",
     m1: "Ab 2 Videos pro Monat", m2: "Zeit zum Testen und Optimieren", m3: "Bevorzugter Terminslot", m4: "Rabatt auf Einzelpreise",
     cu_t: "Du brauchst etwas anderes?", cu_p: "Anderes Format, mehr Videos oder besondere Rechte? Beschreib kurz dein Projekt und ich erstelle dir ein individuelles Angebot.", cu_btn: "Individuelles Angebot anfragen",
@@ -543,9 +543,9 @@ const T = {
     work_eyebrow: "Paid ad examples", work_title: "Videos that sell", f_all: "All",
     work_note: "Hover for a short preview, click to open the video with sound.",
     pkg_eyebrow: "Working together", pkg_title: "Packages for your campaign",
-    pkg_lead: "Starting prices. For bigger projects I am happy to put together a custom offer.", pkg_note: "Shorter videos (up to 15 sec.) from €100, longer videos (up to 60 sec.) from €200.",
+    pkg_lead: "Starting prices. For bigger projects I am happy to put together a custom offer.", pkg_note: "Shorter videos (up to 15 sec.) from €150, longer videos (up to 60 sec.) from €200.",
     from: "from", month: "month", popular: "Popular", pkg_btn: "Get in touch",
-    s1: "1 video (15–30 sec.)", s2: "1 hook included, extra hooks available", s3: "Delivery in 7 days", s4: "Organic usage rights",
+    s1: "1 video (15–30 sec.)", s2: "1 hook included, extra hooks available", s3: "Delivery in 7 days (express delivery available)", s4: "Organic usage rights",
     p1: "3 videos with 2 hooks each (6 hooks)", p2: "Script and concept included", p3: "Paid ads usage rights for 3 months", p4: "1 round of revisions", p5: "Delivery in 10 days",
     m1: "From 2 videos per month", m2: "Time to test and optimise", m3: "Priority booking slot", m4: "Discount on single prices",
     cu_t: "Need something different?", cu_p: "Another format, more videos or special rights? Briefly describe your project and I will put together a custom offer.", cu_btn: "Request a custom offer",
