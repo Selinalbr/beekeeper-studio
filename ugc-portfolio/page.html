@@ -164,6 +164,8 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .words { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .words span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font-weight: 500; }
 .mood { columns: 4 180px; column-gap: 16px; margin-top: 32px; }
+.mood button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; break-inside: avoid; margin-bottom: 16px; }
+.mood button img { margin: 0; }
 .mood img { display: block; width: 100%; height: auto; break-inside: avoid; margin-bottom: 16px; border-radius: 20px; }
 
 /* faq */
@@ -363,15 +365,11 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <div class="brand-chips"><span>BetterMe</span><span>Wavytalk</span><span>Microgram</span><span>Paul Valentine</span></div>
   </section>
 
-  <!-- STYLE -->
-  <section id="style">
-    <p class="eyebrow" data-i18n="sty_eyebrow">Look</p>
-    <h2 data-i18n="sty_title">Mein Stil</h2>
-    <div class="words"><span>Calm</span><span>Soft light</span><span>Natural movement</span><span>Emotional connection</span><span>Clean visuals</span></div>
-    <div class="mood" aria-label="Moodboard">
-      <img src="videos/mood-shadow.jpg" alt="" loading="lazy"><img src="videos/jewellery.jpg" alt="" loading="lazy"><img src="videos/wellness.jpg" alt="" loading="lazy">
-      <img src="videos/mood-studio.jpg" alt="" loading="lazy"><img src="videos/food.jpg" alt="" loading="lazy"><img src="videos/haircare.jpg" alt="" loading="lazy">
-    </div>
+  <!-- GALLERY -->
+  <section id="gallery">
+    <p class="eyebrow" data-i18n="gal_eyebrow">Fotos</p>
+    <h2 data-i18n="gal_title">Bilder</h2>
+    <div class="mood" id="gallery-grid" aria-label="Fotos"></div>
   </section>
 
   <!-- FAQ -->
@@ -463,6 +461,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    Leer gelassenes src zeigt einen Platzhalter. */
 const CONTACT_EMAIL = "selinaxoxo91@gmail.com"; // echte E-Mail eintragen
 const PRICES = { single: "175 €", pack: "750 €", monthly: "300 €" };  // Preise hier ändern
+const PHOTOS = ["videos/gal-1.jpg", "videos/gal-2.jpg", "videos/gal-3.jpg", "videos/gal-4.jpg"];  // Bildergalerie, weitere Fotos einfach ergänzen
 const HERO_IMAGE = "videos/hero.jpg";                     // Hintergrundbild oben, z. B. "videos/hero.jpg" (am besten quer, helle Stimmung, Gesicht eher rechts)
 const PHOTO_WHY = "videos/portrait.jpg";  // Portrait bei "Warum ich"
 const YOUTUBE_URL = "https://www.youtube.com/@byselina";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
@@ -503,7 +502,7 @@ const T = {
     st2t: "Skript & Dreh", st2d: "Ich schreibe Hooks und Skript, du gibst frei, danach drehe ich.",
     st3t: "Lieferung", st3d: "Fertige Videos im richtigen Format, bereit für TikTok, Reels und Ads.",
     br_eyebrow: "Vertrauen", br_title: "Marken, mit denen ich gearbeitet habe",
-    sty_eyebrow: "Look", sty_title: "Mein Stil",
+    gal_eyebrow: "Fotos", gal_title: "Bilder",
     faq_title: "Häufige Fragen",
     q1: "Wie lange dauert die Lieferung?", a1: "Beim Single-Video meist 7 Tage nach Produkteingang und Freigabe des Skripts.",
     q2: "Welche Nutzungsrechte sind enthalten?", a2: "Single: organische Nutzung. Ad Pack: Paid Ads für 3 Monate, eine Verlängerung auf 6 oder 12 Monate ist möglich.",
@@ -545,7 +544,7 @@ const T = {
     st2t: "Script & shoot", st2d: "I write hooks and script, you approve, then I film.",
     st3t: "Delivery", st3d: "Finished videos in the right format, ready for TikTok, Reels and ads.",
     br_eyebrow: "Trust", br_title: "Brands I have worked with",
-    sty_eyebrow: "Look", sty_title: "My style",
+    gal_eyebrow: "Photos", gal_title: "Gallery",
     faq_title: "Frequently asked questions",
     q1: "How long does delivery take?", a1: "For a single video usually 7 days after the product arrives and the script is approved.",
     q2: "Which usage rights are included?", a2: "Single: organic use. Ad Pack: paid ads for 3 months, extension to 6 or 12 months is possible.",
@@ -649,6 +648,26 @@ function openVideo(v) {
   stage.append(box);
   lb.hidden = false;
 }
+function openImage(src) {
+  stage.innerHTML = "";
+  const img = document.createElement("img");
+  img.src = src; img.alt = "";
+  img.style.cssText = "display:block;max-width:100%;max-height:calc(100vh - 90px);margin-inline:auto;border-radius:16px";
+  stage.append(img);
+  lb.style.setProperty("--lb-w", "720px");
+  lb.hidden = false;
+}
+function renderGallery() {
+  const g = $("#gallery-grid");
+  PHOTOS.forEach(src => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.setAttribute("aria-label", "Foto vergrößern");
+    b.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
+    b.addEventListener("click", () => openImage(src));
+    g.append(b);
+  });
+}
 function closeVideo() { lb.hidden = true; stage.innerHTML = ""; }
 $("#lbClose").addEventListener("click", closeVideo);
 lb.addEventListener("click", e => { if (e.target === lb) closeVideo(); });
@@ -717,6 +736,7 @@ try {
   const th = localStorage.getItem("theme"); if (th) root.setAttribute("data-theme", th);
 } catch (e) {}
 
+renderGallery();
 renderIntro();
 applyLang();
 </script>
