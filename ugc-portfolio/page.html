@@ -153,6 +153,10 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 /* brands */
 .brand-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .brand-chips span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 14px 28px; font-family: var(--font-display); font-weight: var(--hw); font-size: 1.2rem; }
+.brand-chips .brand-plus { display: grid; place-items: center; width: 56px; height: 56px; padding: 0; border-radius: 50%; background: var(--accent); color: var(--on-cta); border-color: var(--accent); font-size: 1.8rem; line-height: 1; }
+.brand-chips span.has-logo { padding: 12px 26px; display: grid; place-items: center; }
+.brand-chips img { display: block; height: 32px; width: auto; max-width: 150px; object-fit: contain; filter: grayscale(1); opacity: .85; transition: filter .2s, opacity .2s; }
+.brand-chips span:hover img { filter: none; opacity: 1; }
 .brand-more { color: var(--muted); margin: 16px 0 0; }
 .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px; margin-top: 32px; }
 .logo-ph { height: 72px; border: 1.5px dashed var(--accent-2); border-radius: 16px; display: grid; place-items: center; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -354,7 +358,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <section id="brands">
     <p class="eyebrow" data-i18n="br_eyebrow">Vertrauen</p>
     <h2 data-i18n="br_title">Marken, mit denen ich gearbeitet habe</h2>
-    <div class="brand-chips"><span>BetterMe</span><span>Wavytalk</span><span>Microgram</span><span>Paul Valentine</span></div>
+    <div class="brand-chips" id="brandList"></div>
+    <p class="brand-more" data-i18n="br_more">und viele weitere</p>
   </section>
 
   <!-- GALLERY -->
@@ -453,6 +458,12 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    Leer gelassenes src zeigt einen Platzhalter. */
 const CONTACT_EMAIL = "selinaxoxo91@gmail.com"; // echte E-Mail eintragen
 const PRICES = { single: "175 €", pack: "750 €", monthly: "300 €" };  // Preise hier ändern
+const BRANDS = [   // logo: Pfad zur Logo-Datei (PNG/SVG, am besten transparent), z. B. "videos/logo-betterme.png"
+  { name: "BetterMe",       logo: "" },
+  { name: "Wavytalk",       logo: "" },
+  { name: "Microgram",      logo: "" },
+  { name: "Paul Valentine", logo: "" }
+];
 const PHOTOS = ["videos/gal-2.jpg", "videos/gal-5.jpg", "videos/gal-7.jpg", "videos/gal-4.jpg", "videos/gal-6.jpg", "videos/gal-8.jpg", "videos/gal-10.jpg", "videos/gal-9.jpg"];  // Bildergalerie, weitere Fotos einfach ergänzen
 const HERO_IMAGE = "videos/hero.jpg";                     // Hintergrundbild oben, z. B. "videos/hero.jpg" (am besten quer, helle Stimmung, Gesicht eher rechts)
 const PHOTO_WHY = "videos/portrait.jpg";  // Portrait bei "Warum ich"
@@ -493,7 +504,7 @@ const T = {
     st1t: "Briefing", st1d: "Du schickst Produkt, Ziel und Zielgruppe. Ich melde mich schnell mit Rückfragen.",
     st2t: "Skript & Dreh", st2d: "Ich schreibe Hooks und Skript, du gibst frei, danach drehe ich.",
     st3t: "Lieferung", st3d: "Fertige Videos im richtigen Format, bereit für TikTok, Reels und Ads.",
-    br_eyebrow: "Vertrauen", br_title: "Marken, mit denen ich gearbeitet habe",
+    br_eyebrow: "Vertrauen", br_title: "Marken, mit denen ich gearbeitet habe", br_more: "und viele weitere",
     gal_eyebrow: "Fotos", gal_title: "Bilder",
     faq_title: "Häufige Fragen",
     q1: "Wie lange dauert die Lieferung?", a1: "Beim Single-Video meist 7 Tage nach Produkteingang und Freigabe des Skripts.",
@@ -535,7 +546,7 @@ const T = {
     st1t: "Briefing", st1d: "You send product, goal and audience. I come back quickly with questions.",
     st2t: "Script & shoot", st2d: "I write hooks and script, you approve, then I film.",
     st3t: "Delivery", st3d: "Finished videos in the right format, ready for TikTok, Reels and ads.",
-    br_eyebrow: "Trust", br_title: "Brands I have worked with",
+    br_eyebrow: "Trust", br_title: "Brands I have worked with", br_more: "and many more",
     gal_eyebrow: "Photos", gal_title: "Gallery",
     faq_title: "Frequently asked questions",
     q1: "How long does delivery take?", a1: "For a single video usually 7 days after the product arrives and the script is approved.",
@@ -649,6 +660,26 @@ function openImage(src) {
   lb.style.setProperty("--lb-w", "720px");
   lb.hidden = false;
 }
+function renderBrands() {
+  const box = $("#brandList");
+  BRANDS.forEach(b => {
+    const el = document.createElement("span");
+    if (b.logo) {
+      el.className = "has-logo";
+      const img = document.createElement("img");
+      img.src = b.logo; img.alt = b.name; img.loading = "lazy";
+      el.append(img);
+    } else {
+      el.textContent = b.name;
+    }
+    box.append(el);
+  });
+  const plus = document.createElement("span");
+  plus.className = "brand-plus";
+  plus.textContent = "+";
+  plus.setAttribute("aria-label", "und viele weitere");
+  box.append(plus);
+}
 function renderGallery() {
   const g = $("#gallery-grid");
   PHOTOS.forEach(src => {
@@ -728,6 +759,7 @@ try {
   const th = localStorage.getItem("theme"); if (th) root.setAttribute("data-theme", th);
 } catch (e) {}
 
+renderBrands();
 renderGallery();
 renderIntro();
 applyLang();
