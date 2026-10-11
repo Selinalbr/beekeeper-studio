@@ -176,15 +176,20 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .brand-chips span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 14px 28px; font-family: var(--font-display); font-weight: var(--hw); font-size: 1.2rem; }
 .brand-chips .brand-plus { display: grid; place-items: center; width: 56px; height: 56px; padding: 0; border-radius: 50%; background: var(--accent); color: var(--on-cta); border-color: var(--accent); font-size: 1.8rem; line-height: 1; }
 .brand-chips span.has-logo { padding: 12px 26px; display: grid; place-items: center; }
-.brand-chips img { display: block; height: 32px; width: auto; max-width: 150px; object-fit: contain; filter: grayscale(1); opacity: .85; transition: filter .2s, opacity .2s; }
-.brand-chips span:hover img { filter: none; opacity: 1; }
+.brand-chips { align-items: center; }
+.brand-chips span.has-logo { background: var(--surface); border-radius: 26px; }
+.brand-chips img { display: block; width: auto; max-width: 170px; object-fit: contain; opacity: .9; mix-blend-mode: multiply; transition: opacity .2s; }
+.brand-chips span:hover img { opacity: 1; }
+:root[data-theme="dark"] .brand-chips img { filter: invert(1); mix-blend-mode: screen; }
 .reviews { margin-top: 36px; }
 .reviews h3 { font-size: clamp(1.3rem, 2.4vw, 1.8rem); margin-bottom: 18px; }
-.review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 16px; }
 .review { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+.rate-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: .92rem; color: var(--muted); }
+.stars { color: var(--accent); letter-spacing: 2px; white-space: nowrap; }
 .review p { margin: 0; font-size: 1.02rem; }
-.review p::before { content: "\201C"; display: block; font-family: var(--font-display); font-size: 2.4rem; line-height: .6; color: var(--accent); margin-bottom: 8px; }
-.review cite { font-style: normal; font-weight: 700; font-size: .92rem; color: var(--muted); }
+.review p.q::before { content: "\201C"; display: block; font-family: var(--font-display); font-size: 2.4rem; line-height: .6; color: var(--accent); margin-bottom: 8px; }
+.review cite { font-style: normal; font-weight: 700; font-size: .92rem; color: var(--ink); margin-top: auto; }
 .brand-more { color: var(--muted); margin: 16px 0 0; }
 .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px; margin-top: 32px; }
 .logo-ph { height: 72px; border: 1.5px dashed var(--accent-2); border-radius: 16px; display: grid; place-items: center; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -293,7 +298,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 </div>
 <div class="wrap">
   <div class="niches" aria-label="Nischen">
-    <span>Hair Care</span><span>Skin Care</span><span>Wellness</span><span>Food</span><span>Jewellery</span><span>Unboxing</span>
+    <span>Hair Care</span><span>Skin Care</span><span>Sun Care</span><span>Wellness</span><span>Food</span><span>Jewellery</span><span>Unboxing</span>
   </div>
 
   <!-- BRANDS -->
@@ -303,7 +308,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <div class="brand-chips" id="brandList"></div>
     <p class="brand-more" data-i18n="br_more">und viele weitere</p>
     <div class="reviews" id="reviews" hidden>
-      <h3 data-i18n="br_rev">Das sagen Marken über mich</h3>
+      <h3 data-i18n="br_rev">Das sagen Marken</h3>
       <div class="review-grid" id="reviewGrid"></div>
     </div>
   </section>
@@ -497,13 +502,19 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    Leer gelassenes src zeigt einen Platzhalter. */
 const CONTACT_EMAIL = "selinaxoxo91@gmail.com"; // echte E-Mail eintragen
 const PRICES = { single: "175 €", pack: "750 €" };  // Preise hier ändern
-const BRANDS = [   // logo: Pfad zur Logo-Datei (PNG/SVG, am besten transparent), z. B. "videos/logo-betterme.png"
-  { name: "BetterMe",       logo: "" },
-  { name: "Wavytalk",       logo: "" },
-  { name: "Microgram",      logo: "" },
-  { name: "Paul Valentine", logo: "" }
+const MORE_BRANDS = "";   // Zahl der weiteren Marken, z. B. "25" ergibt "+25". Leer lassen ergibt nur "+"
+const BRANDS = [   // logo = Logo-Datei, h = Höhe in Pixel (optional)
+  { name: "BetterMe",                 logo: "videos/logos/betterme.png",      h: 26 },
+  { name: "Wavytalk",                 logo: "videos/logos/wavytalk.png",      h: 20 },
+  { name: "Dalton Marine Cosmetics",  logo: "videos/logos/dalton.png",        h: 44 },
+  { name: "Paul Valentine",           logo: "videos/logos/paulvalentine.png", h: 58 },
+  { name: "Microgram",                logo: "" }
 ];
-const REVIEWS = [   // Bewertungen von Marken, z. B. { text: "Selina war super zuverlässig ...", name: "Anna", brand: "BetterMe" }
+const REVIEWS = [   // Bewertungen von Marken. ratings: 5 = je 5 Sterne bei Content, Zusammenarbeit, Lieferzeit
+  { brand: "Wavytalk", text: "Ich finde das Video richtig toll! Du zeigst deinen eigenen Stil, daher habe ich momentan keine Änderungsvorschläge." },
+  { brand: "BetterMe", text: "Thank you so much! Both videos look perfect and we accepted them." },
+  { name: "Lena", brand: "Dalton Marine Cosmetics", ratings: 5 },
+  { name: "Paul", brand: "Paul Valentine", ratings: 5, text: "tolle Umsetzung <3" }
 ];
 const PHOTOS = ["videos/gal-2.jpg", "videos/gal-5.jpg", "videos/gal-7.jpg", "videos/gal-4.jpg", "videos/gal-6.jpg", "videos/gal-8.jpg", "videos/gal-10.jpg", "videos/gal-9.jpg"];  // Bildergalerie, weitere Fotos einfach ergänzen
 const HERO_IMAGE = "videos/hero.jpg";                     // Hintergrundbild oben, z. B. "videos/hero.jpg" (am besten quer, helle Stimmung, Gesicht eher rechts)
@@ -513,6 +524,7 @@ const VIDEOS = [
   { intro: true, ratio: "16 / 9", src: "videos/intro.mp4", poster: "videos/intro.jpg" },   // Intro ist quer (16:9). Hochformat? ratio: "9 / 16"
   { title: "Hair Care", lang: "de", src: "videos/haircare.mp4", poster: "videos/haircare.jpg" },
   { title: "Skin Care", lang: "de", src: "videos/skincare.mp4", poster: "videos/skincare.jpg" },
+  { title: "Sun Care",    lang: "de", src: "videos/suncare.mp4", poster: "videos/suncare.jpg" },
   { title: "Wellness", lang: "de", src: "videos/wellness.mp4", poster: "videos/wellness.jpg" },
   { title: "Food",        lang: "en", src: "videos/food.mp4", poster: "videos/food.jpg" },
   { title: "Jewellery",   lang: "en", src: "videos/jewellery.mp4", poster: "videos/jewellery.jpg" },
@@ -545,7 +557,7 @@ const T = {
     st1t: "Briefing", st1d: "Du schickst Produkt, Ziel und Zielgruppe. Ich melde mich schnell mit Rückfragen.",
     st2t: "Skript & Dreh", st2d: "Ich schreibe Hooks und Skript, du gibst frei, danach drehe ich.",
     st3t: "Lieferung", st3d: "Fertige Videos im richtigen Format, bereit für TikTok, Reels und Ads.",
-    br_eyebrow: "Marken", br_title: "Vertrauen, das bleibt", br_rev: "Das sagen Marken über mich", br_more: "und viele weitere",
+    br_eyebrow: "Marken", br_title: "Vertrauen, das bleibt", br_rev: "Das sagen Marken", rv1: "Contentqualität", rv2: "Zusammenarbeit", rv3: "Lieferzeit", br_more: "und viele weitere",
     gal_eyebrow: "Fotos", gal_title: "Bilder",
     faq_title: "Häufige Fragen",
     q1: "Wie lange dauert die Lieferung?", a1: "Beim Single-Video meist 7 Tage nach Produkteingang und Freigabe des Skripts.",
@@ -587,7 +599,7 @@ const T = {
     st1t: "Briefing", st1d: "You send product, goal and audience. I come back quickly with questions.",
     st2t: "Script & shoot", st2d: "I write hooks and script, you approve, then I film.",
     st3t: "Delivery", st3d: "Finished videos in the right format, ready for TikTok, Reels and ads.",
-    br_eyebrow: "Brands", br_title: "Trust that lasts", br_rev: "What brands say about me", br_more: "and many more",
+    br_eyebrow: "Brands", br_title: "Trust that lasts", br_rev: "What brands say", rv1: "Content quality", rv2: "Collaboration", rv3: "Delivery time", br_more: "and many more",
     gal_eyebrow: "Photos", gal_title: "Gallery",
     faq_title: "Frequently asked questions",
     q1: "How long does delivery take?", a1: "For a single video usually 7 days after the product arrives and the script is approved.",
@@ -619,6 +631,7 @@ function applyLang() {
   document.querySelectorAll("[data-i18n-html]").forEach(el => { el.innerHTML = t(el.dataset.i18nHtml); });
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
   renderGrid();
+  renderReviews();
   updateQuote();
 }
 
@@ -658,7 +671,8 @@ function renderGrid() {
     card.append(btn, meta);
     grid.append(card);
   });
-  if (filter === "all") {
+  const shown = VIDEOS.filter(v => !v.intro && (filter === "all" || v.lang === filter)).length;
+  if (shown % 4 === 3) {
     const more = document.createElement("a");
     more.className = "more-tile";
     more.href = "https://www.tiktok.com/@byselinaa";
@@ -716,7 +730,8 @@ function renderBrands() {
     if (b.logo) {
       el.className = "has-logo";
       const img = document.createElement("img");
-      img.src = b.logo; img.alt = b.name; img.loading = "lazy";
+      img.src = b.logo; img.alt = b.name;
+      if (b.h) img.style.height = b.h + "px";
       el.append(img);
     } else {
       el.textContent = b.name;
@@ -725,22 +740,31 @@ function renderBrands() {
   });
   const plus = document.createElement("span");
   plus.className = "brand-plus";
-  plus.textContent = "+";
-  plus.setAttribute("aria-label", "und viele weitere");
+  plus.textContent = MORE_BRANDS ? "+" + MORE_BRANDS : "+";
+  plus.setAttribute("aria-label", "und weitere");
   box.append(plus);
 }
 function renderReviews() {
-  if (!REVIEWS.length) return;
   const g = $("#reviewGrid");
+  g.innerHTML = "";
+  $("#reviews").hidden = !REVIEWS.length;
   REVIEWS.forEach(r => {
     const f = document.createElement("figure");
     f.className = "review";
-    const p = document.createElement("p"); p.textContent = r.text;
-    const c = document.createElement("cite"); c.textContent = [r.name, r.brand].filter(Boolean).join(", ");
-    f.append(p, c);
+    if (r.ratings) {
+      const stars = "★".repeat(r.ratings);
+      ["rv1", "rv2", "rv3"].forEach(k => {
+        const row = document.createElement("div");
+        row.className = "rate-row";
+        row.innerHTML = `<span></span><span class="stars">${stars}</span>`;
+        row.firstChild.textContent = t(k);
+        f.append(row);
+      });
+    }
+    if (r.text) { const p = document.createElement("p"); p.className = "q"; p.textContent = r.text; f.append(p); }
+    const c = document.createElement("cite"); c.textContent = [r.name, r.brand].filter(Boolean).join(" · "); f.append(c);
     g.append(f);
   });
-  $("#reviews").hidden = false;
 }
 function renderGallery() {
   const g = $("#gallery-grid");
