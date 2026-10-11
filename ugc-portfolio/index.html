@@ -84,12 +84,12 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.herobg { position: relative; margin-inline: -20px; margin-top: -76px; height: clamp(300px, 34vw, 460px); background-color: var(--bg); background-repeat: no-repeat; background-image: linear-gradient(180deg, transparent 0%, transparent 72%, var(--bg) 100%), var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: auto, cover; background-position: center, center 14%; }
-@media (max-width: 860px) { .herobg { height: 300px; background-position: center, center 8%; } }
-.bg-note { position: absolute; top: 88px; right: 20px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
+.herobg { position: relative; border-radius: 30px; overflow: hidden; width: 100%; max-width: 900px; margin-inline: auto; aspect-ratio: 4 / 3; background-color: var(--ph-a); background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center 10%; }
+@media (max-width: 860px) { .herobg { aspect-ratio: 1 / 1; border-radius: 24px; } }
+.bg-note { position: absolute; top: 16px; right: 16px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .herobg.has-img .bg-note { display: none; }
-.hero { position: relative; padding-block: 48px 56px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: start; }
+.hero { position: relative; padding-block: 44px 40px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: start; }
 .hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
 .hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .hero h1 { font-size: clamp(2.6rem, 5.6vw, 4.6rem); font-weight: var(--hw); }
@@ -282,9 +282,6 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 </header>
 
 <main id="top">
-<div class="herobg" id="heroBg">
-<span class="bg-note" id="bgNote"><b data-i18n="ph_tag">Platzhalter</b> <span data-i18n="bg_note">Hintergrundbild (HERO_IMAGE im Code)</span></span>
-</div>
 <div class="wrap">
 
   <!-- HERO -->
@@ -306,6 +303,9 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
       </button>
     </div>
   </div>
+  <div class="herobg" id="heroBg">
+<span class="bg-note" id="bgNote"><b data-i18n="ph_tag">Platzhalter</b> <span data-i18n="bg_note">Hintergrundbild (HERO_IMAGE im Code)</span></span>
+</div>
 </div>
 <div class="wrap">
   <div class="niches" aria-label="Nischen">
