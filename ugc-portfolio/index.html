@@ -8,7 +8,7 @@
 <title>UGCbySelina</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap">
 <style>
 /* Layout: floating pill nav, big headline with a soft marker on the key words, hero video card (clearly marked placeholder),
    video grid, packages + custom-offer banner, brief form on a deep cocoa block.
@@ -20,7 +20,7 @@
   --ink: #3F3328;
   --muted: #75675A;
   --line: #DDD2C5;
-  --accent: #4F6350;
+  --accent: #2F7D5E;
   --accent-2: #BFAE9A;
   --soft: #E7DACB;
   --navy: #3F3328;
@@ -32,7 +32,8 @@
   --alt: #B84A2F;
   --alt-hover: #9C3D25;
   --on-alt: #FFFFFF;
-  --hl: #DFE6DA;
+  --hl: #D3E8DC;
+  --em: #2F7D5E;
   --ph-a: #E7DACB;
   --ph-b: #D4C2AE;
   --font-display: "Outfit", "DM Sans", system-ui, sans-serif;
@@ -44,7 +45,7 @@
   --bg: #211A15; --surface: #2A211B; --ink: #F1E8DD; --muted: #BBAA98; --line: #43372E;
   --accent: #A9BFA5; --accent-2: #8A7A68; --soft: #3A2E25; --navy: #17110D; --contact-bg: #17110D; --on-navy: #F1E8DD;
   --cta: #D9694A; --cta-hover: #E58264; --on-cta: #1E1611; --alt: #D9694A; --alt-hover: #E58264; --on-alt: #1E1611;
-  --hl: rgba(169, 191, 165, .3); --ph-a: #3A2E25; --ph-b: #2E241D; color-scheme: dark;
+  --hl: rgba(169, 191, 165, .3); --em: #A9D4B9; --ph-a: #3A2E25; --ph-b: #2E241D; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -54,9 +55,12 @@ a { color: inherit; }
 .wrap { max-width: 1160px; margin-inline: auto; }
 section { padding-block: 80px; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: var(--hw); letter-spacing: -.015em; line-height: 1.02; margin: 0; text-wrap: balance; }
-h2 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(2.1rem, 5vw, 3.4rem); color: var(--accent); }
+.contact h2 { color: var(--on-navy); }
+.script { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 600; letter-spacing: 0; color: var(--em); }
+.contact .script { color: var(--em-dark, #A9D4B9); }
 h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
-.eyebrow { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin: 0 0 14px; }
+.eyebrow { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--ink); margin: 0 0 14px; }
 .lead { color: var(--muted); max-width: 58ch; margin: 16px 0 0; }
 
 /* nav */
@@ -84,7 +88,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.herobg { position: relative; margin-top: 18px; width: 100%; max-width: 768px; margin-inline: auto; aspect-ratio: 5 / 3.15; background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center 35%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
+.herobg { position: relative; margin-top: 18px; width: 100%; max-width: 768px; margin-inline: auto; aspect-ratio: 5 / 3; background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center 4%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
 @media (max-width: 860px) { .herobg { aspect-ratio: 4 / 3; max-width: 480px; } }
 .bg-note { position: absolute; top: 16px; right: 16px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
@@ -253,6 +257,13 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px
 @media (max-width: 900px) { .contact-info { display: block; } .contact-info .mail-row { margin-top: 24px; } .contact-info .socials { margin-top: 22px; } .contact-info .reply { margin-top: 18px; } .contact-info > p:not(.reply):not(.eyebrow) { margin-top: 18px; } }
 footer { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: .88rem; color: var(--muted); }
 footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.linkbtn { background: none; border: 0; padding: 0; font: inherit; color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.linkbtn:hover { color: var(--ink); }
+.legal-card { position: relative; width: min(720px, 100%); max-height: calc(100vh - 110px); overflow: auto; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 26px; padding: clamp(24px, 4vw, 44px); }
+.legal-card h3 { font-size: 1.8rem; margin-bottom: 16px; }
+.legal-card p, .legal-card li { color: var(--muted); }
+.legal-card ul { padding-left: 1.2rem; display: grid; gap: 6px; }
+.legal-card .todo { background: var(--soft); color: var(--ink); border-radius: 14px; padding: 12px 16px; font-size: .92rem; margin-bottom: 18px; }
 
 /* lightbox */
 .lb { position: fixed; inset: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(14px); display: grid; place-items: center; padding: 56px 20px 24px; }
@@ -314,7 +325,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <!-- BRANDS -->
   <section id="brands">
     <p class="eyebrow" data-i18n="br_eyebrow">Vertrauen</p>
-    <h2 data-i18n="br_title">Marken, mit denen ich gearbeitet habe</h2>
+    <h2 data-i18n-html="br_title">Vertrauen, das <span class="script">bleibt.</span></h2>
     <div class="brand-chips" id="brandList"></div>
     <p class="brand-more" data-i18n="br_more">und viele weitere</p>
     <div class="reviews" id="reviews" hidden>
@@ -328,7 +339,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <div class="head">
       <div>
         <p class="eyebrow" data-i18n="work_eyebrow">Paid Ad Beispiele</p>
-        <h2 data-i18n="work_title">Videos, die verkaufen</h2>
+        <h2 data-i18n-html="work_title">Videos, die <span class="script">verkaufen</span></h2>
       </div>
       <div class="filters" role="group" aria-label="Filter">
         <button class="chip" type="button" data-filter="all" aria-pressed="true" data-i18n="f_all">Alle</button>
@@ -344,7 +355,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <section class="why" id="why">
     <div>
       <p class="eyebrow" data-i18n="why_eyebrow">Warum ich</p>
-      <h2 data-i18n="why_title">Menschen vertrauen mir</h2>
+      <h2 data-i18n-html="why_title">Menschen vertrauen <span class="script">mir</span></h2>
       <p class="txt" data-i18n="why_p">UGC funktioniert, weil Menschen Menschen vertrauen und keiner polierten Werbung. Ich erstelle authentischen, ästhetischen Content, der deine Marke emotional mit deiner Zielgruppe verbindet.</p>
       <ul class="points">
         <li><i>1</i><div><b data-i18n="w1t">Natürlich vor der Kamera</b><span data-i18n="w1d">Über zwei Jahre Erfahrung, Videos wirken mühelos statt gestellt.</span></div></li>
@@ -362,7 +373,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <div class="wrap">
     <section id="packages">
       <p class="eyebrow" data-i18n="pkg_eyebrow">Zusammenarbeit</p>
-      <h2 data-i18n="pkg_title">Pakete für deine Kampagne</h2>
+      <h2 data-i18n-html="pkg_title">Pakete für deine <span class="script">Kampagne</span></h2>
       <p class="lead" data-i18n="pkg_lead">Einstiegspreise. Für größere Projekte erstelle ich dir gern ein individuelles Angebot.</p>
       <div class="pkgs">
         <article class="pkg">
@@ -444,7 +455,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <section class="contact-grid">
       <div class="contact-info">
         <p class="eyebrow" data-i18n="ct_eyebrow">Kontakt</p>
-        <h2 data-i18n="ct_title">Lass uns zusammenarbeiten</h2>
+        <h2 data-i18n-html="ct_title">Lass uns <span class="script">zusammenarbeiten</span></h2>
         <p style="margin-top:18px" data-i18n="ct_p">Du möchtest deine Marke mit authentischem Content zum Leben bringen? Schreib mir direkt oder fülle das Kurzbriefing aus.</p>
         <div class="mail-row">
           <span class="mail" id="mailText">hello@example.com</span>
@@ -495,7 +506,16 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 <div class="wrap">
   <footer>
     <span>© <span id="yr"></span> UGC by Selina</span>
+    <nav>
+      <button type="button" class="linkbtn" data-legal="imprint" data-i18n="imprint">Impressum</button>
+      <button type="button" class="linkbtn" data-legal="privacy" data-i18n="privacy">Datenschutz</button>
+    </nav>
   </footer>
+</div>
+
+<div class="lb" id="legal" hidden role="dialog" aria-modal="true" aria-label="Rechtliches">
+  <button class="lb-close" type="button" id="legalClose">✕ <span data-i18n="close">Schließen</span></button>
+  <div class="legal-card" id="legalBody"></div>
 </div>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Video">
@@ -551,16 +571,16 @@ const T = {
     hero_pitch: "Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.", followers: "40k+ auf TikTok · 17k+ auf YouTube", ph_tag: "Platzhalter", bg_note: "Hintergrundbild (HERO_IMAGE im Code)",
     hero_cta: "Zusammenarbeit anfragen", hero_cta2: "Arbeiten ansehen",
     ph_intro: "Hier kommt dein Intro-Video hin", ph_photo: "Platzhalter: Portrait",
-    more_tt: "Mehr auf TikTok", work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die verkaufen", f_all: "Alle",
+    more_tt: "Mehr auf TikTok", work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die <span class=\"script\">verkaufen</span>", f_all: "Alle",
     work_note: "Beim Drüberfahren startet eine kurze Vorschau, ein Klick öffnet das Video mit Ton.",
-    pkg_eyebrow: "Zusammenarbeit", pkg_title: "Pakete für deine Kampagne",
+    pkg_eyebrow: "Zusammenarbeit", pkg_title: "Pakete für deine <span class=\"script\">Kampagne</span>",
     pkg_lead: "Einstiegspreise. Für größere Projekte erstelle ich dir gern ein individuelles Angebot.", pkg_note: "Kürzere Videos (bis 15 Sek.) ab 150 €, längere Videos (bis 60 Sek.) ab 200 €.",
     from: "ab", month: "Monat", popular: "Beliebt", pkg_btn: "Anfragen",
     s1: "1 Video (15–30 Sek.)", s2: "1 Hook inklusive, weitere Hooks als Extra", s3: "Lieferung in 7 Tagen (Expresslieferung möglich)", s4: "Organische Nutzungsrechte",
     p1: "3 Videos mit je 2 Hooks (6 Hooks)", p2: "Skript und Konzept inklusive", p3: "Paid-Ads-Nutzungsrechte für 3 Monate", p4: "1 Korrekturrunde", p5: "Lieferung in 10 Tagen",
     on_request: "Preis auf Anfrage", m5: "Lieferzeit nach Absprache", m1: "Bis zu 10 Videos pro Monat", m2: "Zeit zum Testen und Optimieren", m3: "Bevorzugter Terminslot", m4: "Rabatt auf Einzelpreise",
     cu_t: "Du brauchst etwas anderes?", cu_p: "Anderes Format, mehr Videos oder besondere Rechte? Beschreib kurz dein Projekt und ich erstelle dir ein individuelles Angebot.", cu_btn: "Individuelles Angebot anfragen",
-    why_eyebrow: "Warum ich", why_title: "Menschen vertrauen mir",
+    why_eyebrow: "Warum ich", why_title: "Menschen vertrauen <span class=\"script\">mir</span>",
     why_p: "UGC funktioniert, weil Menschen Menschen vertrauen und keiner polierten Werbung. Ich erstelle authentischen, ästhetischen Content, der deine Marke emotional mit deiner Zielgruppe verbindet.",
     w1t: "Natürlich vor der Kamera", w1d: "Über zwei Jahre Erfahrung, Videos wirken mühelos statt gestellt.",
     w2t: "Zuverlässig", w2d: "Klare Absprachen, pünktliche Lieferung, saubere Dateien.",
@@ -569,14 +589,14 @@ const T = {
     st1t: "Briefing", st1d: "Du schickst Produkt, Ziel und Zielgruppe. Ich melde mich schnell mit Rückfragen.",
     st2t: "Skript & Dreh", st2d: "Ich schreibe Hooks und Skript, du gibst frei, danach drehe ich.",
     st3t: "Lieferung", st3d: "Fertige Videos im richtigen Format, bereit für TikTok, Reels und Ads.",
-    br_eyebrow: "Marken", br_title: "Vertrauen, das bleibt", br_rev: "Das sagen Marken", rv1: "Contentqualität", rv2: "Zusammenarbeit", rv3: "Lieferzeit", br_more: "und viele weitere",
+    br_eyebrow: "Marken", br_title: "Vertrauen, das <span class=\"script\">bleibt.</span>", br_rev: "Das sagen Marken", rv1: "Contentqualität", rv2: "Zusammenarbeit", rv3: "Lieferzeit", br_more: "und viele weitere",
     gal_eyebrow: "Fotos", gal_title: "Bilder",
     faq_title: "Häufige Fragen",
     q1: "Wie lange dauert die Lieferung?", a1: "Beim Single-Video meist 7 Tage nach Produkteingang und Freigabe des Skripts.",
     q2: "Welche Nutzungsrechte sind enthalten?", a2: "Single: organische Nutzung. Ad Pack: Paid Ads für 3 Monate, eine Verlängerung auf 6 oder 12 Monate ist möglich.",
     q3: "Kann ich Rohmaterial bekommen?", a3: "Ja, auf Anfrage gegen Aufpreis.",
     q4: "Arbeitest du auch auf Englisch?", a4: "Ja, ich drehe Videos auf Deutsch und auf Englisch.",
-    ct_eyebrow: "Kontakt", ct_title: "Lass uns zusammenarbeiten",
+    ct_eyebrow: "Kontakt", ct_title: "Lass uns <span class=\"script\">zusammenarbeiten</span>",
     ct_p: "Du möchtest deine Marke mit authentischem Content zum Leben bringen? Schreib mir direkt oder fülle das Kurzbriefing aus.",
     copy: "Kopieren", copied: "Kopiert", reply: "Antwort in der Regel innerhalb von 24 Stunden.",
     fm_t: "Individuelles Angebot anfragen", fm_s: "Dauert eine Minute. Das Briefing öffnet deine E-Mail-App, alternativ kannst du den Text kopieren.",
@@ -593,16 +613,16 @@ const T = {
     hero_pitch: "Natural paid-ad videos for beauty, wellness and lifestyle, in German and English.", followers: "40k+ on TikTok · 17k+ on YouTube", ph_tag: "Placeholder", bg_note: "background image (HERO_IMAGE in the code)",
     hero_cta: "Request a collaboration", hero_cta2: "See my work",
     ph_intro: "Your intro video goes here", ph_photo: "Placeholder: portrait",
-    more_tt: "More on TikTok", work_eyebrow: "Paid ad examples", work_title: "Videos that sell", f_all: "All",
+    more_tt: "More on TikTok", work_eyebrow: "Paid ad examples", work_title: "Videos that <span class=\"script\">sell</span>", f_all: "All",
     work_note: "Hover for a short preview, click to open the video with sound.",
-    pkg_eyebrow: "Working together", pkg_title: "Packages for your campaign",
+    pkg_eyebrow: "Working together", pkg_title: "Packages for your <span class=\"script\">campaign</span>",
     pkg_lead: "Starting prices. For bigger projects I am happy to put together a custom offer.", pkg_note: "Shorter videos (up to 15 sec.) from €150, longer videos (up to 60 sec.) from €200.",
     from: "from", month: "month", popular: "Popular", pkg_btn: "Get in touch",
     s1: "1 video (15–30 sec.)", s2: "1 hook included, extra hooks available", s3: "Delivery in 7 days (express delivery available)", s4: "Organic usage rights",
     p1: "3 videos with 2 hooks each (6 hooks)", p2: "Script and concept included", p3: "Paid ads usage rights for 3 months", p4: "1 round of revisions", p5: "Delivery in 10 days",
     on_request: "Price on request", m5: "Delivery time by arrangement", m1: "Up to 10 videos per month", m2: "Time to test and optimise", m3: "Priority booking slot", m4: "Discount on single prices",
     cu_t: "Need something different?", cu_p: "Another format, more videos or special rights? Briefly describe your project and I will put together a custom offer.", cu_btn: "Request a custom offer",
-    why_eyebrow: "Why me", why_title: "People trust me",
+    why_eyebrow: "Why me", why_title: "People trust <span class=\"script\">me</span>",
     why_p: "UGC works because people trust people, not polished ads. I create authentic and aesthetic content that helps brands connect emotionally with their audience.",
     w1t: "Natural on camera", w1d: "Over two years of experience, videos feel effortless, not staged.",
     w2t: "Reliable", w2d: "Clear agreements, on-time delivery, clean files.",
@@ -611,14 +631,14 @@ const T = {
     st1t: "Briefing", st1d: "You send product, goal and audience. I come back quickly with questions.",
     st2t: "Script & shoot", st2d: "I write hooks and script, you approve, then I film.",
     st3t: "Delivery", st3d: "Finished videos in the right format, ready for TikTok, Reels and ads.",
-    br_eyebrow: "Brands", br_title: "Trust that lasts", br_rev: "What brands say", rv1: "Content quality", rv2: "Collaboration", rv3: "Delivery time", br_more: "and many more",
+    br_eyebrow: "Brands", br_title: "Trust that <span class=\"script\">lasts.</span>", br_rev: "What brands say", rv1: "Content quality", rv2: "Collaboration", rv3: "Delivery time", br_more: "and many more",
     gal_eyebrow: "Photos", gal_title: "Gallery",
     faq_title: "Frequently asked questions",
     q1: "How long does delivery take?", a1: "For a single video usually 7 days after the product arrives and the script is approved.",
     q2: "Which usage rights are included?", a2: "Single: organic use. Ad Pack: paid ads for 3 months, extension to 6 or 12 months is possible.",
     q3: "Can I get the raw footage?", a3: "Yes, on request for an additional fee.",
     q4: "Do you also work in English?", a4: "Yes, I film videos in German and in English.",
-    ct_eyebrow: "Contact", ct_title: "Let's work together",
+    ct_eyebrow: "Contact", ct_title: "Let's work <span class=\"script\">together</span>",
     ct_p: "Ready to bring your brand to life through authentic content? Write to me directly or fill in the short brief.",
     copy: "Copy", copied: "Copied", reply: "Usually replies within 24 hours.",
     fm_t: "Request a custom offer", fm_s: "Takes a minute. The brief opens your email app, or you can copy the text.",
@@ -790,6 +810,26 @@ function renderGallery() {
     g.append(b);
   });
 }
+const LEGAL = {
+  de: {
+    imprint: `<h3>Impressum</h3><p class="todo"><b>Platzhalter.</b> Vor der Veröffentlichung ausfüllen. Für eine geschäftliche Seite in Deutschland sind Name und ladungsfähige Anschrift Pflicht.</p><p>Angaben gemäß § 5 DDG</p><p>[Vorname Nachname]<br>[Straße und Hausnummer]<br>[PLZ Ort]</p><p>Kontakt: <span id="legalMail"></span></p><p>[Ggf. Umsatzsteuer-ID oder Hinweis auf Kleinunternehmerregelung nach § 19 UStG]</p>`,
+    privacy: `<h3>Datenschutz</h3><p class="todo"><b>Platzhalter.</b> Bitte vor der Veröffentlichung durch eine vollständige Datenschutzerklärung ersetzen, zum Beispiel aus einem Generator. Das ist keine Rechtsberatung.</p><ul><li>Verantwortliche: [Name, Anschrift, E-Mail]</li><li>Hosting: [Anbieter, z. B. Netlify]</li><li>Schriftarten: werden von Google Fonts geladen (alternativ lokal einbinden)</li><li>Kontakt und Anfrageformular: öffnet das E-Mail-Programm, es werden keine Daten auf dieser Seite gespeichert</li><li>Spracheinstellung: wird lokal im Browser gespeichert</li><li>Verlinkte Dienste: TikTok, Instagram, YouTube</li><li>Rechte der Betroffenen: Auskunft, Berichtigung, Löschung, Beschwerde bei der Aufsichtsbehörde</li></ul>`
+  },
+  en: {
+    imprint: `<h3>Legal notice</h3><p class="todo"><b>Placeholder.</b> Fill in before publishing. A business website in Germany needs a name and a postal address.</p><p>Information according to § 5 DDG</p><p>[First name last name]<br>[Street and number]<br>[Postcode City]</p><p>Contact: <span id="legalMail"></span></p><p>[VAT ID or small business notice, if applicable]</p>`,
+    privacy: `<h3>Privacy</h3><p class="todo"><b>Placeholder.</b> Replace with a full privacy policy before publishing, for example from a generator. This is not legal advice.</p><ul><li>Controller: [name, address, email]</li><li>Hosting: [provider, e.g. Netlify]</li><li>Fonts: loaded from Google Fonts (or host them locally)</li><li>Contact and request form: opens your email app, no data is stored on this page</li><li>Language setting: stored locally in your browser</li><li>Linked services: TikTok, Instagram, YouTube</li><li>Your rights: access, correction, deletion, complaint to the supervisory authority</li></ul>`
+  }
+};
+function openLegal(kind) {
+  $("#legalBody").innerHTML = LEGAL[lang][kind];
+  const m = $("#legalMail"); if (m) m.textContent = CONTACT_EMAIL;
+  $("#legal").hidden = false;
+}
+function closeLegal() { $("#legal").hidden = true; }
+document.querySelectorAll("[data-legal]").forEach(b => b.addEventListener("click", () => openLegal(b.dataset.legal)));
+$("#legalClose").addEventListener("click", closeLegal);
+$("#legal").addEventListener("click", e => { if (e.target.id === "legal") closeLegal(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#legal").hidden) closeLegal(); });
 function closeVideo() { lb.hidden = true; stage.innerHTML = ""; }
 $("#lbClose").addEventListener("click", closeVideo);
 lb.addEventListener("click", e => { if (e.target === lb) closeVideo(); });
