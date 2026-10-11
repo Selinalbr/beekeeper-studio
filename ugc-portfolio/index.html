@@ -248,6 +248,10 @@ form.brief input, form.brief select, form.brief textarea { padding: 14px 16px; f
 form.brief textarea { min-height: 130px; }
 @media (min-width: 900px) { form.brief .row2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 form.brief small { color: var(--muted); }
+form.brief small.opt { color: var(--accent); font-weight: 500; font-size: .8em; }
+.contact form.brief .thanks { max-width: none; display: grid; gap: 4px; padding: 16px 18px; border-radius: 16px; background: var(--soft); color: var(--ink); border: 1.5px solid var(--accent); }
+.thanks b { font-family: var(--font-display); font-size: 1.25rem; }
+.thanks[hidden] { display: none; }
 .altmail { margin: 0; font-size: .95rem; color: var(--muted); }
 .contact form.brief .altmail { max-width: none; color: var(--muted); }
 .altmail a { color: var(--ink); font-weight: 700; word-break: break-all; }
@@ -476,7 +480,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
       <form class="brief" id="brief" autocomplete="off">
         <div>
           <h3 id="fmTitle" data-i18n="fm_t">Anfrage</h3>
-          <small data-i18n="fm_s">Dauert eine Minute. Das Briefing öffnet deine E-Mail-App, alternativ kannst du den Text kopieren.</small>
+          <small data-i18n="fm_s">Dauert eine Minute. Danach öffnet sich deine E-Mail mit allem vorausgefüllt, du musst nur noch auf Senden klicken.</small>
         </div>
         <label for="fOffer"><span data-i18n="fm_offer">Was möchtest du anfragen?</span>
           <select id="fOffer"><option data-i18n="pk_single" value="single">Einzelvideo</option><option data-i18n="pk_pack" value="pack">Ad Pack (3 Videos)</option><option data-i18n="pk_long" value="long">Langfristige Zusammenarbeit</option><option data-i18n="pk_custom" value="custom" selected>Individuelles Angebot</option></select></label>
@@ -496,13 +500,14 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
             <select id="fUse"><option data-i18n="o_org" value="org">Organisch</option><option data-i18n="o_ads" value="ads">Paid Ads</option><option data-i18n="o_both2" value="both">Beides</option></select></label>
           <label for="fMonths" id="lblMonths" hidden><span data-i18n="fm_months">Laufzeit der Paid-Ads-Rechte</span>
             <select id="fMonths"><option data-i18n="o_m3" value="3">3 Monate</option><option data-i18n="o_m6" value="6">6 Monate</option><option data-i18n="o_m12" value="12">12 Monate</option></select></label>
-          <label for="fDate"><span data-i18n="fm_date">Wunschtermin</span><input id="fDate" type="text" placeholder="z. B. KW 45"></label>
+          <label for="fDate"><span><span data-i18n="fm_date">Wunschtermin</span> <small class="opt" data-i18n="opt">(optional)</small></span><input id="fDate" type="text" placeholder="z. B. KW 45"></label>
         </div>
-        <label for="fMsg"><span data-i18n="fm_msg">Worum geht es?</span><textarea id="fMsg"></textarea></label>
+        <label for="fMsg"><span><span data-i18n="fm_msg">Besondere Wünsche und Infos</span> <small class="opt" data-i18n="opt">(optional)</small></span><textarea id="fMsg" data-i18n-ph="fm_msg_ph" placeholder="z. B. Hooks gewünscht? Skript vorhanden? Nutzungsrechte, Format, Besonderheiten …"></textarea></label>
         <div class="actions">
           <a class="btn btn-cta" id="sendQuote" href="mailto:hello@example.com" data-i18n="fm_send">Anfrage senden</a>
           <button class="btn btn-ghost" type="button" id="copyQuote" data-i18n="fm_copy">Text kopieren</button>
         </div>
+        <div class="thanks" id="thanks" role="status" hidden><b id="thanksT"></b><span id="thanksP"></span></div>
         <p class="altmail"><span data-i18n="fm_alt">Lieber selbst per E-Mail schreiben?</span> <a id="mailDirect" href="mailto:hello@example.com">hello@example.com</a> <button class="linkbtn" type="button" id="copyMail2" data-i18n="copy">Kopieren</button></p>
       </form>
     </section>
@@ -606,9 +611,9 @@ const T = {
     ct_eyebrow: "Kontakt", ct_title: "Lass uns <span class=\"script\">zusammenarbeiten!</span>",
     ct_p: "Du möchtest deine Marke mit authentischem Content zum Leben bringen? Schreib mir direkt oder fülle das Kurzbriefing aus.",
     copy: "Kopieren", copied: "Kopiert", reply: "Antwort in der Regel innerhalb von 24 Stunden.",
-    fm_t: "Anfrage senden", pk_single: "Einzelvideo", pk_pack: "Ad Pack (3 Videos)", pk_long: "Langfristige Zusammenarbeit", pk_custom: "Individuelles Angebot", fm_len: "Länge", o_len1: "bis 15 Sekunden", o_len2: "15–30 Sekunden", o_len3: "bis 60 Sekunden", fm_per: "Videos pro Monat", fm_express: "Expresslieferung gewünscht", t_single: "Anfrage: Einzelvideo", t_pack: "Anfrage: Ad Pack", t_long: "Anfrage: Langfristige Zusammenarbeit", t_custom: "Individuelles Angebot anfragen", fm_offer: "Was möchtest du anfragen?", i_single: "1 Video, 1 Hook, Lieferung in 7 Tagen, organische Nutzung. Ab 175 €.", i_pack: "3 Videos mit je 2 Hooks, Skript, Paid Ads für 3 Monate, Lieferung in 7 Tagen. Ab 750 €.", i_long: "Bis zu 10 Videos pro Monat mit Planung, Strategie und fester Ansprechpartnerin. Preis auf Anfrage.", l_pkg: "Angebot", l_len: "Länge", l_per: "Videos pro Monat", l_exp: "Expresslieferung", yes: "ja", fm_s: "Dauert eine Minute. Das Briefing öffnet deine E-Mail-App, alternativ kannst du den Text kopieren.",
+    fm_t: "Anfrage senden", pk_single: "Einzelvideo", pk_pack: "Ad Pack (3 Videos)", pk_long: "Langfristige Zusammenarbeit", pk_custom: "Individuelles Angebot", fm_len: "Länge", o_len1: "bis 15 Sekunden", o_len2: "15–30 Sekunden", o_len3: "bis 60 Sekunden", fm_per: "Videos pro Monat", fm_express: "Expresslieferung gewünscht", t_single: "Anfrage: Einzelvideo", t_pack: "Anfrage: Ad Pack", t_long: "Anfrage: Langfristige Zusammenarbeit", t_custom: "Individuelles Angebot anfragen", fm_offer: "Was möchtest du anfragen?", i_single: "1 Video, 1 Hook, Lieferung in 7 Tagen, organische Nutzung. Ab 175 €.", i_pack: "3 Videos mit je 2 Hooks, Skript, Paid Ads für 3 Monate, Lieferung in 7 Tagen. Ab 750 €.", i_long: "Bis zu 10 Videos pro Monat mit Planung, Strategie und fester Ansprechpartnerin. Preis auf Anfrage.", l_pkg: "Angebot", l_len: "Länge", l_per: "Videos pro Monat", l_exp: "Expresslieferung", yes: "ja", fm_s: "Dauert eine Minute. Danach öffnet sich deine E-Mail mit allem vorausgefüllt, du musst nur noch auf Senden klicken.",
     fm_brand: "Marke", fm_name: "Dein Name", fm_prod: "Produkt oder Link", fm_count: "Anzahl Videos", fm_lang: "Sprache",
-    fm_use: "Verwendung", fm_date: "Wunschtermin", fm_msg: "Worum geht es?", fm_send: "Anfrage senden", fm_alt: "Lieber selbst per E-Mail schreiben?", fm_copy: "Text kopieren",
+    fm_use: "Verwendung", fm_date: "Wunschtermin", fm_msg: "Besondere Wünsche und Infos", fm_msg_ph: "z. B. Hooks gewünscht? Skript vorhanden? Nutzungsrechte, Format, Besonderheiten …", opt: "(optional)", th_t: "Fast geschafft!", th_p: "Klick in deiner E-Mail noch auf Senden, dann ist deine Anfrage bei mir. Danke dir, ich melde mich innerhalb von 24 Stunden.", th_c_t: "Text kopiert!", th_c_p: "Füge ihn in eine E-Mail an {mail} ein und schick sie ab. Danke dir!", fm_send: "Anfrage senden", fm_alt: "Lieber selbst per E-Mail schreiben?", fm_copy: "Text kopieren",
     o_de: "Deutsch", o_en: "Englisch", o_both: "Beides", o_org: "Organisch", o_ads: "Paid Ads", o_both2: "Beides", fm_months: "Laufzeit der Paid-Ads-Rechte", o_m3: "3 Monate", o_m6: "6 Monate", o_m12: "12 Monate", l_months: "Laufzeit Paid Ads",
     mail_subj: "Angebotsanfrage", mail_hi: "Hallo Selina,", mail_intro: "ich interessiere mich für eine Zusammenarbeit.",
     l_brand: "Marke", l_prod: "Produkt", l_count: "Anzahl Videos", l_lang: "Sprache", l_use: "Verwendung", l_date: "Wunschtermin", l_msg: "Details", mail_bye: "Viele Grüße", soon: "Video folgt",
@@ -648,9 +653,9 @@ const T = {
     ct_eyebrow: "Contact", ct_title: "Let's work <span class=\"script\">together!</span>",
     ct_p: "Ready to bring your brand to life through authentic content? Write to me directly or fill in the short brief.",
     copy: "Copy", copied: "Copied", reply: "Usually replies within 24 hours.",
-    fm_t: "Send a request", pk_single: "Single video", pk_pack: "Ad Pack (3 videos)", pk_long: "Long-term partnership", pk_custom: "Custom offer", fm_len: "Length", o_len1: "up to 15 seconds", o_len2: "15–30 seconds", o_len3: "up to 60 seconds", fm_per: "Videos per month", fm_express: "Express delivery wanted", t_single: "Request: single video", t_pack: "Request: Ad Pack", t_long: "Request: long-term partnership", t_custom: "Request a custom offer", fm_offer: "What would you like to request?", i_single: "1 video, 1 hook, delivery in 7 days, organic use. From €175.", i_pack: "3 videos with 2 hooks each, script, paid ads for 3 months, delivery in 7 days. From €750.", i_long: "Up to 10 videos per month with planning, strategy and a dedicated contact. Price on request.", l_pkg: "Offer", l_len: "Length", l_per: "Videos per month", l_exp: "Express delivery", yes: "yes", fm_s: "Takes a minute. The brief opens your email app, or you can copy the text.",
+    fm_t: "Send a request", pk_single: "Single video", pk_pack: "Ad Pack (3 videos)", pk_long: "Long-term partnership", pk_custom: "Custom offer", fm_len: "Length", o_len1: "up to 15 seconds", o_len2: "15–30 seconds", o_len3: "up to 60 seconds", fm_per: "Videos per month", fm_express: "Express delivery wanted", t_single: "Request: single video", t_pack: "Request: Ad Pack", t_long: "Request: long-term partnership", t_custom: "Request a custom offer", fm_offer: "What would you like to request?", i_single: "1 video, 1 hook, delivery in 7 days, organic use. From €175.", i_pack: "3 videos with 2 hooks each, script, paid ads for 3 months, delivery in 7 days. From €750.", i_long: "Up to 10 videos per month with planning, strategy and a dedicated contact. Price on request.", l_pkg: "Offer", l_len: "Length", l_per: "Videos per month", l_exp: "Express delivery", yes: "yes", fm_s: "Takes a minute. Your email then opens with everything filled in, you only need to hit send.",
     fm_brand: "Brand", fm_name: "Your name", fm_prod: "Product or link", fm_count: "Number of videos", fm_lang: "Language",
-    fm_use: "Usage", fm_date: "Desired date", fm_msg: "What is it about?", fm_send: "Send request", fm_alt: "Prefer to write an email yourself?", fm_copy: "Copy text",
+    fm_use: "Usage", fm_date: "Desired date", fm_msg: "Special requests and info", fm_msg_ph: "e.g. hooks wanted? Script provided? Usage rights, format, special wishes …", opt: "(optional)", th_t: "Almost done!", th_p: "Hit send in your email and your request is with me. Thank you, I will reply within 24 hours.", th_c_t: "Text copied!", th_c_p: "Paste it into an email to {mail} and send it. Thank you!", fm_send: "Send request", fm_alt: "Prefer to write an email yourself?", fm_copy: "Copy text",
     o_de: "German", o_en: "English", o_both: "Both", o_org: "Organic", o_ads: "Paid ads", o_both2: "Both", fm_months: "Duration of paid ads rights", o_m3: "3 months", o_m6: "6 months", o_m12: "12 months", l_months: "Paid ads duration",
     mail_subj: "Offer request", mail_hi: "Hi Selina,", mail_intro: "I am interested in working together.",
     l_brand: "Brand", l_prod: "Product", l_count: "Number of videos", l_lang: "Language", l_use: "Usage", l_date: "Desired date", l_msg: "Details", mail_bye: "Best regards", soon: "Video coming soon",
@@ -667,6 +672,7 @@ const t = k => (T[lang] && T[lang][k]) || k;
 function applyLang() {
   document.documentElement.lang = lang;
   document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
   document.querySelectorAll("[data-i18n-html]").forEach(el => { el.innerHTML = t(el.dataset.i18nHtml); });
   document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
   renderGrid();
@@ -899,7 +905,13 @@ async function copyText(text, btn, label) {
   catch (e) { /* clipboard unavailable: the text stays selectable on the page */ }
   setTimeout(() => { btn.textContent = t(label); }, 1600);
 }
-$("#copyQuote").addEventListener("click", e => copyText(quoteText(), e.currentTarget, "fm_copy"));
+function showThanks(copied) {
+  $("#thanksT").textContent = t(copied ? "th_c_t" : "th_t");
+  $("#thanksP").textContent = t(copied ? "th_c_p" : "th_p").replace("{mail}", CONTACT_EMAIL);
+  $("#thanks").hidden = false;
+}
+$("#sendQuote").addEventListener("click", () => showThanks(false));
+$("#copyQuote").addEventListener("click", e => { copyText(quoteText(), e.currentTarget, "fm_copy"); showThanks(true); });
 $("#copyMail2").addEventListener("click", e => copyText(CONTACT_EMAIL, e.currentTarget, "copy"));
 $("#copyMail").addEventListener("click", e => copyText(CONTACT_EMAIL, e.currentTarget, "copy"));
 
