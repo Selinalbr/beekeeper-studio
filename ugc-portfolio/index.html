@@ -84,7 +84,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.herobg { position: relative; margin-top: 18px; width: 100%; max-width: 768px; margin-inline: auto; aspect-ratio: 5 / 3; background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center 4%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
+.herobg { position: relative; margin-top: 18px; width: 100%; max-width: 768px; margin-inline: auto; aspect-ratio: 5 / 3.15; background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center 35%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
 @media (max-width: 860px) { .herobg { aspect-ratio: 4 / 3; max-width: 480px; } }
 .bg-note { position: absolute; top: 16px; right: 16px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
@@ -843,7 +843,7 @@ $("#copyMail").addEventListener("click", e => copyText(CONTACT_EMAIL, e.currentT
 $("#mailText").textContent = CONTACT_EMAIL;
 if (YOUTUBE_URL) { const y = $("#ytBtn"); y.href = YOUTUBE_URL; y.hidden = false; }
 document.querySelectorAll("[data-price]").forEach(el => { el.textContent = PRICES[el.dataset.price]; });
-if (PHOTO_WHY) { const p = $(".why .photo"); p.style.backgroundImage = `url("${PHOTO_WHY}")`; p.style.backgroundSize = "cover"; p.style.backgroundPosition = "center 30%"; p.querySelector("span").hidden = true; }
+if (PHOTO_WHY) { const p = $(".why .photo"); p.style.backgroundImage = `url("${PHOTO_WHY}")`; p.style.backgroundSize = "cover"; p.style.backgroundPosition = "center"; p.querySelector("span").hidden = true; }
 if (HERO_IMAGE) { const hb = $("#heroBg"); hb.style.setProperty("--hero-img", `url("${HERO_IMAGE}")`); hb.classList.add("has-img"); }
 $("#yr").textContent = new Date().getFullYear();
 
