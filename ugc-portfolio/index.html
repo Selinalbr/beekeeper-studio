@@ -55,12 +55,12 @@ a { color: inherit; }
 .wrap { max-width: 1160px; margin-inline: auto; }
 section { padding-block: 80px; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: var(--hw); letter-spacing: -.015em; line-height: 1.02; margin: 0; text-wrap: balance; }
-h2 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(2.4rem, 5.4vw, 3.8rem); }
 .contact h2 { color: var(--on-navy); }
 .script { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 600; letter-spacing: 0; color: var(--em); }
 .contact .script { color: #A5C3A0; }
 h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
-.eyebrow { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin: 0 0 14px; }
+.eyebrow { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin: 0 0 14px; }
 .lead { color: var(--muted); max-width: 58ch; margin: 16px 0 0; }
 
 /* nav */
@@ -175,7 +175,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 
 /* brands */
 #brands { padding-block: 24px 0; }
-#brands h2 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
+#brands h2 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); }
 .brand-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .brand-chips span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 14px 28px; font-family: var(--font-display); font-weight: var(--hw); font-size: 1.2rem; }
 .brand-chips .brand-plus { padding: 0 6px; border: 0; background: none; color: var(--accent); font-size: 1.05rem; font-weight: 700; cursor: default; user-select: none; }
@@ -186,12 +186,20 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .brand-chips span:hover img { opacity: 1; }
 :root[data-theme="dark"] .brand-chips img { filter: invert(1); mix-blend-mode: screen; }
 .reviews { margin-top: 36px; }
-.reviews h3 { font-size: clamp(1.3rem, 2.4vw, 1.8rem); margin-bottom: 18px; }
-.review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 16px; }
-.review { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 14px; }
-.rate-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: .92rem; color: var(--muted); }
+.reviews h3 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin-bottom: 20px; }
+.review-grid { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+.review-grid::-webkit-scrollbar { display: none; }
+.review { flex: 0 0 min(100%, 760px); scroll-snap-align: start; margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: clamp(24px, 3.4vw, 40px); display: flex; flex-direction: column; justify-content: center; gap: 16px; min-height: 230px; }
+.rev-nav { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+.rev-dots { display: flex; gap: 8px; }
+.rev-dots button { width: 10px; height: 10px; border-radius: 50%; border: 0; padding: 0; background: var(--line); cursor: pointer; transition: background .2s, width .2s; }
+.rev-dots button[aria-current="true"] { background: var(--accent); width: 26px; border-radius: 6px; }
+.rev-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: 1.1rem; cursor: pointer; }
+.rev-arrow:hover { background: var(--soft); }
+.rate-row { display: flex; justify-content: flex-start; align-items: center; gap: 12px; min-width: 0; font-size: .92rem; color: var(--muted); }
 .stars { color: var(--accent); letter-spacing: 2px; white-space: nowrap; }
-.review p { margin: 0; font-size: 1.02rem; }
+.rate-row > span:first-child { min-width: 9.5em; }
+.review p { margin: 0; font-size: clamp(1.1rem, 2vw, 1.4rem); line-height: 1.45; }
 .review p.q::before { content: "\201C"; display: block; font-family: var(--font-display); font-size: 2.4rem; line-height: .6; color: var(--accent); margin-bottom: 8px; }
 .review cite { font-style: normal; font-weight: 700; font-size: .92rem; color: var(--ink); margin-top: auto; }
 .brand-more { color: var(--muted); margin: 16px 0 0; }
@@ -330,6 +338,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <div class="reviews" id="reviews" hidden>
       <h3 data-i18n="br_rev">Das sagen Marken</h3>
       <div class="review-grid" id="reviewGrid"></div>
+      <div class="rev-nav"><button class="rev-arrow" type="button" id="revPrev" aria-label="Zurück">←</button><div class="rev-dots" id="revDots"></div><button class="rev-arrow" type="button" id="revNext" aria-label="Weiter">→</button></div>
     </div>
   </section>
 
@@ -354,7 +363,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <section class="why" id="why">
     <div>
       <p class="eyebrow" data-i18n="why_eyebrow">Warum ich</p>
-      <h2 data-i18n-html="why_title">Menschen vertrauen <span class="script">mir</span></h2>
+      <h2 data-i18n-html="why_title">Menschen vertrauen <span class="script">mir.</span></h2>
       <p class="txt" data-i18n="why_p">UGC funktioniert, weil Menschen Menschen vertrauen und keiner polierten Werbung. Ich erstelle authentischen, ästhetischen Content, der deine Marke emotional mit deiner Zielgruppe verbindet.</p>
       <ul class="points">
         <li><i>1</i><div><b data-i18n="w1t">Natürlich vor der Kamera</b><span data-i18n="w1d">Über zwei Jahre Erfahrung, Videos wirken mühelos statt gestellt.</span></div></li>
@@ -455,7 +464,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <section class="contact-grid">
       <div class="contact-info">
         <p class="eyebrow" data-i18n="ct_eyebrow">Kontakt</p>
-        <h2 data-i18n-html="ct_title">Lass uns <span class="script">zusammenarbeiten</span></h2>
+        <h2 data-i18n-html="ct_title">Lass uns <span class="script">zusammenarbeiten!</span></h2>
         <p style="margin-top:18px" data-i18n="ct_p">Du möchtest deine Marke mit authentischem Content zum Leben bringen? Schreib mir direkt oder fülle das Kurzbriefing aus.</p>
         <div class="mail-row">
           <span class="mail" id="mailText">hello@example.com</span>
@@ -580,7 +589,7 @@ const T = {
     p1: "3 Videos mit je 2 Hooks (6 Hooks)", p2: "Skript und Konzept inklusive", p3: "Paid-Ads-Nutzungsrechte für 3 Monate", p4: "1 Korrekturrunde", p5: "Lieferung in 7 Tagen",
     on_request: "Preis auf Anfrage", pkg_m: "Langfristig", pkg_m_tag: "Monatlich", who: "Selina · UGC & Content Creator · Deutschland", m1: "Bis zu 10 Videos pro Monat", m2: "Contentplanung und Strategie", m3: "Feste Ansprechpartnerin", m4: "Priorisierte Lieferung", m5: "Testen und live optimieren", m6: "Rabatt auf Einzelpreise",
     cu_t: "Du brauchst etwas anderes?", cu_p: "Anderes Format, mehr Videos oder besondere Rechte? Beschreib kurz dein Projekt und ich erstelle dir ein individuelles Angebot.", cu_btn: "Individuelles Angebot anfragen",
-    why_eyebrow: "Warum ich", why_title: "Menschen vertrauen <span class=\"script\">mir</span>",
+    why_eyebrow: "Warum ich", why_title: "Menschen vertrauen <span class=\"script\">mir.</span>",
     why_p: "UGC funktioniert, weil Menschen Menschen vertrauen und keiner polierten Werbung. Ich erstelle authentischen, ästhetischen Content, der deine Marke emotional mit deiner Zielgruppe verbindet.",
     w1t: "Natürlich vor der Kamera", w1d: "Über zwei Jahre Erfahrung, Videos wirken mühelos statt gestellt.",
     w2t: "Zuverlässig", w2d: "Klare Absprachen, pünktliche Lieferung, saubere Dateien.",
@@ -596,7 +605,7 @@ const T = {
     q2: "Welche Nutzungsrechte sind enthalten?", a2: "Single: organische Nutzung. Ad Pack: Paid Ads für 3 Monate, eine Verlängerung auf 6 oder 12 Monate ist möglich.",
     q3: "Kann ich Rohmaterial bekommen?", a3: "Ja, auf Anfrage gegen Aufpreis.",
     q4: "Arbeitest du auch auf Englisch?", a4: "Ja, ich drehe Videos auf Deutsch und auf Englisch.",
-    ct_eyebrow: "Kontakt", ct_title: "Lass uns <span class=\"script\">zusammenarbeiten</span>",
+    ct_eyebrow: "Kontakt", ct_title: "Lass uns <span class=\"script\">zusammenarbeiten!</span>",
     ct_p: "Du möchtest deine Marke mit authentischem Content zum Leben bringen? Schreib mir direkt oder fülle das Kurzbriefing aus.",
     copy: "Kopieren", copied: "Kopiert", reply: "Antwort in der Regel innerhalb von 24 Stunden.",
     fm_t: "Individuelles Angebot anfragen", fm_s: "Dauert eine Minute. Das Briefing öffnet deine E-Mail-App, alternativ kannst du den Text kopieren.",
@@ -622,7 +631,7 @@ const T = {
     p1: "3 videos with 2 hooks each (6 hooks)", p2: "Script and concept included", p3: "Paid ads usage rights for 3 months", p4: "1 round of revisions", p5: "Delivery in 7 days",
     on_request: "Price on request", pkg_m: "Long-term", pkg_m_tag: "Monthly", who: "Selina · UGC & content creator · Germany", m1: "Up to 10 videos per month", m2: "Content planning and strategy", m3: "A dedicated contact", m4: "Priority delivery", m5: "Test and optimise live", m6: "Discount on single prices",
     cu_t: "Need something different?", cu_p: "Another format, more videos or special rights? Briefly describe your project and I will put together a custom offer.", cu_btn: "Request a custom offer",
-    why_eyebrow: "Why me", why_title: "People trust <span class=\"script\">me</span>",
+    why_eyebrow: "Why me", why_title: "People trust <span class=\"script\">me.</span>",
     why_p: "UGC works because people trust people, not polished ads. I create authentic and aesthetic content that helps brands connect emotionally with their audience.",
     w1t: "Natural on camera", w1d: "Over two years of experience, videos feel effortless, not staged.",
     w2t: "Reliable", w2d: "Clear agreements, on-time delivery, clean files.",
@@ -638,7 +647,7 @@ const T = {
     q2: "Which usage rights are included?", a2: "Single: organic use. Ad Pack: paid ads for 3 months, extension to 6 or 12 months is possible.",
     q3: "Can I get the raw footage?", a3: "Yes, on request for an additional fee.",
     q4: "Do you also work in English?", a4: "Yes, I film videos in German and in English.",
-    ct_eyebrow: "Contact", ct_title: "Let's work <span class=\"script\">together</span>",
+    ct_eyebrow: "Contact", ct_title: "Let's work <span class=\"script\">together!</span>",
     ct_p: "Ready to bring your brand to life through authentic content? Write to me directly or fill in the short brief.",
     copy: "Copy", copied: "Copied", reply: "Usually replies within 24 hours.",
     fm_t: "Request a custom offer", fm_s: "Takes a minute. The brief opens your email app, or you can copy the text.",
@@ -799,6 +808,45 @@ function renderReviews() {
     const c = document.createElement("cite"); c.textContent = [r.name, r.brand].filter(Boolean).join(" · "); f.append(c);
     g.append(f);
   });
+  setupCarousel();
+}
+let revTimer = null, revInit = false, cur = 0, revApi = null;
+function setupCarousel() {
+  const g = $("#reviewGrid"), cards = [...g.children], dots = $("#revDots");
+  dots.innerHTML = "";
+  cards.forEach((c, i) => {
+    const d = document.createElement("button");
+    d.type = "button"; d.setAttribute("aria-label", (i + 1) + "/" + cards.length);
+    d.addEventListener("click", () => { go(i); restart(); });
+    dots.append(d);
+  });
+  const step = () => (cards[0] ? cards[0].offsetWidth + 18 : 1);
+  const idx = () => {
+    const max = g.scrollWidth - g.clientWidth;
+    if (max > 0 && g.scrollLeft >= max - 4) return cards.length - 1;
+    return Math.max(0, Math.min(cards.length - 1, Math.round(g.scrollLeft / step())));
+  };
+  const mark = () => { const i = idx(); [...dots.children].forEach((d, k) => d.setAttribute("aria-current", String(k === i))); };
+  function go(i) { const n = (i + cards.length) % cards.length; cur = n; g.scrollTo({ left: n * step(), behavior: "smooth" }); }
+  const stop = () => { clearInterval(revTimer); revTimer = null; };
+  function restart() {
+    stop();
+    if (cards.length < 2 || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    revTimer = setInterval(() => go(cur + 1), 6500);
+  }
+  g.onscroll = () => { mark(); cur = idx(); };
+  if (!revInit) {
+    revInit = true;
+    $("#revPrev").addEventListener("click", () => { revApi.go(cur - 1); revApi.restart(); });
+    $("#revNext").addEventListener("click", () => { revApi.go(cur + 1); revApi.restart(); });
+    const box = $("#reviews");
+    ["mouseenter", "focusin", "touchstart"].forEach(ev => box.addEventListener(ev, () => revApi.stop(), { passive: true }));
+    ["mouseleave", "focusout"].forEach(ev => box.addEventListener(ev, () => revApi.restart()));
+  }
+  revApi = { go, stop, restart };
+  cur = 0;
+  mark(); restart();
+  $(".rev-nav").hidden = cards.length < 2;
 }
 function renderGallery() {
   const g = $("#gallery-grid");
