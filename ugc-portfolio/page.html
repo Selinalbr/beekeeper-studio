@@ -82,10 +82,10 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .bg-note { position: absolute; top: 88px; right: 20px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .herobg.has-img .bg-note { display: none; }
-.hero { position: relative; padding-block: 48px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 560px); gap: clamp(32px, 6vw, 72px); align-items: center; }
+.hero { position: relative; padding-block: 48px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 480px); gap: clamp(32px, 5vw, 64px); align-items: center; }
 .hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
 .hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.hero h1 { font-size: clamp(2.7rem, 6.4vw, 5rem); font-weight: var(--hw); }
+.hero h1 { font-size: clamp(2.6rem, 5.2vw, 4.3rem); font-weight: var(--hw); }
 .hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--hl) 62%); padding-inline: .06em; }
 .hero .pitch { font-size: 1.15rem; color: var(--muted); max-width: 48ch; margin: 22px 0 0; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
@@ -116,6 +116,10 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .card .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .card .meta strong { font-family: var(--font-display); font-weight: var(--hw); font-size: 1.1rem; letter-spacing: -.015em; }
 .tag { font-size: .7rem; letter-spacing: .1em; font-weight: 700; color: var(--accent); background: var(--soft); padding: 3px 10px; border-radius: 999px; }
+.more-tile { aspect-ratio: 9 / 16; border-radius: 26px; background: var(--soft); border: 2px dashed var(--accent-2); display: grid; place-content: center; gap: 6px; text-align: center; text-decoration: none; padding: 20px; transition: background .2s; }
+.more-tile:hover { background: var(--line); }
+.more-tile b { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.1; }
+.more-tile span { color: var(--muted); font-size: .9rem; }
 .note { margin-top: 28px; font-size: .9rem; color: var(--muted); }
 
 /* packages */
@@ -192,6 +196,8 @@ details p { margin: 12px 0 0; color: var(--muted); max-width: 64ch; }
 .mail-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 24px; }
 .mail { font-size: 1.05rem; word-break: break-all; user-select: all; }
 .contact .btn-ghost { border-color: var(--on-navy); color: var(--on-navy); }
+.contact form.brief .btn-ghost { border-color: var(--ink); color: var(--ink); }
+.contact form.brief .btn-ghost:hover { background: var(--ink); color: var(--surface); }
 .contact .btn-ghost:hover { background: var(--on-navy); color: var(--contact-bg); }
 .socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .reply { font-size: .9rem; margin-top: 18px; }
@@ -486,7 +492,7 @@ const T = {
     hero_pitch: "Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.", followers: "40k+ auf TikTok · 17k+ auf YouTube", ph_tag: "Platzhalter", bg_note: "Hintergrundbild (HERO_IMAGE im Code)",
     hero_cta: "Zusammenarbeit anfragen", hero_cta2: "Arbeiten ansehen",
     ph_intro: "Hier kommt dein Intro-Video hin", ph_photo: "Platzhalter: Portrait",
-    work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die verkaufen", f_all: "Alle",
+    more_tt: "Mehr auf TikTok", work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die verkaufen", f_all: "Alle",
     work_note: "Beim Drüberfahren startet eine kurze Vorschau, ein Klick öffnet das Video mit Ton.",
     pkg_eyebrow: "Zusammenarbeit", pkg_title: "Pakete für deine Kampagne",
     pkg_lead: "Einstiegspreise. Für größere Projekte erstelle ich dir gern ein individuelles Angebot.", pkg_note: "Kürzere Videos (bis 15 Sek.) ab 150 €, längere Videos (bis 60 Sek.) ab 200 €.",
@@ -528,7 +534,7 @@ const T = {
     hero_pitch: "Natural paid-ad videos for beauty, wellness and lifestyle, in German and English.", followers: "40k+ on TikTok · 17k+ on YouTube", ph_tag: "Placeholder", bg_note: "background image (HERO_IMAGE in the code)",
     hero_cta: "Request a collaboration", hero_cta2: "See my work",
     ph_intro: "Your intro video goes here", ph_photo: "Placeholder: portrait",
-    work_eyebrow: "Paid ad examples", work_title: "Videos that sell", f_all: "All",
+    more_tt: "More on TikTok", work_eyebrow: "Paid ad examples", work_title: "Videos that sell", f_all: "All",
     work_note: "Hover for a short preview, click to open the video with sound.",
     pkg_eyebrow: "Working together", pkg_title: "Packages for your campaign",
     pkg_lead: "Starting prices. For bigger projects I am happy to put together a custom offer.", pkg_note: "Shorter videos (up to 15 sec.) from €150, longer videos (up to 60 sec.) from €200.",
@@ -617,6 +623,14 @@ function renderGrid() {
     card.append(btn, meta);
     grid.append(card);
   });
+  if (filter === "all") {
+    const more = document.createElement("a");
+    more.className = "more-tile";
+    more.href = "https://www.tiktok.com/@byselinaa";
+    more.target = "_blank"; more.rel = "noopener";
+    more.innerHTML = `<b>${t("more_tt")}</b><span>@byselinaa</span>`;
+    grid.append(more);
+  }
 }
 
 function renderIntro() {
@@ -686,7 +700,7 @@ function renderGallery() {
     const b = document.createElement("button");
     b.type = "button";
     b.setAttribute("aria-label", "Foto vergrößern");
-    b.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
+    b.innerHTML = `<img src="${src}" alt="">`;
     b.addEventListener("click", () => openImage(src));
     g.append(b);
   });
