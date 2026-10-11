@@ -81,24 +81,22 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.herobg { position: relative; margin-top: 18px; width: 100%; max-width: 900px; margin-inline: auto; aspect-ratio: 5 / 2.05; background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
-@media (max-width: 860px) { .herobg { aspect-ratio: 4 / 2.4; max-width: 480px; } }
+.herobg { position: relative; width: 100%; max-width: 440px; margin-inline: auto; aspect-ratio: 4 / 5; border-radius: 30px; overflow: hidden; background-color: var(--ph-a); background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center 18%; box-shadow: 0 30px 60px -34px rgba(63, 51, 40, .45); }
+@media (max-width: 860px) { .herobg { order: -1; max-width: 420px; aspect-ratio: 1 / 1; } }
 .bg-note { position: absolute; top: 16px; right: 16px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .herobg.has-img .bg-note { display: none; }
-.hero { position: relative; padding-block: 0 8px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: start; }
+.hero { position: relative; padding-block: 24px 8px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: center; }
 .hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
 .hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.hero h1 { font-size: clamp(2.6rem, 5.6vw, 4.6rem); font-weight: var(--hw); }
+.hero h1 { font-size: clamp(2.5rem, 5vw, 4.4rem); font-weight: var(--hw); }
 .hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--hl) 62%); padding-inline: .06em; }
 .hero .pitch { font-size: 1.15rem; color: var(--muted); max-width: 48ch; margin: 22px 0 0; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .phone { position: relative; width: 100%; max-width: 980px; margin-inline: auto; }
 @media (min-width: 861px) {
-  .hero { text-align: center; }
-  .hero h1 { margin-inline: auto; max-width: 18ch; }
-  .hero .pitch { margin-inline: auto; }
-  .hero .cta-row { justify-content: center; }
+  .hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(32px, 5vw, 72px); padding-top: 40px; }
+  .herobg { margin-inline: 0 auto; margin-left: auto; }
 }
 @media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); } .phone { max-width: 100%; } }
 .followers { margin: 26px 0 0; font-weight: 600; color: var(--muted); }
@@ -289,9 +287,6 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 <main id="top">
 <div class="wrap">
 
-  <div class="herobg" id="heroBg">
-<span class="bg-note" id="bgNote"><b data-i18n="ph_tag">Platzhalter</b> <span data-i18n="bg_note">Hintergrundbild (HERO_IMAGE im Code)</span></span>
-</div>
 
   <!-- HERO -->
   <div class="hero">
@@ -305,6 +300,9 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
       </div>
       <p class="followers" data-i18n="followers">40k+ auf TikTok · 17k+ auf YouTube</p>
     </div>
+  <div class="herobg" id="heroBg">
+<span class="bg-note" id="bgNote"><b data-i18n="ph_tag">Platzhalter</b> <span data-i18n="bg_note">Hintergrundbild (HERO_IMAGE im Code)</span></span>
+</div>
     <div class="phone">
       <button class="vid" type="button" id="introBtn" aria-label="Intro" style="aspect-ratio: 16 / 9">
         <span class="play"></span>
