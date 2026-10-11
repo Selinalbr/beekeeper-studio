@@ -123,6 +123,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .card .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .card .meta strong { font-family: var(--font-display); font-weight: var(--hw); font-size: 1.1rem; letter-spacing: -.015em; }
 .tag { font-size: .7rem; letter-spacing: .1em; font-weight: 700; color: var(--accent); background: var(--soft); padding: 3px 10px; border-radius: 999px; }
+@media (max-width: 560px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } .card .meta strong { font-size: .95rem; } .more-tile b { font-size: 1.15rem; } }
 .more-tile { aspect-ratio: 9 / 16; border-radius: 26px; background: var(--soft); border: 2px dashed var(--accent-2); display: grid; place-content: center; gap: 6px; text-align: center; text-decoration: none; padding: 20px; transition: background .2s; }
 .more-tile:hover { background: var(--line); }
 .more-tile b { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.1; }
