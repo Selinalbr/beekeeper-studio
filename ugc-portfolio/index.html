@@ -89,14 +89,20 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .bg-note { position: absolute; top: 88px; right: 20px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .herobg.has-img .bg-note { display: none; }
-.hero { position: relative; padding-block: 48px 56px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 480px); gap: clamp(32px, 5vw, 64px); align-items: center; }
+.hero { position: relative; padding-block: 48px 56px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: start; }
 .hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
 .hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.hero h1 { font-size: clamp(2.6rem, 5.2vw, 4.3rem); font-weight: var(--hw); }
+.hero h1 { font-size: clamp(2.6rem, 5.6vw, 4.6rem); font-weight: var(--hw); }
 .hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--hl) 62%); padding-inline: .06em; }
 .hero .pitch { font-size: 1.15rem; color: var(--muted); max-width: 48ch; margin: 22px 0 0; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-.phone { position: relative; }
+.phone { position: relative; width: 100%; max-width: 980px; margin-inline: auto; }
+@media (min-width: 861px) {
+  .hero { text-align: center; }
+  .hero h1 { margin-inline: auto; max-width: 18ch; }
+  .hero .pitch { margin-inline: auto; }
+  .hero .cta-row { justify-content: center; }
+}
 @media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); } .phone { max-width: 100%; } }
 .followers { margin: 26px 0 0; font-weight: 600; color: var(--muted); }
 .niches { display: flex; flex-wrap: wrap; gap: 10px; padding-block: 8px 0; }
@@ -163,6 +169,8 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .step p { margin: 8px 0 0; color: var(--muted); }
 
 /* brands */
+#brands { padding-block: 24px 0; }
+#brands h2 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
 .brand-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .brand-chips span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 14px 28px; font-family: var(--font-display); font-weight: var(--hw); font-size: 1.2rem; }
 .brand-chips .brand-plus { display: grid; place-items: center; width: 56px; height: 56px; padding: 0; border-radius: 50%; background: var(--accent); color: var(--on-cta); border-color: var(--accent); font-size: 1.8rem; line-height: 1; }
@@ -179,7 +187,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 /* style */
 .words { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .words span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font-weight: 500; }
-.mood { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 32px; max-width: 880px; }
+.mood { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 32px; }
 @media (max-width: 700px) { .mood { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .mood button { display: block; width: 100%; aspect-ratio: 4 / 5; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 14px; overflow: hidden; }
 .mood button img { width: 100%; height: 100%; object-fit: cover; margin: 0; transition: transform .3s; }
@@ -198,8 +206,8 @@ details p { margin: 12px 0 0; color: var(--muted); max-width: 64ch; }
 .contact { background: var(--contact-bg); color: var(--on-navy); margin-inline: -20px; padding-inline: 20px; }
 .contact .eyebrow { color: var(--alt); }
 .hl { background: linear-gradient(transparent 62%, var(--hl) 62%); padding-inline: .06em; }
-.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
-.contact h2 { font-size: clamp(2.4rem, 6vw, 4.2rem); }
+.contact-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.contact h2 { font-size: clamp(2rem, 3.5vw, 3rem); overflow-wrap: break-word; hyphens: auto; }
 .contact p { color: color-mix(in srgb, var(--on-navy) 82%, transparent); max-width: 46ch; }
 .mail-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 24px; }
 .mail { font-size: 1.05rem; word-break: break-all; user-select: all; }
@@ -210,7 +218,8 @@ details p { margin: 12px 0 0; color: var(--muted); max-width: 64ch; }
 .socials { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
 .reply { font-size: .9rem; margin-top: 18px; }
 form.brief { background: var(--surface); color: var(--ink); border-radius: 26px; padding: clamp(22px, 3vw, 34px); display: grid; gap: 16px; }
-form.brief h3 { margin-bottom: 2px; }
+form.brief h3 { margin-bottom: 4px; font-size: clamp(1.8rem, 2.8vw, 2.4rem); }
+form.brief { padding: clamp(24px, 3.4vw, 44px); }
 form.brief small { color: var(--muted); }
 .row2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 14px; }
 label { display: grid; gap: 6px; font-size: .85rem; font-weight: 700; min-width: 0; }
@@ -223,13 +232,16 @@ footer { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 8px 24px; jus
 footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 
 /* lightbox */
-.lb { position: fixed; inset: 0; z-index: 50; background: rgba(8, 14, 10, .88); display: grid; place-items: center; padding: 20px; }
+.lb { position: fixed; inset: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(14px); display: grid; place-items: center; padding: 56px 20px 24px; }
 .lb[hidden] { display: none; }
 .lb-box { position: relative; width: min(var(--lb-w, 420px), 100%); max-height: 100%; }
-.lb-box .vid { cursor: default; max-height: calc(100vh - 90px); width: auto; max-width: 100%; margin-inline: auto; }
+.lb-box .vid { cursor: default; max-height: calc(100vh - 110px); width: auto; max-width: 100%; margin-inline: auto; }
+.lb-box .vid:not(.land) { border: 9px solid var(--ink); border-radius: 42px; box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .55); background: #000; }
+.lb-box .vid:not(.land)::before { content: ""; position: absolute; top: 9px; left: 50%; width: 72px; height: 20px; margin-left: -36px; background: var(--ink); border-radius: 14px; z-index: 3; }
+.lb-box .vid.land { border-radius: 20px; box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .55); }
 .lb-box .vid.land { width: 100%; }
 .lb-box .vid video { object-fit: contain; background: #000; }
-.lb-close { position: absolute; top: -44px; right: 0; background: none; border: 0; color: #fff; font: inherit; font-weight: 600; cursor: pointer; padding: 8px; }
+.lb-close { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 14px); right: 16px; z-index: 2; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; padding: 8px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
 
@@ -276,6 +288,14 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <div class="niches" aria-label="Nischen">
     <span>Hair Care</span><span>Skin Care</span><span>Wellness</span><span>Food</span><span>Jewellery</span><span>Unboxing</span>
   </div>
+
+  <!-- BRANDS -->
+  <section id="brands">
+    <p class="eyebrow" data-i18n="br_eyebrow">Vertrauen</p>
+    <h2 data-i18n="br_title">Marken, mit denen ich gearbeitet habe</h2>
+    <div class="brand-chips" id="brandList"></div>
+    <p class="brand-more" data-i18n="br_more">und viele weitere</p>
+  </section>
 
   <!-- WORK -->
   <section id="work">
@@ -356,7 +376,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <section class="why" id="why">
     <div>
       <p class="eyebrow" data-i18n="why_eyebrow">Warum ich</p>
-      <h2 data-i18n="why_title">Menschen vertrauen Menschen</h2>
+      <h2 data-i18n="why_title">Menschen vertrauen mir</h2>
       <p class="txt" data-i18n="why_p">UGC funktioniert, weil Menschen Menschen vertrauen und keiner polierten Werbung. Ich erstelle authentischen, ästhetischen Content, der deine Marke emotional mit deiner Zielgruppe verbindet.</p>
       <ul class="points">
         <li><i>1</i><div><b data-i18n="w1t">Natürlich vor der Kamera</b><span data-i18n="w1d">Über zwei Jahre Erfahrung, Videos wirken mühelos statt gestellt.</span></div></li>
@@ -368,13 +388,6 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   </section>
 
 
-  <!-- BRANDS -->
-  <section id="brands">
-    <p class="eyebrow" data-i18n="br_eyebrow">Vertrauen</p>
-    <h2 data-i18n="br_title">Marken, mit denen ich gearbeitet habe</h2>
-    <div class="brand-chips" id="brandList"></div>
-    <p class="brand-more" data-i18n="br_more">und viele weitere</p>
-  </section>
 
   <!-- GALLERY -->
   <section id="gallery">
@@ -509,7 +522,7 @@ const T = {
     p1: "3 Videos mit je 2 Hooks (6 Hooks)", p2: "Skript und Konzept inklusive", p3: "Paid-Ads-Nutzungsrechte für 3 Monate", p4: "1 Korrekturrunde", p5: "Lieferung in 10 Tagen",
     m1: "Ab 2 Videos pro Monat", m2: "Zeit zum Testen und Optimieren", m3: "Bevorzugter Terminslot", m4: "Rabatt auf Einzelpreise",
     cu_t: "Du brauchst etwas anderes?", cu_p: "Anderes Format, mehr Videos oder besondere Rechte? Beschreib kurz dein Projekt und ich erstelle dir ein individuelles Angebot.", cu_btn: "Individuelles Angebot anfragen",
-    why_eyebrow: "Warum ich", why_title: "Menschen vertrauen Menschen",
+    why_eyebrow: "Warum ich", why_title: "Menschen vertrauen mir",
     why_p: "UGC funktioniert, weil Menschen Menschen vertrauen und keiner polierten Werbung. Ich erstelle authentischen, ästhetischen Content, der deine Marke emotional mit deiner Zielgruppe verbindet.",
     w1t: "Natürlich vor der Kamera", w1d: "Über zwei Jahre Erfahrung, Videos wirken mühelos statt gestellt.",
     w2t: "Zuverlässig", w2d: "Klare Absprachen, pünktliche Lieferung, saubere Dateien.",
@@ -551,7 +564,7 @@ const T = {
     p1: "3 videos with 2 hooks each (6 hooks)", p2: "Script and concept included", p3: "Paid ads usage rights for 3 months", p4: "1 round of revisions", p5: "Delivery in 10 days",
     m1: "From 2 videos per month", m2: "Time to test and optimise", m3: "Priority booking slot", m4: "Discount on single prices",
     cu_t: "Need something different?", cu_p: "Another format, more videos or special rights? Briefly describe your project and I will put together a custom offer.", cu_btn: "Request a custom offer",
-    why_eyebrow: "Why me", why_title: "People trust people",
+    why_eyebrow: "Why me", why_title: "People trust me",
     why_p: "UGC works because people trust people, not polished ads. I create authentic and aesthetic content that helps brands connect emotionally with their audience.",
     w1t: "Natural on camera", w1d: "Over two years of experience, videos feel effortless, not staged.",
     w2t: "Reliable", w2d: "Clear agreements, on-time delivery, clean files.",
@@ -660,12 +673,12 @@ function openVideo(v) {
   const land = isLand(v.ratio);
   box.className = "vid" + (v.src ? " has-src" : "") + (land ? " land" : "");
   box.style.aspectRatio = v.ratio || "9 / 16";
-  lb.style.setProperty("--lb-w", land ? "960px" : "420px");
+  lb.style.setProperty("--lb-w", land ? "960px" : "min(400px, calc((100vh - 130px) * 0.5625))");
   if (v.src) {
     const el = document.createElement("video");
     el.src = v.src; el.controls = true; el.autoplay = true; el.playsInline = true;
     if (v.poster) el.poster = v.poster;
-    el.addEventListener("loadedmetadata", () => { if (el.videoWidth) { const l = el.videoWidth > el.videoHeight; box.style.aspectRatio = el.videoWidth + " / " + el.videoHeight; box.classList.toggle("land", l); lb.style.setProperty("--lb-w", l ? "960px" : "420px"); } });
+    el.addEventListener("loadedmetadata", () => { if (el.videoWidth) { const l = el.videoWidth > el.videoHeight; box.style.aspectRatio = el.videoWidth + " / " + el.videoHeight; box.classList.toggle("land", l); lb.style.setProperty("--lb-w", l ? "960px" : "min(400px, calc((100vh - 130px) * 0.5625))"); } });
     box.append(el);
   } else {
     box.innerHTML = `<span class="ph-note"><b>${t("ph_tag")}</b>${t("soon")}</span>`;
