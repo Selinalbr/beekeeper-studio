@@ -84,12 +84,12 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.herobg { position: relative; width: 100%; max-width: 768px; margin-inline: auto; aspect-ratio: 5 / 3; background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center 4%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
+.herobg { position: relative; margin-top: 18px; width: 100%; max-width: 768px; margin-inline: auto; aspect-ratio: 5 / 3; background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center 4%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
 @media (max-width: 860px) { .herobg { aspect-ratio: 4 / 3; max-width: 480px; } }
 .bg-note { position: absolute; top: 16px; right: 16px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .herobg.has-img .bg-note { display: none; }
-.hero { position: relative; padding-block: 44px 8px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: start; }
+.hero { position: relative; padding-block: 0 8px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: start; }
 .hero .who { display: inline-flex; align-items: center; gap: 10px; background: var(--soft); color: var(--accent); font-weight: 700; font-size: .85rem; padding: 7px 16px; border-radius: 999px; margin-bottom: 22px; }
 .hero .who::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
 .hero h1 { font-size: clamp(2.6rem, 5.6vw, 4.6rem); font-weight: var(--hw); }
@@ -284,6 +284,10 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 <main id="top">
 <div class="wrap">
 
+  <div class="herobg" id="heroBg">
+<span class="bg-note" id="bgNote"><b data-i18n="ph_tag">Platzhalter</b> <span data-i18n="bg_note">Hintergrundbild (HERO_IMAGE im Code)</span></span>
+</div>
+
   <!-- HERO -->
   <div class="hero">
     <div>
@@ -303,12 +307,21 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
       </button>
     </div>
   </div>
-  <div class="herobg" id="heroBg">
-<span class="bg-note" id="bgNote"><b data-i18n="ph_tag">Platzhalter</b> <span data-i18n="bg_note">Hintergrundbild (HERO_IMAGE im Code)</span></span>
-</div>
 </div>
 <div class="wrap">
 
+
+  <!-- BRANDS -->
+  <section id="brands">
+    <p class="eyebrow" data-i18n="br_eyebrow">Vertrauen</p>
+    <h2 data-i18n="br_title">Marken, mit denen ich gearbeitet habe</h2>
+    <div class="brand-chips" id="brandList"></div>
+    <p class="brand-more" data-i18n="br_more">und viele weitere</p>
+    <div class="reviews" id="reviews" hidden>
+      <h3 data-i18n="br_rev">Das sagen Marken</h3>
+      <div class="review-grid" id="reviewGrid"></div>
+    </div>
+  </section>
 
   <!-- WORK -->
   <section id="work">
@@ -327,17 +340,21 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <p class="note" data-i18n="work_note">Beim Drüberfahren startet eine kurze Vorschau, ein Klick öffnet das Video mit Ton.</p>
   </section>
 
-  <!-- BRANDS -->
-  <section id="brands">
-    <p class="eyebrow" data-i18n="br_eyebrow">Vertrauen</p>
-    <h2 data-i18n="br_title">Marken, mit denen ich gearbeitet habe</h2>
-    <div class="brand-chips" id="brandList"></div>
-    <p class="brand-more" data-i18n="br_more">und viele weitere</p>
-    <div class="reviews" id="reviews" hidden>
-      <h3 data-i18n="br_rev">Das sagen Marken</h3>
-      <div class="review-grid" id="reviewGrid"></div>
+  <!-- WHY -->
+  <section class="why" id="why">
+    <div>
+      <p class="eyebrow" data-i18n="why_eyebrow">Warum ich</p>
+      <h2 data-i18n="why_title">Menschen vertrauen mir</h2>
+      <p class="txt" data-i18n="why_p">UGC funktioniert, weil Menschen Menschen vertrauen und keiner polierten Werbung. Ich erstelle authentischen, ästhetischen Content, der deine Marke emotional mit deiner Zielgruppe verbindet.</p>
+      <ul class="points">
+        <li><i>1</i><div><b data-i18n="w1t">Natürlich vor der Kamera</b><span data-i18n="w1d">Über zwei Jahre Erfahrung, Videos wirken mühelos statt gestellt.</span></div></li>
+        <li><i>2</i><div><b data-i18n="w2t">Zuverlässig</b><span data-i18n="w2d">Klare Absprachen, pünktliche Lieferung, saubere Dateien.</span></div></li>
+        <li><i>3</i><div><b data-i18n="w3t">Hooks, die zum Stoppen bringen</b><span data-i18n="w3d">Die ersten Sekunden entscheiden, deshalb baue ich sie bewusst.</span></div></li>
+      </ul>
     </div>
+    <div class="photo" role="img" aria-label="Platzhalter Portrait"><span data-i18n="ph_photo">Platzhalter: Portrait</span></div>
   </section>
+
 </div>
 
 <!-- PACKAGES -->
@@ -398,20 +415,6 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 </div>
 
 <div class="wrap">
-  <!-- WHY -->
-  <section class="why" id="why">
-    <div>
-      <p class="eyebrow" data-i18n="why_eyebrow">Warum ich</p>
-      <h2 data-i18n="why_title">Menschen vertrauen mir</h2>
-      <p class="txt" data-i18n="why_p">UGC funktioniert, weil Menschen Menschen vertrauen und keiner polierten Werbung. Ich erstelle authentischen, ästhetischen Content, der deine Marke emotional mit deiner Zielgruppe verbindet.</p>
-      <ul class="points">
-        <li><i>1</i><div><b data-i18n="w1t">Natürlich vor der Kamera</b><span data-i18n="w1d">Über zwei Jahre Erfahrung, Videos wirken mühelos statt gestellt.</span></div></li>
-        <li><i>2</i><div><b data-i18n="w2t">Zuverlässig</b><span data-i18n="w2d">Klare Absprachen, pünktliche Lieferung, saubere Dateien.</span></div></li>
-        <li><i>3</i><div><b data-i18n="w3t">Hooks, die zum Stoppen bringen</b><span data-i18n="w3d">Die ersten Sekunden entscheiden, deshalb baue ich sie bewusst.</span></div></li>
-      </ul>
-    </div>
-    <div class="photo" role="img" aria-label="Platzhalter Portrait"><span data-i18n="ph_photo">Platzhalter: Portrait</span></div>
-  </section>
 
 
 
@@ -525,7 +528,7 @@ const REVIEWS = [   // Bewertungen von Marken. ratings: 5 = je 5 Sterne bei Cont
   { name: "Lena", brand: "Dalton Marine Cosmetics", ratings: 5 },
   { name: "Paul", brand: "Paul Valentine", ratings: 5, text: "tolle Umsetzung <3" }
 ];
-const PHOTOS = ["videos/gal-2.jpg", "videos/gal-5.jpg", "videos/gal-7.jpg", "videos/gal-4.jpg", "videos/gal-6.jpg", "videos/gal-8.jpg", "videos/gal-10.jpg", "videos/gal-9.jpg"];  // Bildergalerie, weitere Fotos einfach ergänzen
+const PHOTOS = ["videos/gal-2.jpg", "videos/gal-6.jpg", "videos/gal-7.jpg", "videos/gal-10.jpg"];  // Bildergalerie, weitere Fotos einfach ergänzen
 const HERO_IMAGE = "videos/hero.jpg";                     // Hintergrundbild oben, z. B. "videos/hero.jpg" (am besten quer, helle Stimmung, Gesicht eher rechts)
 const PHOTO_WHY = "videos/portrait.jpg";  // Portrait bei "Warum ich"
 const YOUTUBE_URL = "https://www.youtube.com/@byselina";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
