@@ -442,9 +442,9 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
     <p class="eyebrow">FAQ</p>
     <h2 data-i18n="faq_title">Häufige Fragen</h2>
     <div style="margin-top:28px">
-      <details><summary data-i18n="q1">Wie lange dauert die Lieferung?</summary><p data-i18n="a1">Meist X Werktage nach Produkteingang und Freigabe des Skripts. Platzhalter, bitte anpassen.</p></details>
-      <details><summary data-i18n="q2">Welche Nutzungsrechte sind enthalten?</summary><p data-i18n="a2">Je nach Paket organisch oder für Paid Ads, mit klarer Laufzeit. Platzhalter, bitte anpassen.</p></details>
-      <details><summary data-i18n="q3">Kann ich Rohmaterial bekommen?</summary><p data-i18n="a3">Ja, gegen Aufpreis. Platzhalter, bitte anpassen.</p></details>
+      <details><summary data-i18n="q1">Wie lange dauert die Lieferung?</summary><p data-i18n="a1">Beim Single-Video meist 7 Tage nach Produkteingang und Freigabe des Skripts. Expresslieferung ist auf Anfrage gegen Aufpreis möglich.</p></details>
+      <details><summary data-i18n="q2">Welche Nutzungsrechte sind enthalten?</summary><p data-i18n="a2">Single: organische Nutzung. Ad Pack: Paid Ads für 3 Monate, eine Verlängerung auf 6 oder 12 Monate ist möglich.</p></details>
+      <details><summary data-i18n="q3">Kann ich Rohmaterial bekommen?</summary><p data-i18n="a3">Ja, auf Anfrage gegen Aufpreis.</p></details>
       <details><summary data-i18n="q4">Arbeitest du auch auf Englisch?</summary><p data-i18n="a4">Ja, ich drehe Videos auf Deutsch und auf Englisch.</p></details>
     </div>
   </section>
@@ -493,7 +493,6 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
             <select id="fUse"><option data-i18n="o_org" value="org">Organisch</option><option data-i18n="o_ads" value="ads">Paid Ads</option><option data-i18n="o_both2" value="both">Beides</option></select></label>
           <label for="fMonths" id="lblMonths" hidden><span data-i18n="fm_months">Laufzeit der Paid-Ads-Rechte</span>
             <select id="fMonths"><option data-i18n="o_m3" value="3">3 Monate</option><option data-i18n="o_m6" value="6">6 Monate</option><option data-i18n="o_m12" value="12">12 Monate</option></select></label>
-          <label for="fDate"><span><span data-i18n="fm_date">Wunschtermin</span> <small class="opt" data-i18n="opt">(optional)</small></span><input id="fDate" type="text" placeholder="z. B. KW 45"></label>
         </div>
         <label for="fMsg"><span><span data-i18n="fm_msg">Besondere Wünsche und Infos</span> <small class="opt" data-i18n="opt">(optional)</small></span><textarea id="fMsg" data-i18n-ph="fm_msg_ph" placeholder="z. B. Hooks gewünscht? Skript vorhanden? Nutzungsrechte, Format, Besonderheiten …"></textarea></label>
         <div class="actions">
@@ -597,7 +596,7 @@ const T = {
     br_eyebrow: "Marken", br_title: "Vertrauen, das <span class=\"script\">bleibt.</span>", br_rev: "Das sagen Marken", rv1: "Contentqualität", rv2: "Zusammenarbeit", rv3: "Lieferzeit", br_more: "viele weitere", br_more_n: "weitere",
     gal_eyebrow: "Fotos", gal_title: "Bilder",
     faq_title: "Häufige Fragen",
-    q1: "Wie lange dauert die Lieferung?", a1: "Beim Single-Video meist 7 Tage nach Produkteingang und Freigabe des Skripts.",
+    q1: "Wie lange dauert die Lieferung?", a1: "Beim Single-Video meist 7 Tage nach Produkteingang und Freigabe des Skripts. Expresslieferung ist auf Anfrage gegen Aufpreis möglich.",
     q2: "Welche Nutzungsrechte sind enthalten?", a2: "Single: organische Nutzung. Ad Pack: Paid Ads für 3 Monate, eine Verlängerung auf 6 oder 12 Monate ist möglich.",
     q3: "Kann ich Rohmaterial bekommen?", a3: "Ja, auf Anfrage gegen Aufpreis.",
     q4: "Arbeitest du auch auf Englisch?", a4: "Ja, ich drehe Videos auf Deutsch und auf Englisch.",
@@ -639,7 +638,7 @@ const T = {
     br_eyebrow: "Brands", br_title: "Trust that <span class=\"script\">lasts.</span>", br_rev: "What brands say", rv1: "Content quality", rv2: "Collaboration", rv3: "Delivery time", br_more: "many more", br_more_n: "more",
     gal_eyebrow: "Photos", gal_title: "Gallery",
     faq_title: "Frequently asked questions",
-    q1: "How long does delivery take?", a1: "For a single video usually 7 days after the product arrives and the script is approved.",
+    q1: "How long does delivery take?", a1: "For a single video usually 7 days after the product arrives and the script is approved. Express delivery is available on request for an extra fee.",
     q2: "Which usage rights are included?", a2: "Single: organic use. Ad Pack: paid ads for 3 months, extension to 6 or 12 months is possible.",
     q3: "Can I get the raw footage?", a3: "Yes, on request for an additional fee.",
     q4: "Do you also work in English?", a4: "Yes, I film videos in German and in English.",
@@ -819,12 +818,12 @@ function renderGallery() {
 }
 const LEGAL = {
   de: {
-    imprint: `<h3>Impressum</h3><p class="todo"><b>Platzhalter.</b> Vor der Veröffentlichung ausfüllen. Für eine geschäftliche Seite in Deutschland sind Name und ladungsfähige Anschrift Pflicht.</p><p>Angaben gemäß § 5 DDG</p><p>[Vorname Nachname]<br>[Straße und Hausnummer]<br>[PLZ Ort]</p><p>Kontakt: <span id="legalMail"></span></p><p>[Ggf. Umsatzsteuer-ID oder Hinweis auf Kleinunternehmerregelung nach § 19 UStG]</p>`,
-    privacy: `<h3>Datenschutz</h3><p class="todo"><b>Platzhalter.</b> Bitte vor der Veröffentlichung durch eine vollständige Datenschutzerklärung ersetzen, zum Beispiel aus einem Generator. Das ist keine Rechtsberatung.</p><ul><li>Verantwortliche: [Name, Anschrift, E-Mail]</li><li>Hosting: [Anbieter, z. B. Netlify]</li><li>Schriftarten: werden von Google Fonts geladen (alternativ lokal einbinden)</li><li>Kontakt und Anfrageformular: öffnet das E-Mail-Programm, es werden keine Daten auf dieser Seite gespeichert</li><li>Spracheinstellung: wird lokal im Browser gespeichert</li><li>Verlinkte Dienste: TikTok, Instagram, YouTube</li><li>Rechte der Betroffenen: Auskunft, Berichtigung, Löschung, Beschwerde bei der Aufsichtsbehörde</li></ul>`
+    imprint: `<h3>Impressum</h3><p>Angaben gemäß § 5 DDG</p><p>UGC by Selina</p><p>Kontakt: <span id="legalMail"></span></p><p>Kleinunternehmerregelung: Es wird keine Umsatzsteuer berechnet (§ 19 UStG).</p>`,
+    privacy: `<h3>Datenschutz</h3>`
   },
   en: {
-    imprint: `<h3>Legal notice</h3><p class="todo"><b>Placeholder.</b> Fill in before publishing. A business website in Germany needs a name and a postal address.</p><p>Information according to § 5 DDG</p><p>[First name last name]<br>[Street and number]<br>[Postcode City]</p><p>Contact: <span id="legalMail"></span></p><p>[VAT ID or small business notice, if applicable]</p>`,
-    privacy: `<h3>Privacy</h3><p class="todo"><b>Placeholder.</b> Replace with a full privacy policy before publishing, for example from a generator. This is not legal advice.</p><ul><li>Controller: [name, address, email]</li><li>Hosting: [provider, e.g. Netlify]</li><li>Fonts: loaded from Google Fonts (or host them locally)</li><li>Contact and request form: opens your email app, no data is stored on this page</li><li>Language setting: stored locally in your browser</li><li>Linked services: TikTok, Instagram, YouTube</li><li>Your rights: access, correction, deletion, complaint to the supervisory authority</li></ul>`
+    imprint: `<h3>Legal notice</h3><p>Information according to § 5 DDG</p><p>UGC by Selina</p><p>Contact: <span id="legalMail"></span></p><p>Small business regulation: no VAT is charged (§ 19 UStG).</p>`,
+    privacy: `<h3>Privacy</h3>`
   }
 };
 function openLegal(kind) {
@@ -879,7 +878,6 @@ function quoteText() {
   add(t("l_lang"), opt("fLang"));
   add(t("l_use"), opt("fUse"));
   if (!$("#lblMonths").hidden) add(t("l_months"), opt("fMonths"));
-  add(t("l_date"), val("fDate"));
   if (val("fMsg")) lines.push("", t("l_msg") + ":", val("fMsg"));
   lines.push("", t("mail_bye"), val("fName"));
   return lines.join("\n");
