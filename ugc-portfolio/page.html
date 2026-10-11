@@ -81,8 +81,8 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
 /* hero */
-.herobg { position: relative; margin-top: 18px; width: 100%; max-width: 768px; margin-inline: auto; aspect-ratio: 5 / 3; background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center 4%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
-@media (max-width: 860px) { .herobg { aspect-ratio: 4 / 3; max-width: 480px; } }
+.herobg { position: relative; margin-top: 18px; width: 100%; max-width: 768px; margin-inline: auto; aspect-ratio: 5 / 2.4; background-repeat: no-repeat; background-image: var(--hero-img, linear-gradient(135deg, var(--ph-a), var(--ph-b))); background-size: cover; background-position: center 4%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 7%, #000 88%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
+@media (max-width: 860px) { .herobg { aspect-ratio: 4 / 2.4; max-width: 480px; } }
 .bg-note { position: absolute; top: 16px; right: 16px; z-index: 1; background: var(--surface); border: 1.5px dashed var(--accent-2); border-radius: 999px; padding: 4px 14px; font-size: .75rem; font-weight: 600; color: var(--muted); }
 .bg-note b { color: var(--accent); text-transform: uppercase; letter-spacing: .1em; font-size: .7rem; }
 .herobg.has-img .bg-note { display: none; }
@@ -172,7 +172,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 #brands h2 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
 .brand-chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 .brand-chips span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 14px 28px; font-family: var(--font-display); font-weight: var(--hw); font-size: 1.2rem; }
-.brand-chips .brand-plus { padding: 12px 20px; border: 1.5px dashed var(--accent-2); background: none; color: var(--muted); font-size: .95rem; font-weight: 500; cursor: default; user-select: none; }
+.brand-chips .brand-plus { padding: 0 6px; border: 0; background: none; color: var(--accent); font-size: 1.05rem; font-weight: 700; cursor: default; user-select: none; }
 .brand-chips span.has-logo { padding: 12px 26px; display: grid; place-items: center; }
 .brand-chips { align-items: center; }
 .brand-chips span.has-logo { background: var(--surface); border-radius: 26px; }
@@ -383,13 +383,13 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
         <article class="pkg featured">
           <span class="badge" data-i18n="popular">Beliebt</span>
           <h3>Ad Pack</h3>
-          <div class="price"><span data-i18n="from">ab</span> <span data-price="pack">750 €</span></div>
+          <div class="price"><span data-i18n="from">ab</span> <span data-price="pack">675 €</span></div>
           <ul>
             <li data-i18n="p1">3 Videos mit je 2 Hooks</li>
             <li data-i18n="p2">Skript und Konzept inklusive</li>
             <li data-i18n="p3">Paid-Ads-Nutzungsrechte (X Monate)</li>
             <li data-i18n="p4">1 Korrekturrunde</li>
-            <li data-i18n="p5">Lieferung in 10 Tagen</li>
+            <li data-i18n="p5">Lieferung in 7 Tagen</li>
           </ul>
           <a class="btn btn-cta" href="#brief" data-i18n="pkg_btn">Anfragen</a>
         </article>
@@ -527,7 +527,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
    ratio  = Format, optional ("16 / 9" quer, "9 / 16" hoch). Mit Videodatei wird das Format automatisch erkannt.
    Leer gelassenes src zeigt einen Platzhalter. */
 const CONTACT_EMAIL = "selinaworks.ugc@gmail.com"; // echte E-Mail eintragen
-const PRICES = { single: "175 €", pack: "750 €" };  // Preise hier ändern
+const PRICES = { single: "175 €", pack: "675 €" };  // Preise hier ändern
 const MORE_BRANDS = "";   // Zahl der weiteren Marken, z. B. "25" ergibt "+25". Leer lassen ergibt nur "+"
 const BRANDS = [   // logo = Logo-Datei, h = Höhe in Pixel (optional)
   { name: "BetterMe",                 logo: "videos/logos/betterme.png",      h: 26 },
@@ -571,7 +571,7 @@ const T = {
     pkg_lead: "Einstiegspreise. Für größere Projekte erstelle ich dir gern ein individuelles Angebot.", pkg_note: "Kürzere Videos (bis 15 Sek.) ab 150 €, längere Videos (bis 60 Sek.) ab 200 €.",
     from: "ab", month: "Monat", popular: "Beliebt", pkg_btn: "Anfragen",
     s1: "1 Video (15–30 Sek.)", s2: "1 Hook inklusive, weitere Hooks als Extra", s3: "Lieferung in 7 Tagen (Expresslieferung möglich)", s4: "Organische Nutzungsrechte",
-    p1: "3 Videos mit je 2 Hooks (6 Hooks)", p2: "Skript und Konzept inklusive", p3: "Paid-Ads-Nutzungsrechte für 3 Monate", p4: "1 Korrekturrunde", p5: "Lieferung in 10 Tagen",
+    p1: "3 Videos mit je 2 Hooks (6 Hooks)", p2: "Skript und Konzept inklusive", p3: "Paid-Ads-Nutzungsrechte für 3 Monate", p4: "1 Korrekturrunde", p5: "Lieferung in 7 Tagen",
     on_request: "Preis auf Anfrage", pkg_m: "Langfristig", pkg_m_tag: "Monatlich", who: "Selina · UGC & Content Creator · Deutschland", m1: "Bis zu 10 Videos pro Monat", m2: "Contentplanung und Strategie", m3: "Feste Ansprechpartnerin", m4: "Priorisierte Lieferung", m5: "Testen und live optimieren", m6: "Rabatt auf Einzelpreise",
     cu_t: "Du brauchst etwas anderes?", cu_p: "Anderes Format, mehr Videos oder besondere Rechte? Beschreib kurz dein Projekt und ich erstelle dir ein individuelles Angebot.", cu_btn: "Individuelles Angebot anfragen",
     why_eyebrow: "Warum ich", why_title: "Menschen vertrauen <span class=\"script\">mir</span>",
@@ -613,7 +613,7 @@ const T = {
     pkg_lead: "Starting prices. For bigger projects I am happy to put together a custom offer.", pkg_note: "Shorter videos (up to 15 sec.) from €150, longer videos (up to 60 sec.) from €200.",
     from: "from", month: "month", popular: "Popular", pkg_btn: "Get in touch",
     s1: "1 video (15–30 sec.)", s2: "1 hook included, extra hooks available", s3: "Delivery in 7 days (express delivery available)", s4: "Organic usage rights",
-    p1: "3 videos with 2 hooks each (6 hooks)", p2: "Script and concept included", p3: "Paid ads usage rights for 3 months", p4: "1 round of revisions", p5: "Delivery in 10 days",
+    p1: "3 videos with 2 hooks each (6 hooks)", p2: "Script and concept included", p3: "Paid ads usage rights for 3 months", p4: "1 round of revisions", p5: "Delivery in 7 days",
     on_request: "Price on request", pkg_m: "Long-term", pkg_m_tag: "Monthly", who: "Selina · UGC & content creator · Germany", m1: "Up to 10 videos per month", m2: "Content planning and strategy", m3: "A dedicated contact", m4: "Priority delivery", m5: "Test and optimise live", m6: "Discount on single prices",
     cu_t: "Need something different?", cu_p: "Another format, more videos or special rights? Briefly describe your project and I will put together a custom offer.", cu_btn: "Request a custom offer",
     why_eyebrow: "Why me", why_title: "People trust <span class=\"script\">me</span>",
