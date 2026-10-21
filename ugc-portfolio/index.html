@@ -100,7 +100,8 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .hero h1 em { font-style: normal; background: linear-gradient(transparent 62%, var(--hl) 62%); padding-inline: .06em; }
 .hero .pitch { font-size: 1.15rem; color: var(--muted); max-width: 48ch; margin: 22px 0 0; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-.phone { position: relative; width: 100%; max-width: 980px; margin-inline: auto; }
+.intro { padding-block: 56px 8px; text-align: center; }
+.intro .land-card { max-width: 920px; margin-top: 24px; margin-inline: auto; display: block; box-shadow: 0 30px 60px -34px rgba(63, 51, 40, .45); }
 @media (min-width: 861px) {
   .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(16px, 2vw, 32px); padding-top: 40px; }
   .herobg { margin-left: -190px; margin-right: 0; max-width: 640px; justify-self: end; }
@@ -319,16 +320,19 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <div class="herobg" id="heroBg">
 <span class="bg-note" id="bgNote"><b data-i18n="ph_tag">Platzhalter</b> <span data-i18n="bg_note">Hintergrundbild (HERO_IMAGE im Code)</span></span>
 </div>
-    <div class="phone">
-      <button class="vid" type="button" id="introBtn" aria-label="Intro" style="aspect-ratio: 16 / 9">
-        <span class="play"></span>
-        <span class="ph-note"><b data-i18n="ph_tag">Platzhalter</b><span data-i18n="ph_intro">Hier kommt dein Intro-Video hin</span></span>
-      </button>
-    </div>
   </div>
 </div>
 <div class="wrap">
 
+
+  <!-- INTRO -->
+  <section id="intro" class="intro" hidden>
+    <p class="eyebrow" data-i18n="intro_eyebrow">Lern mich kennen</p>
+    <h2 data-i18n-html="intro_title">Hallo, ich bin <span class="script">Selina.</span></h2>
+    <button class="vid land-card" type="button" id="introBtn" aria-label="Intro-Video abspielen" style="aspect-ratio: 16 / 9">
+      <span class="play"></span>
+    </button>
+  </section>
 
   <!-- BRANDS -->
   <section id="brands">
@@ -564,7 +568,8 @@ const HERO_IMAGE = "videos/hero.jpg";                     // Hintergrundbild obe
 const PHOTO_WHY = "videos/portrait.jpg";  // Portrait bei "Warum ich"
 const YOUTUBE_URL = "https://www.youtube.com/@byselina";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
 const VIDEOS = [
-  { intro: true, ratio: "16 / 9", src: "", poster: "" },   // Intro ist quer (16:9). Hochformat? ratio: "9 / 16"
+  { intro: true, ratio: "16 / 9", src: "videos/intro.mp4", poster: "", optional: true },   // Intro ist quer (16:9). Hochformat? ratio: "9 / 16"
+  { title: "Neues Video", lang: "de", src: "videos/neu.mp4", poster: "", optional: true },
   { title: "Hair Care", lang: "de", src: "videos/haircare.mp4", poster: "videos/haircare.jpg" },
   { title: "Skin Care", lang: "de", src: "videos/skincare.mp4", poster: "videos/skincare.jpg" },
   { title: "Sun Care",    lang: "de", src: "videos/suncare.mp4", poster: "videos/suncare.jpg" },
@@ -581,7 +586,7 @@ const T = {
     hero_h1: "UGC, bei dem Menschen <em>stehen bleiben.</em>",
     hero_pitch: "Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.", followers: "40k+ auf TikTok · 17k+ auf YouTube", ph_tag: "Platzhalter", bg_note: "Hintergrundbild (HERO_IMAGE im Code)",
     hero_cta: "Zusammenarbeit anfragen", hero_cta2: "Arbeiten ansehen",
-    ph_intro: "Hier kommt dein Intro-Video hin", ph_photo: "Platzhalter: Portrait",
+    ph_intro: "Hier kommt dein Intro-Video hin", intro_eyebrow: "Lern mich kennen", intro_title: "Hallo, ich bin <span class=\"script\">Selina.</span>", ph_photo: "Platzhalter: Portrait",
     more_tt: "Mehr auf TikTok", work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die <span class=\"script\">verkaufen</span>", f_all: "Alle",
     work_note: "Beim Drüberfahren startet eine kurze Vorschau, ein Klick öffnet das Video mit Ton.",
     pkg_eyebrow: "Zusammenarbeit", pkg_title: "Pakete für deine <span class=\"script\">Kampagne</span>",
@@ -623,7 +628,7 @@ const T = {
     hero_h1: "UGC that makes people <em>stop scrolling.</em>",
     hero_pitch: "Natural paid-ad videos for beauty, wellness and lifestyle, in German and English.", followers: "40k+ on TikTok · 17k+ on YouTube", ph_tag: "Placeholder", bg_note: "background image (HERO_IMAGE in the code)",
     hero_cta: "Request a collaboration", hero_cta2: "See my work",
-    ph_intro: "Your intro video goes here", ph_photo: "Placeholder: portrait",
+    ph_intro: "Your intro video goes here", intro_eyebrow: "Get to know me", intro_title: "Hi, I am <span class=\"script\">Selina.</span>", ph_photo: "Placeholder: portrait",
     more_tt: "More on TikTok", work_eyebrow: "Paid ad examples", work_title: "Videos that <span class=\"script\">sell</span>", f_all: "All",
     work_note: "Hover for a short preview, click to open the video with sound.",
     pkg_eyebrow: "Working together", pkg_title: "Packages for your <span class=\"script\">campaign</span>",
@@ -703,6 +708,7 @@ function renderGrid() {
     if (v.ratio) btn.style.aspectRatio = v.ratio;
     const gv = btn.querySelector("video");
     if (gv) fitRatio(gv, btn);
+    if (v.optional) fileMissing(v.src).then(missing => { if (missing) card.remove(); });
     btn.addEventListener("click", () => openVideo(v));
     const vid = btn.querySelector("video");
     if (vid) {
@@ -727,16 +733,20 @@ function renderGrid() {
   }
 }
 
+function fileMissing(src) {   // true nur, wenn der Server die Datei klar als nicht vorhanden meldet
+  return fetch(src, { method: "HEAD" }).then(r => !r.ok, () => false);
+}
 function renderIntro() {
   const v = VIDEOS.find(x => x.intro) || {};
-  const btn = $("#introBtn");
-  if (!v.src) { $(".phone").hidden = true; return; }   // kein Intro-Video: Bereich bleibt ausgeblendet
+  const box = $("#intro"), btn = $("#introBtn");
+  if (!v.src) return;
   if (v.ratio) btn.style.aspectRatio = v.ratio;
-  if (v.src) {
-    btn.classList.add("has-src");
-    btn.insertAdjacentHTML("afterbegin", `<video muted loop playsinline autoplay preload="metadata" ${v.poster ? `poster="${v.poster}"` : ""} src="${v.src}"></video>`);
-    fitRatio(btn.querySelector("video"), btn);
-  }
+  btn.classList.add("has-src");
+  btn.insertAdjacentHTML("afterbegin", `<video muted loop playsinline autoplay preload="auto" ${v.poster ? `poster="${v.poster}"` : ""} src="${v.src}"></video>`);
+  const vid = btn.querySelector("video");
+  box.hidden = false;
+  fileMissing(v.src).then(missing => { if (missing) box.hidden = true; });   // Datei fehlt: Bereich bleibt ausgeblendet
+  fitRatio(vid, btn);
   btn.addEventListener("click", () => openVideo(v));
 }
 
