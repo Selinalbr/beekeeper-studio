@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="UGC Portfolio von Selina: natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle.">
+<meta name="description" content="UGC Portfolio von Selina: natürliche Paid-Ad-Videos auf Deutsch und Englisch, passend zu deiner Marke.">
 <style>[hidden]{display:none!important}img,video{max-width:100%}</style>
 <title>UGC by Selina</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,12 +115,16 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 /* video cards */
 .vid { position: relative; aspect-ratio: 9 / 16; width: 100%; border-radius: 26px; overflow: hidden; background: linear-gradient(160deg, var(--ph-a), var(--ph-b)); border: 0; padding: 0; cursor: pointer; color: var(--ink); text-align: left; font: inherit; }
 .vid video, .vid img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.vid .play { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: color-mix(in srgb, var(--navy) 82%, transparent); display: grid; place-items: center; transition: transform .2s; }
+.vid .play { position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: color-mix(in srgb, var(--surface) 88%, transparent); box-shadow: 0 8px 24px -10px rgba(0, 0, 0, .45); display: grid; place-items: center; transition: transform .2s; }
 .vid:hover .play { transform: scale(1.08); }
-.vid .play::after { content: ""; border-left: 18px solid var(--on-navy); border-block: 11px solid transparent; margin-left: 5px; }
+.vid .play::after { content: ""; border-left: 18px solid var(--ink); border-block: 11px solid transparent; margin-left: 5px; }
 .vid .ph-note { position: absolute; inset: auto 12px 12px 12px; background: var(--bg); color: var(--ink); border-radius: 14px; padding: 10px 14px; font-size: .8rem; font-weight: 600; line-height: 1.35; text-align: center; }
 .vid .ph-note b { display: block; color: var(--accent); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
 .vid.has-src .ph-note { display: none; }
+.vid.playing .play { display: none; }
+.vid .stopx { display: none; position: absolute; top: 10px; right: 10px; z-index: 3; width: 36px; height: 36px; border-radius: 50%; background: rgba(0, 0, 0, .5); color: #fff; font-size: 1rem; place-items: center; cursor: pointer; }
+.vid.playing .stopx { display: grid; }
+.vid.playing video { object-fit: cover; }
 .vid:not(.has-src) { border: 2px dashed var(--accent-2); }
 
 /* showcase */
@@ -128,12 +132,23 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .filters { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: .9rem; font-weight: 500; padding: 8px 18px; border-radius: 999px; cursor: pointer; }
 .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-cta); }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 24px; }
+.vwrap { position: relative; }
+.grid { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; padding-block: 4px 2px; overscroll-behavior-x: contain; }
+.grid::-webkit-scrollbar { display: none; }
+.grid > .card { flex: 0 0 calc((100% - 72px) / 4); scroll-snap-align: start; }
+.vnav { position: absolute; top: calc(50% - 40px); z-index: 4; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: 1.7rem; line-height: 1; padding-bottom: 4px; cursor: pointer; box-shadow: 0 10px 24px -12px rgba(63, 51, 40, .5); transition: opacity .2s, background .2s; }
+.vnav:hover { background: var(--soft); }
+.vnav.prev { left: -16px; }
+.vnav.next { right: -16px; }
+.vnav[disabled] { opacity: 0; pointer-events: none; }
+@media (hover: none) { .vnav { display: none; } }
+@media (max-width: 860px) { .grid > .card { flex-basis: calc((100% - 48px) / 3); } }
 .card { display: flex; flex-direction: column; gap: 12px; min-width: 0; position: relative; }
 .card .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .card .meta strong { font-family: var(--font-display); font-weight: var(--hw); font-size: 1.1rem; letter-spacing: -.015em; }
 .tag { font-size: .7rem; letter-spacing: .1em; font-weight: 700; color: var(--accent); background: var(--soft); padding: 3px 10px; border-radius: 999px; }
-@media (max-width: 560px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } .card .meta strong { font-size: .95rem; } .more-tile b { font-size: 1.15rem; } }
+@media (max-width: 560px) { .grid { gap: 14px; } .grid > .card { flex-basis: calc((100% - 14px) / 2); } .card .meta strong { font-size: .95rem; } .more-tile b { font-size: 1.15rem; } }
+.card .more-tile { width: 100%; }
 .more-tile { aspect-ratio: 9 / 16; border-radius: 26px; background: var(--soft); border: 2px dashed var(--accent-2); display: grid; place-content: center; gap: 6px; text-align: center; text-decoration: none; padding: 20px; transition: background .2s; }
 .more-tile:hover { background: var(--line); }
 .more-tile b { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.1; }
@@ -309,8 +324,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <div class="hero">
     <div>
       <span class="who" data-i18n="who">Selina · UGC & Content Creator · Deutschland</span>
-      <h1 data-i18n-html="hero_h1">UGC, bei dem Menschen <em>stehen bleiben.</em></h1>
-      <p class="pitch" data-i18n="hero_pitch">Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.</p>
+      <h1 data-i18n-html="hero_h1">UGC, bei dem <em>keiner weiterscrollt.</em></h1>
+      <p class="pitch" data-i18n="hero_pitch">Natürliche Paid-Ad-Videos auf Deutsch und Englisch, passend zu deiner Marke.</p>
       <div class="cta-row">
         <a class="btn btn-cta" href="#contact" data-i18n="hero_cta">Zusammenarbeit anfragen</a>
         <a class="btn btn-ghost" href="#work" data-i18n="hero_cta2">Arbeiten ansehen</a>
@@ -358,7 +373,11 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
         <button class="chip" type="button" data-filter="en" aria-pressed="false">English</button>
       </div>
     </div>
-    <div class="grid" id="grid"></div>
+    <div class="vwrap">
+      <button class="vnav prev" type="button" id="vPrev" aria-label="Zurück">‹</button>
+      <div class="grid" id="grid"></div>
+      <button class="vnav next" type="button" id="vNext" aria-label="Weiter">›</button>
+    </div>
     <p class="note" data-i18n="work_note">Beim Drüberfahren startet eine kurze Vorschau, ein Klick öffnet das Video mit Ton.</p>
   </section>
 
@@ -583,12 +602,12 @@ const VIDEOS = [
 const T = {
   de: {
     nav_work: "Arbeiten", nav_pkg: "Pakete", nav_contact: "Kontakt", nav_cta: "Anfragen",
-    hero_h1: "UGC, bei dem Menschen <em>stehen bleiben.</em>",
-    hero_pitch: "Natürliche Paid-Ad-Videos für Beauty, Wellness und Lifestyle, auf Deutsch und Englisch.", followers: "40k+ auf TikTok · 17k+ auf YouTube", ph_tag: "Platzhalter", bg_note: "Hintergrundbild (HERO_IMAGE im Code)",
+    hero_h1: "UGC, bei dem <em>keiner weiterscrollt.</em>",
+    hero_pitch: "Natürliche Paid-Ad-Videos auf Deutsch und Englisch, passend zu deiner Marke.", followers: "40k+ auf TikTok · 17k+ auf YouTube", ph_tag: "Platzhalter", bg_note: "Hintergrundbild (HERO_IMAGE im Code)",
     hero_cta: "Zusammenarbeit anfragen", hero_cta2: "Arbeiten ansehen",
     ph_intro: "Hier kommt dein Intro-Video hin", intro_eyebrow: "Lern mich kennen", intro_title: "Hallo, ich bin <span class=\"script\">Selina.</span>", ph_photo: "Platzhalter: Portrait",
     more_tt: "Mehr auf TikTok", work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die <span class=\"script\">verkaufen</span>", f_all: "Alle",
-    work_note: "Beim Drüberfahren startet eine kurze Vorschau, ein Klick öffnet das Video mit Ton.",
+    work_note: "Ein Klick startet das Video mit Ton, mit dem X stoppst du es. Mit den Pfeilen oder per Wischen siehst du weitere Videos.",
     pkg_eyebrow: "Zusammenarbeit", pkg_title: "Pakete für deine <span class=\"script\">Kampagne</span>",
     pkg_lead: "Einstiegspreise. Für größere Projekte erstelle ich dir gern ein individuelles Angebot.", pkg_note: "Kürzere Videos (bis 15 Sek.) ab 150 €, längere Videos (bis 60 Sek.) ab 200 €.",
     from: "ab", month: "Monat", popular: "Beliebt", pkg_btn: "Anfragen",
@@ -626,11 +645,11 @@ const T = {
   en: {
     nav_work: "Work", nav_pkg: "Packages", nav_contact: "Contact", nav_cta: "Get in touch",
     hero_h1: "UGC that makes people <em>stop scrolling.</em>",
-    hero_pitch: "Natural paid-ad videos for beauty, wellness and lifestyle, in German and English.", followers: "40k+ on TikTok · 17k+ on YouTube", ph_tag: "Placeholder", bg_note: "background image (HERO_IMAGE in the code)",
+    hero_pitch: "Natural paid-ad videos in German and English, made to fit your brand.", followers: "40k+ on TikTok · 17k+ on YouTube", ph_tag: "Placeholder", bg_note: "background image (HERO_IMAGE in the code)",
     hero_cta: "Request a collaboration", hero_cta2: "See my work",
     ph_intro: "Your intro video goes here", intro_eyebrow: "Get to know me", intro_title: "Hi, I am <span class=\"script\">Selina.</span>", ph_photo: "Placeholder: portrait",
     more_tt: "More on TikTok", work_eyebrow: "Paid ad examples", work_title: "Videos that <span class=\"script\">sell</span>", f_all: "All",
-    work_note: "Hover for a short preview, click to open the video with sound.",
+    work_note: "Click to play a video with sound, hit the X to stop it. Use the arrows or swipe to see more videos.",
     pkg_eyebrow: "Working together", pkg_title: "Packages for your <span class=\"script\">campaign</span>",
     pkg_lead: "Starting prices. For bigger projects I am happy to put together a custom offer.", pkg_note: "Shorter videos (up to 15 sec.) from €150, longer videos (up to 60 sec.) from €200.",
     from: "from", month: "month", popular: "Popular", pkg_btn: "Get in touch",
@@ -694,6 +713,38 @@ function videoInner(v) {
   return media + `<span class="play"></span><span class="ph-note"><b>${t("ph_tag")}</b>${t("soon")}</span>`;
 }
 
+let activeBtn = null;
+function stopInline(btn) {
+  const vid = btn.querySelector("video");
+  btn.classList.remove("playing");
+  if (activeBtn === btn) activeBtn = null;
+  if (!vid) return;
+  vid.pause(); vid.currentTime = 0; vid.muted = true; vid.loop = true;
+  if (btn.id === "introBtn") vid.play().catch(() => {});
+}
+function playInline(btn) {
+  const vid = btn.querySelector("video");
+  if (!vid) return;
+  if (btn.classList.contains("playing")) { if (vid.paused) vid.play().catch(() => {}); else vid.pause(); return; }
+  if (activeBtn && activeBtn !== btn) stopInline(activeBtn);
+  activeBtn = btn;
+  btn.classList.add("playing");
+  vid.loop = false; vid.muted = false; vid.currentTime = 0;
+  vid.play().catch(() => { vid.muted = true; vid.play().catch(() => {}); });
+}
+function addStopX(btn) {
+  const x = document.createElement("span");
+  x.className = "stopx"; x.setAttribute("role", "button"); x.setAttribute("aria-label", "Stop"); x.textContent = "✕";
+  x.addEventListener("click", e => { e.stopPropagation(); stopInline(btn); });
+  btn.append(x);
+  const vid = btn.querySelector("video");
+  if (vid) vid.addEventListener("ended", () => stopInline(btn));
+}
+function updateNav() {
+  const g = $("#grid"), max = g.scrollWidth - g.clientWidth;
+  $("#vPrev").disabled = g.scrollLeft <= 4;
+  $("#vNext").disabled = g.scrollLeft >= max - 4;
+}
 function renderGrid() {
   const grid = $("#grid");
   grid.innerHTML = "";
@@ -709,11 +760,12 @@ function renderGrid() {
     const gv = btn.querySelector("video");
     if (gv) fitRatio(gv, btn);
     if (v.optional) fileMissing(v.src).then(missing => { if (missing) card.remove(); });
-    btn.addEventListener("click", () => openVideo(v));
+    btn.addEventListener("click", () => { if (v.src) playInline(btn); });
     const vid = btn.querySelector("video");
     if (vid) {
-      btn.addEventListener("mouseenter", () => vid.play().catch(() => {}));
-      btn.addEventListener("mouseleave", () => { vid.pause(); vid.currentTime = 0; });
+      addStopX(btn);
+      btn.addEventListener("mouseenter", () => { if (!btn.classList.contains("playing")) vid.play().catch(() => {}); });
+      btn.addEventListener("mouseleave", () => { if (!btn.classList.contains("playing")) { vid.pause(); vid.currentTime = 0; } });
     }
     const meta = document.createElement("div");
     meta.className = "meta";
@@ -722,15 +774,12 @@ function renderGrid() {
     card.append(btn, meta);
     grid.append(card);
   });
-  const shown = VIDEOS.filter(v => !v.intro && (filter === "all" || v.lang === filter)).length;
-  if (shown % 4 === 3) {
-    const more = document.createElement("a");
-    more.className = "more-tile";
-    more.href = "https://www.tiktok.com/@byselinaa";
-    more.target = "_blank"; more.rel = "noopener";
-    more.innerHTML = `<b>${t("more_tt")}</b><span>@byselinaa</span>`;
-    grid.append(more);
-  }
+  const last = document.createElement("div");
+  last.className = "card";
+  last.innerHTML = `<a class="more-tile" href="https://www.tiktok.com/@byselinaa" target="_blank" rel="noopener"><b>${t("more_tt")}</b><span>@byselinaa</span></a>`;
+  grid.append(last);
+  grid.scrollLeft = 0;
+  updateNav();
 }
 
 function fileMissing(src) {   // true nur, wenn der Server die Datei klar als nicht vorhanden meldet
@@ -747,7 +796,8 @@ function renderIntro() {
   box.hidden = false;
   fileMissing(v.src).then(missing => { if (missing) box.hidden = true; });   // Datei fehlt: Bereich bleibt ausgeblendet
   fitRatio(vid, btn);
-  btn.addEventListener("click", () => openVideo(v));
+  addStopX(btn);
+  btn.addEventListener("click", () => playInline(btn));
 }
 
 const lb = $("#lb"), stage = $("#lbStage");
@@ -944,6 +994,10 @@ try {
 
 renderReviews();
 renderGallery();
+$("#grid").addEventListener("scroll", updateNav, { passive: true });
+$("#vPrev").addEventListener("click", () => $("#grid").scrollBy({ left: -$("#grid").clientWidth * 0.85 }));
+$("#vNext").addEventListener("click", () => $("#grid").scrollBy({ left: $("#grid").clientWidth * 0.85 }));
+window.addEventListener("resize", updateNav);
 renderIntro();
 applyLang();
 </script>
