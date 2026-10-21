@@ -129,10 +129,10 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .grid { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; padding-block: 4px 2px; overscroll-behavior-x: contain; }
 .grid::-webkit-scrollbar { display: none; }
 .grid > .card { flex: 0 0 calc((100% - 72px) / 4); scroll-snap-align: start; }
-.vnav { position: absolute; top: calc(50% - 40px); z-index: 4; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: 1.7rem; line-height: 1; padding-bottom: 4px; cursor: pointer; box-shadow: 0 10px 24px -12px rgba(63, 51, 40, .5); transition: opacity .2s, background .2s; }
-.vnav:hover { background: var(--soft); }
-.vnav.prev { left: -16px; }
-.vnav.next { right: -16px; }
+.vnav { position: absolute; top: calc(50% - 44px); z-index: 4; width: 58px; height: 58px; border-radius: 50%; border: 0; background: var(--accent); color: var(--on-cta); font: inherit; font-size: 2.2rem; font-weight: 700; line-height: 1; padding-bottom: 6px; cursor: pointer; box-shadow: 0 14px 30px -10px rgba(40, 30, 20, .65); transition: opacity .2s, transform .2s; }
+.vnav:hover { transform: scale(1.08); }
+.vnav.prev { left: -22px; }
+.vnav.next { right: -22px; }
 .vnav[disabled] { opacity: 0; pointer-events: none; }
 @media (hover: none) { .vnav { display: none; } }
 @media (max-width: 860px) { .grid > .card { flex-basis: calc((100% - 48px) / 3); } }
@@ -140,7 +140,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .card .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .card .meta strong { font-family: var(--font-display); font-weight: var(--hw); font-size: 1.1rem; letter-spacing: -.015em; }
 .tag { font-size: .7rem; letter-spacing: .1em; font-weight: 700; color: var(--accent); background: var(--soft); padding: 3px 10px; border-radius: 999px; }
-@media (max-width: 560px) { .grid { gap: 14px; } .grid > .card { flex-basis: calc((100% - 14px) / 2); } .card .meta strong { font-size: .95rem; } .more-tile b { font-size: 1.15rem; } }
+@media (max-width: 560px) { .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; overflow: visible; scroll-snap-type: none; } .grid > .card { flex: none; } .vnav { display: none; } .card .meta strong { font-size: .95rem; } .more-tile b { font-size: 1.15rem; } }
 .card .more-tile { width: 100%; }
 .more-tile { aspect-ratio: 9 / 16; border-radius: 26px; background: var(--soft); border: 2px dashed var(--accent-2); display: grid; place-content: center; gap: 6px; text-align: center; text-decoration: none; padding: 20px; transition: background .2s; }
 .more-tile:hover { background: var(--line); }
@@ -581,15 +581,15 @@ const PHOTO_WHY = "videos/portrait.jpg";  // Portrait bei "Warum ich"
 const YOUTUBE_URL = "https://www.youtube.com/@byselina";                     // Link zu deinem YouTube-Kanal eintragen, dann erscheint der Button
 const VIDEOS = [
   { intro: true, ratio: "16 / 9", src: "videos/intro.mp4", poster: "videos/intro.jpg", optional: true },   // Intro ist quer (16:9). Hochformat? ratio: "9 / 16"
-  { title: "Storytelling", lang: "de", src: "videos/neu.mp4", poster: "videos/neu.jpg" },
-  { title: "Hair Care", lang: "de", src: "videos/haircare.mp4", poster: "videos/haircare.jpg" },
-  { title: "Skin Care", lang: "de", src: "videos/skincare.mp4", poster: "videos/skincare.jpg" },
-  { title: "Sun Care",    lang: "de", src: "videos/suncare.mp4", poster: "videos/suncare.jpg" },
-  { title: "Wellness", lang: "de", src: "videos/wellness.mp4", poster: "videos/wellness.jpg" },
-  { title: "Food",        lang: "en", src: "videos/food.mp4", poster: "videos/food.jpg" },
-  { title: "Jewellery",   lang: "en", src: "videos/jewellery.mp4", poster: "videos/jewellery.jpg" },
-  { title: "Unboxing",    lang: "en", src: "videos/unboxing.mp4", poster: "videos/unboxing.jpg" },
-  { title: "What I Eat",  lang: "en", src: "videos/whatieat.mp4", poster: "videos/whatieat.jpg" }
+  { title: "Finance",   lang: "de", src: "videos/neu.mp4", poster: "videos/neu.jpg" },
+  { title: "Beauty",    lang: "de", src: "videos/haircare.mp4", poster: "videos/haircare.jpg" },
+  { title: "Fitness",   lang: "en", src: "videos/unboxing.mp4", poster: "videos/unboxing.jpg" },
+  { title: "Body Care", lang: "de", src: "videos/suncare.mp4", poster: "videos/suncare.jpg" },
+  { title: "Wellness",  lang: "de", src: "videos/wellness.mp4", poster: "videos/wellness.jpg" },
+  { title: "Skincare",  lang: "de", src: "videos/skincare.mp4", poster: "videos/skincare.jpg" },
+  { title: "Food",      lang: "en", src: "videos/food.mp4", poster: "videos/food.jpg" },
+  { title: "Jewellery", lang: "en", src: "videos/jewellery.mp4", poster: "videos/jewellery.jpg" },
+  { title: "Lifestyle", lang: "en", src: "videos/whatieat.mp4", poster: "videos/whatieat.jpg" }
 ];
 
 const T = {
@@ -600,7 +600,7 @@ const T = {
     hero_cta: "Zusammenarbeit anfragen", hero_cta2: "Arbeiten ansehen",
     ph_intro: "Hier kommt dein Intro-Video hin", intro_eyebrow: "Lern mich kennen", intro_title: "Hallo, ich bin <span class=\"script\">Selina.</span>", ph_photo: "Platzhalter: Portrait",
     more_tt: "Mehr auf TikTok", work_eyebrow: "Paid Ad Beispiele", work_title: "Videos, die <span class=\"script\">verkaufen</span>", f_all: "Alle",
-    work_note: "Ein Klick startet das Video mit Ton, mit dem X stoppst du es. Mit den Pfeilen oder per Wischen siehst du weitere Videos.",
+    work_note: "Ein Klick startet das Video mit Ton, mit dem X stoppst du es. Mit den Pfeilen siehst du weitere Videos.",
     pkg_eyebrow: "Zusammenarbeit", pkg_title: "Pakete für deine <span class=\"script\">Kampagne</span>",
     pkg_lead: "Einstiegspreise. Für größere Projekte erstelle ich dir gern ein individuelles Angebot.", pkg_note: "Kürzere Videos (bis 15 Sek.) ab 150 €, längere Videos (bis 60 Sek.) ab 200 €.",
     from: "ab", month: "Monat", popular: "Beliebt", pkg_btn: "Anfragen",
@@ -642,7 +642,7 @@ const T = {
     hero_cta: "Request a collaboration", hero_cta2: "See my work",
     ph_intro: "Your intro video goes here", intro_eyebrow: "Get to know me", intro_title: "Hi, I am <span class=\"script\">Selina.</span>", ph_photo: "Placeholder: portrait",
     more_tt: "More on TikTok", work_eyebrow: "Paid ad examples", work_title: "Videos that <span class=\"script\">sell</span>", f_all: "All",
-    work_note: "Click to play a video with sound, hit the X to stop it. Use the arrows or swipe to see more videos.",
+    work_note: "Click to play a video with sound, hit the X to stop it. Use the arrows to see more videos.",
     pkg_eyebrow: "Working together", pkg_title: "Packages for your <span class=\"script\">campaign</span>",
     pkg_lead: "Starting prices. For bigger projects I am happy to put together a custom offer.", pkg_note: "Shorter videos (up to 15 sec.) from €150, longer videos (up to 60 sec.) from €200.",
     from: "from", month: "month", popular: "Popular", pkg_btn: "Get in touch",
@@ -712,8 +712,7 @@ function stopInline(btn) {
   btn.classList.remove("playing");
   if (activeBtn === btn) activeBtn = null;
   if (!vid) return;
-  vid.pause(); vid.currentTime = 0; vid.muted = true; vid.loop = true;
-  if (btn.id === "introBtn") vid.play().catch(() => {});
+  vid.pause(); vid.currentTime = 0; vid.muted = true; vid.loop = false;
 }
 function playInline(btn) {
   const vid = btn.querySelector("video");
@@ -784,7 +783,7 @@ function renderIntro() {
   if (!v.src) return;
   if (v.ratio) btn.style.aspectRatio = v.ratio;
   btn.classList.add("has-src");
-  btn.insertAdjacentHTML("afterbegin", `<video muted loop playsinline autoplay preload="auto" ${v.poster ? `poster="${v.poster}"` : ""} src="${v.src}"></video>`);
+  btn.insertAdjacentHTML("afterbegin", `<video muted playsinline preload="auto" ${v.poster ? `poster="${v.poster}"` : ""} src="${v.src}"></video>`);
   const vid = btn.querySelector("video");
   box.hidden = false;
   fileMissing(v.src).then(missing => { if (missing) box.hidden = true; });   // Datei fehlt: Bereich bleibt ausgeblendet
