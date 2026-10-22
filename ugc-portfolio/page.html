@@ -755,15 +755,13 @@ function renderGrid() {
     btn.setAttribute("aria-label", v.title);
     btn.innerHTML = videoInner(v);
     if (v.ratio) btn.style.aspectRatio = v.ratio;
-    const gv = btn.querySelector("video");
-    if (gv) fitRatio(gv, btn);
-    if (v.optional) fileMissing(v.src).then(missing => { if (missing) card.remove(); });
-    btn.addEventListener("click", () => { if (v.src) playInline(btn); });
     const vid = btn.querySelector("video");
+    if (vid) fitRatio(vid, btn);
+    if (v.optional) fileMissing(v.src).then(missing => { if (missing) card.remove(); });
+    btn.addEventListener("click", () => { if (v.src) { vid && vid.pause(); openVideo(v); } });
     if (vid) {
-      addStopX(btn);
-      btn.addEventListener("mouseenter", () => { if (!btn.classList.contains("playing")) vid.play().catch(() => {}); });
-      btn.addEventListener("mouseleave", () => { if (!btn.classList.contains("playing")) { vid.pause(); vid.currentTime = 0; } });
+      btn.addEventListener("mouseenter", () => vid.play().catch(() => {}));
+      btn.addEventListener("mouseleave", () => { vid.pause(); vid.currentTime = 0; });
     }
     const meta = document.createElement("div");
     meta.className = "meta";
@@ -800,6 +798,7 @@ function renderIntro() {
 
 const lb = $("#lb"), stage = $("#lbStage");
 function openVideo(v) {
+  if (activeBtn) stopInline(activeBtn);
   stage.innerHTML = "";
   const box = document.createElement("div");
   const land = isLand(v.ratio);
