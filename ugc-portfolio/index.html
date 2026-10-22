@@ -101,7 +101,7 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .hero .pitch { font-size: 1.15rem; color: var(--muted); max-width: 48ch; margin: 22px 0 0; }
 .hero .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .intro { padding-block: 56px 8px; text-align: center; }
-.intro .land-card { max-width: 920px; margin-top: 24px; margin-inline: auto; display: block; box-shadow: 0 30px 60px -34px rgba(63, 51, 40, .45); }
+.intro .land-card { max-width: 100%; width: 100%; margin-top: 24px; margin-inline: auto; display: block; box-shadow: 0 30px 60px -34px rgba(63, 51, 40, .45); }
 @media (min-width: 861px) {
   .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(16px, 2vw, 32px); padding-top: 40px; }
   .herobg { margin-left: -190px; margin-right: 0; max-width: 640px; justify-self: end; }
@@ -138,10 +138,9 @@ h3 { font-size: 1.45rem; font-weight: var(--hw); letter-spacing: -.01em; }
 .grid > .card { flex: 0 0 calc((100% - 72px) / 4); scroll-snap-align: start; }
 .vnav { position: absolute; top: calc(50% - 44px); z-index: 4; width: 58px; height: 58px; border-radius: 50%; border: 0; background: var(--accent); color: var(--on-cta); font: inherit; font-size: 2.2rem; font-weight: 700; line-height: 1; padding-bottom: 6px; cursor: pointer; box-shadow: 0 14px 30px -10px rgba(40, 30, 20, .65); transition: opacity .2s, transform .2s; }
 .vnav:hover { transform: scale(1.08); }
-.vnav.prev { left: -22px; }
-.vnav.next { right: -22px; }
+.vnav.prev { left: -12px; }
+.vnav.next { right: -12px; }
 .vnav[disabled] { opacity: 0; pointer-events: none; }
-@media (hover: none) { .vnav { display: none; } }
 @media (max-width: 860px) { .grid > .card { flex-basis: calc((100% - 48px) / 3); } }
 .card { display: flex; flex-direction: column; gap: 12px; min-width: 0; position: relative; }
 .card .meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
@@ -714,6 +713,12 @@ function videoInner(v) {
 }
 
 let activeBtn = null;
+const viewObs = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    const btn = en.target, vid = btn.querySelector("video");
+    if (!en.isIntersecting && btn.classList.contains("playing") && vid && !vid.paused) vid.pause();   // aus dem Bild gescrollt: pausieren
+  });
+}, { threshold: 0.25 }) : null;
 function stopInline(btn) {
   const vid = btn.querySelector("video");
   btn.classList.remove("playing");
@@ -736,6 +741,7 @@ function addStopX(btn) {
   x.className = "stopx"; x.setAttribute("role", "button"); x.setAttribute("aria-label", "Stop"); x.textContent = "✕";
   x.addEventListener("click", e => { e.stopPropagation(); stopInline(btn); });
   btn.append(x);
+  if (viewObs) viewObs.observe(btn);
   const vid = btn.querySelector("video");
   if (vid) vid.addEventListener("ended", () => stopInline(btn));
 }
