@@ -300,6 +300,11 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 .lb-box .vid.land { width: 100%; }
 .lb-box .vid:not(.land) video { object-fit: cover; }
 .lb-box .vid video { object-fit: contain; background: #000; }
+.lb-nav { position: absolute; top: calc(50% - 29px); z-index: 4; width: 58px; height: 58px; border-radius: 50%; border: 0; background: var(--accent); color: var(--on-cta); font: inherit; font-size: 2.2rem; font-weight: 700; line-height: 1; padding-bottom: 6px; cursor: pointer; box-shadow: 0 14px 30px -10px rgba(40, 30, 20, .65); transition: transform .2s; }
+.lb-nav:hover { transform: scale(1.08); }
+.lb-nav.prev { left: -82px; }
+.lb-nav.next { right: -82px; }
+@media (max-width: 560px) { .lb-nav { width: 46px; height: 46px; font-size: 1.8rem; top: calc(50% - 23px); } .lb-nav.prev { left: 10px; } .lb-nav.next { right: 10px; } }
 .lb-close { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 14px); right: 16px; z-index: 2; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; width: 44px; height: 44px; font-size: 1.2rem; line-height: 1; padding: 0; display: grid; place-items: center; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
@@ -557,6 +562,8 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
   <div class="lb-box">
     <button class="lb-close" type="button" id="lbClose" aria-label="Schließen">✕</button>
     <div id="lbStage"></div>
+    <button class="lb-nav prev" type="button" id="lbPrev" aria-label="Zurück">‹</button>
+    <button class="lb-nav next" type="button" id="lbNext" aria-label="Weiter">›</button>
   </div>
 </div>
 
@@ -810,7 +817,18 @@ function renderIntro() {
 }
 
 const lb = $("#lb"), stage = $("#lbStage");
-function openVideo(v) {
+let lbList = [], lbIdx = 0;
+function lbStep(d) {
+  if (lbList.length < 2) return;
+  lbIdx = (lbIdx + d + lbList.length) % lbList.length;
+  openVideo(lbList[lbIdx], true);
+}
+function openVideo(v, keepList) {
+  if (!keepList) {
+    lbList = VIDEOS.filter(x => !x.intro && x.src && (filter === "all" || x.lang === filter));
+    lbIdx = Math.max(0, lbList.indexOf(v));
+  }
+  $("#lbPrev").hidden = $("#lbNext").hidden = lbList.length < 2;
   if (activeBtn) stopInline(activeBtn);
   stage.innerHTML = "";
   const box = document.createElement("div");
@@ -918,6 +936,12 @@ $("#legal").addEventListener("click", e => { if (e.target.id === "legal") closeL
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#legal").hidden) closeLegal(); });
 function closeVideo() { lb.hidden = true; stage.innerHTML = ""; }
 $("#lbClose").addEventListener("click", closeVideo);
+$("#lbPrev").addEventListener("click", () => lbStep(-1));
+$("#lbNext").addEventListener("click", () => lbStep(1));
+document.addEventListener("keydown", e => { if (lb.hidden) return; if (e.key === "ArrowRight") lbStep(1); if (e.key === "ArrowLeft") lbStep(-1); });
+let lbX = null;
+lb.addEventListener("touchstart", e => { lbX = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener("touchend", e => { if (lbX === null) return; const dx = e.changedTouches[0].clientX - lbX; lbX = null; if (Math.abs(dx) > 60) lbStep(dx < 0 ? 1 : -1); }, { passive: true });
 lb.addEventListener("click", e => { if (e.target === lb) closeVideo(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !lb.hidden) closeVideo(); });
 
