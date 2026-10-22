@@ -294,7 +294,7 @@ footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
 .lb[hidden] { display: none; }
 .lb-box { position: relative; width: min(var(--lb-w, 420px), 100%); max-height: 100%; }
 .lb-box .vid { cursor: pointer; max-height: calc(100vh - 110px); width: auto; max-width: 100%; margin-inline: auto; }
-.lb-box .vid:not(.land) { aspect-ratio: 9 / 19 !important; width: 100%; max-height: none; border: 8px solid var(--ink); border-radius: 54px; box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .55); background: #000; }
+.lb-box .vid:not(.land) { aspect-ratio: 9 / 16 !important; box-sizing: content-box; width: calc(100% - 16px); max-height: none; border: 8px solid var(--ink); border-radius: 46px; box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .55); background: #000; }
 .lb-box .vid:not(.land)::before { content: ""; position: absolute; top: 8px; left: 50%; width: 84px; height: 24px; margin-left: -42px; background: var(--ink); border-radius: 14px; z-index: 3; }
 .lb-box .vid.land { border-radius: 20px; box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .55); }
 .lb-box .vid.land { width: 100%; }
@@ -817,7 +817,7 @@ function openVideo(v) {
   const land = isLand(v.ratio);
   box.className = "vid" + (v.src ? " has-src" : "") + (land ? " land" : "");
   box.style.aspectRatio = v.ratio || "9 / 16";
-  lb.style.setProperty("--lb-w", land ? "960px" : "min(380px, calc((100vh - 110px) * 0.474))");
+  lb.style.setProperty("--lb-w", land ? "960px" : "min(380px, calc((100vh - 130px) * 0.5625))");
   if (v.src) {
     const el = document.createElement("video");
     el.src = v.src; el.controls = false; el.autoplay = true; el.playsInline = true; el.disablePictureInPicture = true;
@@ -825,7 +825,7 @@ function openVideo(v) {
     el.addEventListener("click", () => { if (el.paused) el.play().catch(() => {}); else el.pause(); });
     el.play().catch(() => { el.muted = true; el.play().catch(() => {}); });
     if (v.poster) el.poster = v.poster;
-    el.addEventListener("loadedmetadata", () => { if (el.videoWidth) { const l = el.videoWidth > el.videoHeight; box.style.aspectRatio = el.videoWidth + " / " + el.videoHeight; box.classList.toggle("land", l); lb.style.setProperty("--lb-w", l ? "960px" : "min(380px, calc((100vh - 110px) * 0.474))"); } });
+    el.addEventListener("loadedmetadata", () => { if (el.videoWidth) { const l = el.videoWidth > el.videoHeight; box.style.aspectRatio = el.videoWidth + " / " + el.videoHeight; box.classList.toggle("land", l); lb.style.setProperty("--lb-w", l ? "960px" : "min(380px, calc((100vh - 130px) * 0.5625))"); } });
     box.append(el);
   } else {
     box.innerHTML = `<span class="ph-note"><b>${t("ph_tag")}</b>${t("soon")}</span>`;
